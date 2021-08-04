@@ -5,9 +5,19 @@ USE rotten_potatoes;
 DROP TABLE IF EXISTS BADGES;
 
 CREATE TABLE BADGES (
-	badge_id CHAR(6),
-		CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
+	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
 	badge_name CHAR(20),
     badge_icon CHAR(28),
     badge_description CHAR(64)
 );
+
+INSERT INTO BADGES VALUES
+	-- badges are given so easily for the sake of testing their work ability
+	('AM_CRT', 'Amateur Critic', 'Amateur_Critic.png', 'Badge is given when the user has given a single review.'),
+    ('AM_FAN', 'Amateur Fan', 'Amateur_Fan.png', 'Badge is given when the user has uploaded a single item.'),
+    ('EX_CRT', 'Experienced Critic', 'Experienced_Critic.png', 'Badge is given when the user has given more than 5 reviews.'),
+    ('EX_FAN', 'Experienced Fan', 'Experienced_Fan.png', 'Badge is given when the user has uploaded more than 5 items.'),
+    ('TP_CRT', 'Top Critic', 'Top_Critic.png', 'Badge is given when the user has given more than 10 reviews.'),
+    ('TP_FAN', 'Top Fan', 'Top_Fan.png', 'Badge is given when the user has uploaded more than 10 items.');
+
+SELECT * FROM BADGES;
