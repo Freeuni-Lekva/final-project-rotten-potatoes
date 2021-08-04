@@ -4,6 +4,7 @@ USE rotten_potatoes;
 -- remove a table if it already exists to begin from scratch
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS USER_BADGES;
+DROP TABLE IF EXISTS FOLLOWERS;
 
 CREATE TABLE BADGES (
 	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
@@ -24,4 +25,9 @@ INSERT INTO BADGES VALUES
 CREATE TABLE USER_BADGES (
 	username CHAR(20), CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES USERS (username),
     badge_id CHAR(6), CONSTRAINT badge_id_fk FOREIGN KEY (badge_id) REFERENCES BADGES (badge_id)
+);
+
+CREATE TABLE FOLLOWERS (
+	user_username CHAR(20), CONSTRAINT user_username_fk FOREIGN KEY (username) REFERENCES USERS (username),
+    follower_username CHAR(20), CONSTRAINT follower_username_fk FOREIGN KEY (follower_username) REFERENCES USERS (username)
 );
