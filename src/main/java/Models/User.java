@@ -3,6 +3,9 @@ package Models;
 import java.util.List;
 
 public class User {
+    // Constant variable declaration.
+    public static final String ATTRIBUTE = "username";
+
     // Instance variable declarations.
     private String username;
     private String password;
@@ -17,6 +20,11 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public static User getUserByUsername(String username){
+        // TO BE IMPLEMENTED
+        return null;
     }
 
     public List<Badge> getBadges(){
