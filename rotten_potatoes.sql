@@ -8,15 +8,15 @@ DROP TABLE IF EXISTS FOLLOWERS;
 DROP TABLE IF EXISTS MOVIES;
 DROP TABLE IF EXISTS BOOKS;
 DROP TABLE IF EXISTS VIDEO_GAMES;
+DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 
-<<<<<<< Updated upstream
-=======
 
 CREATE TABLE CATEGORIES(
 		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
 );
+
 
 CREATE TABLE USERS (
 	username CHAR(20), CONSTRAINT pk_username PRIMARY KEY (username),
@@ -25,6 +25,7 @@ CREATE TABLE USERS (
     date_of_birth DATE,
     hash_password CHAR(32)
 );
+
 
 
 CREATE TABLE ITEMS (
@@ -42,7 +43,7 @@ INSERT INTO CATEGORIES VALUES
 
 
 
->>>>>>> Stashed changes
+
 CREATE TABLE BADGES (
 	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
 	badge_name CHAR(20),
@@ -75,8 +76,8 @@ CREATE TABLE MOVIES (
     release_date YEAR,
     director CHAR(60),
   	movie_cast CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_movies UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -98,8 +99,8 @@ CREATE TABLE BOOKS (
 	title CHAR(100),
     release_date YEAR,
     writer CHAR(60),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_books UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -120,8 +121,8 @@ CREATE TABLE VIDEO_GAMES (
 	title CHAR(100),
     release_date YEAR,
     developers CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_video_games UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -142,11 +143,7 @@ INSERT INTO VIDEO_GAMES VALUES
 
 
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 
-=======
->>>>>>> 50b850394b383f37e2a800be530a1886c3da8db6
 CREATE TABLE ITEMS (
 	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
@@ -161,8 +158,7 @@ CREATE TABLE CATEGORIES(
 
 INSERT INTO CATEGORIES VALUES
 ('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
-=======
->>>>>>> Stashed changes
+
 
 
 
