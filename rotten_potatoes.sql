@@ -43,7 +43,7 @@ CREATE TABLE MOVIES (
   	movie_cast CHAR(100),
   	cover_url CHAR(2083), CONSTRAINT uk_url_movies UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	uploader CHAR(30), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
 );
@@ -65,7 +65,7 @@ CREATE TABLE BOOKS (
     writer CHAR(60),
   	cover_url CHAR(2083), CONSTRAINT uk_url_books UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	uploader CHAR(30), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	uploader CHAR(20), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
 );
@@ -87,7 +87,7 @@ CREATE TABLE VIDEO_GAMES (
     developers CHAR(100),
   	cover_url CHAR(2083), CONSTRAINT uk_url_video_games UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	uploader CHAR(30), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	uploader CHAR(20), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
 );
