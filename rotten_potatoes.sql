@@ -5,6 +5,21 @@ USE rotten_potatoes;
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
+<<<<<<< Updated upstream
+=======
+DROP TABLE IF EXISTS MOVIES;
+DROP TABLE IF EXISTS BOOKS;
+DROP TABLE IF EXISTS VIDEO_GAMES;
+DROP TABLE IF EXISTS USERS;
+
+CREATE TABLE USERS (
+	username CHAR(20), CONSTRAINT pk_username PRIMARY KEY(username),
+    first_name CHAR(20),
+    last_name CHAR(30),
+    date_of_birth DATE,
+    hash_password CHAR(32)
+);
+>>>>>>> Stashed changes
 
 CREATE TABLE BADGES (
 	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
