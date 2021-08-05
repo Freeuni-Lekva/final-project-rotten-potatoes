@@ -12,6 +12,12 @@ DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 
+
+CREATE TABLE CATEGORIES(
+		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
+);
+
+
 CREATE TABLE USERS (
 	username CHAR(20), CONSTRAINT pk_username PRIMARY KEY (username),
     first_name CHAR(20),
@@ -19,6 +25,24 @@ CREATE TABLE USERS (
     date_of_birth DATE,
     hash_password CHAR(32)
 );
+
+
+
+CREATE TABLE ITEMS (
+	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
+    category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+    score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
+    cover_url TEXT 
+);
+
+
+INSERT INTO CATEGORIES VALUES
+('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
+
+
+
+
 
 CREATE TABLE BADGES (
 	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
@@ -119,6 +143,7 @@ INSERT INTO VIDEO_GAMES VALUES
 
 
 
+
 CREATE TABLE ITEMS (
 	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
@@ -133,6 +158,7 @@ CREATE TABLE CATEGORIES(
 
 INSERT INTO CATEGORIES VALUES
 ('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
+
 
 
 
