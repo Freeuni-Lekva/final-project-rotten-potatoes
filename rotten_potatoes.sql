@@ -116,7 +116,7 @@ INSERT INTO VIDEO_GAMES VALUES
 
 
 CREATE TABLE ITEMS (
-	item_id CHAR(250), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
+	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
     uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
     score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
@@ -124,7 +124,7 @@ CREATE TABLE ITEMS (
 );
 
 CREATE TABLE CATEGORIES(
-		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY(category_name)
+		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
 );
 
 INSERT INTO CATEGORIES VALUES
@@ -135,4 +135,3 @@ INSERT INTO CATEGORIES VALUES
 
 
 
->>>>>>> Stashed changes
