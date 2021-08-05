@@ -23,7 +23,7 @@ public class Badge {
         return badgeName;
     }
 
-    public String badgeIcon(){
+    public String getBadgeIcon(){
         return badgeIcon;
     }
 
