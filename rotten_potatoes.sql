@@ -42,7 +42,7 @@ CREATE TABLE MUSIC (
     label CHAR(50),
     release_year YEAR,
     genre CHAR(100),
-    album_cover_url CHAR(2083), CONSTRAINT uk_url_album UNIQUE KEY (album_cover_url),
+    album_cover_url TEXT,
     uploader CHAR(20), CONSTRAINT music_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
     score DOUBLE, CONSTRAINT ck_score_music CHECK (score BETWEEN 0 AND 10),
     num_of_reviews INTEGER
@@ -60,8 +60,8 @@ CREATE TABLE TV_SHOWS (
         airing_year YEAR,
         director CHAR(60),
         tv_show_cast CHAR(100),
-        cover_url CHAR(2083), CONSTRAINT uk_url_tv_shows UNIQUE KEY (cover_url),
-        summary CHAR(1000),
+        cover_url TEXT,
+        summary TEXT,
         uploader CHAR(20), CONSTRAINT tv_show_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS(username),
         score DOUBLE, CONSTRAINT ck_score_tv_shows CHECK (score BETWEEN 0 AND 10),
         num_of_reviews INTEGER
@@ -88,6 +88,6 @@ CREATE TABLE REVIEWS (
         item_id CHAR(100), CONSTRAINT item_id_fk FOREIGN KEY (item_id) REFERENCES ITEMS (item_id)
         username CHAR(20), CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES USERS (username)
         score DOUBLE, CONSTRAINT ck_score_in_review CHECK (score BETWEEN 0 AND 10),
-        review CHAR(1000),
+        review TEXT,
         category CHAR(15)
 );
