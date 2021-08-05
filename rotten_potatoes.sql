@@ -35,7 +35,7 @@ CREATE TABLE USERS (
 
 
 INSERT INTO USERS VALUES 
-	('admin', 'Giorgi', 'Meore', 03/07/1900, 'RottenPotatoes');
+	('admin', 'Giorgi', 'Meore', '1900-03-07', 'RottenPotatoes');
 
 
 CREATE TABLE ITEMS (
