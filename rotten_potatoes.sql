@@ -142,8 +142,11 @@ INSERT INTO VIDEO_GAMES VALUES
 
 
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 
+=======
+>>>>>>> 50b850394b383f37e2a800be530a1886c3da8db6
 CREATE TABLE ITEMS (
 	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
