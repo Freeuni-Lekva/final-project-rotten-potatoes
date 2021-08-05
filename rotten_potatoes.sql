@@ -9,6 +9,8 @@ DROP TABLE IF EXISTS MOVIES;
 DROP TABLE IF EXISTS BOOKS;
 DROP TABLE IF EXISTS VIDEO_GAMES;
 DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS ITEMS;
+DROP TABLE IF EXISTS CATEGORIES;
 
 CREATE TABLE USERS (
 	username CHAR(20), CONSTRAINT pk_username PRIMARY KEY (username),
@@ -50,8 +52,8 @@ CREATE TABLE MOVIES (
     release_date YEAR,
     director CHAR(60),
   	movie_cast CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_movies UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -67,13 +69,14 @@ INSERT INTO MOVIES VALUES
     	'A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the 
      	hotel\'s glorious years under an exceptional concierge.', 'admin', 0, 0);
 
+
 CREATE TABLE BOOKS (
 	book_id CHAR(100), CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES ITEMS (item_id),
 	title CHAR(100),
     release_date YEAR,
     writer CHAR(60),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_books UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -94,8 +97,8 @@ CREATE TABLE VIDEO_GAMES (
 	title CHAR(100),
     release_date YEAR,
     developers CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_video_games UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -112,3 +115,26 @@ INSERT INTO VIDEO_GAMES VALUES
     	'Stardew Valley is a farming simulation game primarily inspired by the Harvest Moon video game series. At the start of the game, 
      	players create a character, who becomes the recipient of a plot of land and a small house once owned 
      	by their grandfather in a small town called Pelican Town.', 'admin', 0, 0);
+
+
+
+
+CREATE TABLE ITEMS (
+	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
+    category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+    score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
+    cover_url TEXT 
+);
+
+CREATE TABLE CATEGORIES(
+		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
+);
+
+INSERT INTO CATEGORIES VALUES
+('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
+
+
+
+
+
