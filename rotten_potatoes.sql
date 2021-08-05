@@ -8,9 +8,9 @@ DROP TABLE IF EXISTS FOLLOWERS;
 DROP TABLE IF EXISTS MOVIES;
 DROP TABLE IF EXISTS BOOKS;
 DROP TABLE IF EXISTS VIDEO_GAMES;
-DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
+DROP TABLE IF EXISTS USERS;
 
 
 CREATE TABLE CATEGORIES(
@@ -26,6 +26,9 @@ CREATE TABLE USERS (
     hash_password CHAR(32)
 );
 
+
+INSERT INTO USERS VALUES 
+	('admin', 'Giorgi', 'Meore', 03/07/1900, 'RottenPotatoes');
 
 
 CREATE TABLE ITEMS (
@@ -79,9 +82,14 @@ CREATE TABLE MOVIES (
   	cover_url TEXT,
   	summary TEXT,
   	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-  	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
+  	score DOUBLE, CONSTRAINT ck2_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
 );
+
+
+INSERT INTO ITEMS VALUES
+('MO_Love, Rosie_2014','MOVIES','admin',0,'https://pics.filmaffinity.com/Love_Rosie-612339378-large.jpg'),
+('MO_The Grand Budapest Hotel_2014', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg');
 
 INSERT INTO MOVIES VALUES
 	('MO_Love, Rosie_2014', 'Love, Rosie', 2014, 'Christian Ditter', 'Sam Claflin, Lily Collins, Christian Cooke',
@@ -106,6 +114,11 @@ CREATE TABLE BOOKS (
   	num_of_reviews INTEGER
 );
 
+
+INSERT INTO ITEMS VALUES
+('BO_Bill Bergson, Master Detective_1946','BOOKS','admin',0,'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg'),
+('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013','BOOKS','admin',0,'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg');
+
 INSERT INTO BOOKS VALUES
 	('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 1946, 'Astrid Lindgren', 
     	'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 
@@ -128,6 +141,11 @@ CREATE TABLE VIDEO_GAMES (
   	num_of_reviews INTEGER
 );
 
+
+INSERT INTO ITEMS VALUES
+('VI_Minecraft_2011','VIDEO GAMES', 'admin',0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg'),
+('VI_Stardew Valley_2016','VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg');
+
 INSERT INTO VIDEO_GAMES VALUES
 	('VI_Minecraft_2011', 'Minecraft', 2011, 'Mojang Studios, Other Ocean Interactive, 4J Studios, Xbox Game Studios',
     	'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg', 'Minecraft is a video game in which players
@@ -144,6 +162,7 @@ INSERT INTO VIDEO_GAMES VALUES
 
 
 
+<<<<<<< Updated upstream
 CREATE TABLE ITEMS (
 	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
@@ -157,6 +176,12 @@ CREATE TABLE CATEGORIES(
 );
 
 INSERT INTO CATEGORIES VALUES
+=======
+
+
+
+
+>>>>>>> Stashed changes
 
 ('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
 
