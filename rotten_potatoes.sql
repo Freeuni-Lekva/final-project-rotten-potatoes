@@ -41,8 +41,8 @@ CREATE TABLE MOVIES (
     release_date YEAR,
     director CHAR(60),
   	movie_cast CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_movies UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -63,8 +63,8 @@ CREATE TABLE BOOKS (
 	title CHAR(100),
     release_date YEAR,
     writer CHAR(60),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_books UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
@@ -85,8 +85,8 @@ CREATE TABLE VIDEO_GAMES (
 	title CHAR(100),
     release_date YEAR,
     developers CHAR(100),
-  	cover_url CHAR(2083), CONSTRAINT uk_url_video_games UNIQUE KEY (cover_url),
-  	summary CHAR(1000),
+  	cover_url TEXT,
+  	summary TEXT,
   	uploader CHAR(20), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
   	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
   	num_of_reviews INTEGER
