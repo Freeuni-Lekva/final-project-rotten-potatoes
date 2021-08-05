@@ -37,15 +37,15 @@ CREATE TABLE FOLLOWERS (
 
 CREATE TABLE MOVIES (
 	movie_id CHAR(100), CONSTRAINT movie_id_fk FOREIGN KEY (movie_id) REFERENCES ITEMS (item_id),
-	title CHAR(40),
+	title CHAR(100),
     release_date YEAR,
     director CHAR(60),
   	movie_cast CHAR(100),
-  	cover_url CHAR(2083),
+  	cover_url CHAR(2083), CONSTRAINT uk_url_movies UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	author CHAR(30), CONSTRAINT movies_author_fk FOREIGN KEY (author) REFERENCES USERS (username),
-  	score NUMBER,
-  	num_of_reviews NUMBER
+  	uploader CHAR(30), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER
 );
 
 INSERT INTO MOVIES VALUES
@@ -60,36 +60,36 @@ INSERT INTO MOVIES VALUES
 
 CREATE TABLE BOOKS (
 	book_id CHAR(100), CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES ITEMS (item_id),
-	title CHAR(40),
+	title CHAR(100),
     release_date YEAR,
     writer CHAR(60),
-  	cover_url CHAR(2083),
+  	cover_url CHAR(2083), CONSTRAINT uk_url_books UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	author CHAR(30), CONSTRAINT books_author_fk FOREIGN KEY (author) REFERENCES USERS (username),
-  	score NUMBER,
-  	num_of_reviews NUMBER
+  	uploader CHAR(30), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER
 );
 
 INSERT INTO BOOKS VALUES
 	('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 1946, 'Astrid Lindgren', 
     	'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 
-    	'It is the first in the series about the Swedish boy detective', 'admin', 0, 0),
+    	'It is the first in the series about the Swedish boy detective.', 'admin', 0, 0),
 	('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 2013,
     	'Haruki Murakami', 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg',
-    	'In the novel Colorless Tsukuru Tazaki and His Years of Pilgrimage Murakami has created a character that is trying to make 
+    	'In the novel "Colorless Tsukuru Tazaki and His Years of Pilgrimage" Murakami has created a character that is trying to make 
      	order in a disorderly world. Tsukuru is a man who does not recognize his own complexity, and who finds himself adrift after 
      	an unexplained rejection by his four colorful friends.', 'admin', 0, 0);
 
 CREATE TABLE VIDEO_GAMES (
 	video_game_id CHAR(100), CONSTRAINT video_game_id_fk FOREIGN KEY (video_game_id) REFERENCES ITEMS (item_id),
-	title CHAR(40),
+	title CHAR(100),
     release_date YEAR,
     developers CHAR(100),
-  	cover_url CHAR(2083),
+  	cover_url CHAR(2083), CONSTRAINT uk_url_video_games UNIQUE KEY (cover_url),
   	summary CHAR(1000),
-  	author CHAR(30), CONSTRAINT video_games_author_fk FOREIGN KEY (author) REFERENCES USERS (username),
-  	score NUMBER,
-  	num_of_reviews NUMBER
+  	uploader CHAR(30), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER
 );
 
 INSERT INTO VIDEO_GAMES VALUES
