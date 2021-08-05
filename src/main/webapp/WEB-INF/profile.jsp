@@ -53,7 +53,7 @@
         <%
             for(User follower : user.getFollowers()){
                 String followerUsername = follower.getUsername(); %>
-                <%= followerUsername %>
+                <p><%= followerUsername %></p>
         <% } %>
 
         <%-- Display user following. --%>
@@ -63,7 +63,7 @@
         <%
             for(User following : user.getFollowing()){
                 String followingUsername = following.getUsername(); %>
-                <%= followingUsername %>
+                <p><%= followingUsername %></p>
         <% } %>
 
         <%-- Display items uploaded by the user. --%>
