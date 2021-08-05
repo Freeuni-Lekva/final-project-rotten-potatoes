@@ -27,7 +27,7 @@ public class Badge {
         return badgeIcon;
     }
 
-    public String badgeDescription(){
+    public String getBadgeDescription(){
         return badgeDescription;
     }
 
