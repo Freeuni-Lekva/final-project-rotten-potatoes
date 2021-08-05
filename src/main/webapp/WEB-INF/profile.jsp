@@ -3,7 +3,6 @@
 
 <!DOCTYPE html>
 <html>
-
     <%-- Information is transferred using attributes. Get username attribute and search for a user
         with given username. --%>
     <%
@@ -19,7 +18,9 @@
     </head>
 
     <body>
-        <%-- !!! Display log out and homepage buttons !!! --%>
+        <%-- !!! Temporarily declared buttons that do not function properly !!! --%>
+        <button name="button" type="button">Return to Homepage</button>
+        <button name="button" type="button">Log Out</button>
 
         <%-- Display username at top with big chunky letters. --%>
         <h1>
