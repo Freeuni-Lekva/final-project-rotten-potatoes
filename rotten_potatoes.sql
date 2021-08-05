@@ -8,9 +8,9 @@ DROP TABLE IF EXISTS FOLLOWERS;
 DROP TABLE IF EXISTS MOVIES;
 DROP TABLE IF EXISTS BOOKS;
 DROP TABLE IF EXISTS VIDEO_GAMES;
-DROP TABLE IF EXISTS USERS;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
+DROP TABLE IF EXISTS USERS;
 
 
 CREATE TABLE CATEGORIES(
@@ -23,9 +23,11 @@ CREATE TABLE USERS (
     first_name CHAR(20),
     last_name CHAR(30),
     date_of_birth DATE,
-    hash_password CHAR(32)
+    hash_password CHAR(64)
 );
 
+INSERT INTO USERS VALUES 
+	('admin', 'Giorgi', 'Meore', 03/07/1900, 'RottenPotatoes');
 
 
 CREATE TABLE ITEMS (
@@ -140,24 +142,6 @@ INSERT INTO VIDEO_GAMES VALUES
      	players create a character, who becomes the recipient of a plot of land and a small house once owned 
      	by their grandfather in a small town called Pelican Town.', 'admin', 0, 0);
 
-
-
-
-
-CREATE TABLE ITEMS (
-	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
-    category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
-    uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-    score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
-    cover_url TEXT 
-);
-
-CREATE TABLE CATEGORIES(
-		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
-);
-
-INSERT INTO CATEGORIES VALUES
-('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
 
 
 
