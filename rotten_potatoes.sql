@@ -2,8 +2,8 @@
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
-DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS USER_BADGES;
+DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
 
 CREATE TABLE BADGES (
@@ -28,6 +28,6 @@ CREATE TABLE USER_BADGES (
 );
 
 CREATE TABLE FOLLOWERS (
-	user_username CHAR(20), CONSTRAINT user_username_fk FOREIGN KEY (username) REFERENCES USERS (username),
+	user_username CHAR(20), CONSTRAINT user_username_fk FOREIGN KEY (user_username) REFERENCES USERS (username),
     follower_username CHAR(20), CONSTRAINT follower_username_fk FOREIGN KEY (follower_username) REFERENCES USERS (username)
 );
