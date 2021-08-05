@@ -65,5 +65,43 @@
                 String followingUsername = following.getUsername(); %>
                 <%= followingUsername %>
         <% } %>
+
+        <%-- Display items uploaded by the user. --%>
+        <h2>
+            My Items:
+        </h2>
+        <%
+            for(Item item : user.getItems()){
+                String title = item.getTitle();
+                String coverURL = item.getCoverURL();
+                int score = item.getScore(); %>
+
+            <%-- !!! Cover images will probably need resizing !!! --%>
+            <img src = <%= coverURL %> >
+            <h3>
+                <%= title %> <b>(<%= score %>/10)</b>
+            </h3>
+        <% } %>
+
+        <%-- Display reviews written by the user. --%>
+        <h2>
+            My Reviews:
+        </h2>
+        <%
+            for(Review review : user.getReviews()){
+                Item item = review.getItem();
+                String userReview = review.getUserReview();
+                int userScore = review.getUserScore(); %>
+
+            <%-- !!! Cover images will probably need resizing !!! --%>
+            <img src = <%= item.getCoverURL() %> >
+            <h4>
+                <%= item.getTitle() %> <b>(<%= item.getScore() %>/10)</b>
+            </h4>
+            <h3>
+                My Score: <%= userScore %><br>
+                My Review: <%= userReview %>
+            </h3>
+        <% } %>
     </body>
 </html>
