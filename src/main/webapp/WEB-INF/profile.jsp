@@ -43,7 +43,7 @@
 
                 <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
                 <img src = <%= "images/" + badgeIcon %> >
-        <%> } <%>
+        <% } %>
 
         <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
         <%-- Display user followers. --%>
@@ -54,7 +54,7 @@
             for(User follower : user.getFollowers()){
                 String followerUsername = follower.getUsername(); %>
                 <%= followerUsername %>
-        <%> } <%>
+        <% } %>
 
         <%-- Display user following. --%>
         <h2>
@@ -64,6 +64,6 @@
             for(User following : user.getFollowing()){
                 String followingUsername = following.getUsername(); %>
                 <%= followingUsername %>
-        <%> } <%>
+        <% } %>
     </body>
 </html>
