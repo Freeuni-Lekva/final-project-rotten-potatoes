@@ -1,18 +1,19 @@
 package Models;
 
 public class Review {
-    public Item getItem(){
-        // IMPLEMENT
-        return null;
-    }
+    // Instance variable declarations.
+    private String itemID;
+    private String username;
+    private double score;
+    private String review;
+    private String category;
 
-    public String getUserReview(){
-        // IMPLEMENT
-        return null;
-    }
-
-    public int getUserScore(){
-        // IMPLEMENT
-        return -1;
+    // Constructor.
+    public Review(String itemID, String username, double score, String review, String category){
+        this.itemID = itemID;
+        this.username = username;
+        this.score = score;
+        this.review = review;
+        this.category = category;
     }
 }
