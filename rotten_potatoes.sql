@@ -40,6 +40,8 @@ INSERT INTO USERS VALUES
 
 CREATE TABLE ITEMS (
 	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
+	-- title column is neither primary key nor unique key, because for instance, books and movies can have same titles.
+	title CHAR(100),
     category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
     uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
     score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
@@ -48,17 +50,17 @@ CREATE TABLE ITEMS (
 
 
 INSERT INTO ITEMS VALUES
-('MU_Dangerous_1991', 'MUSIC', 'admin', 0,'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg'),
-('MU_Magical Mystery Tour_1967', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg'),
-('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'MUSIC', 'admin', 0, 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366'),
-('TV_One Tree Hill_2003', 'TV SHOWS' ,'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg'),
-('TV_Friends_1994', 'TV SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg'),
-('BO_Bill Bergson, Master Detective_1946', 'BOOKS', 'admin', 0 ,'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg'),
-('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'BOOKS', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg'),
-('MO_Love, Rosie_2014', 'MOVIES', 'admin', 0, 'https://pics.filmaffinity.com/Love_Rosie-612339378-large.jpg'),
-('MO_The Grand Budapest Hotel_2014', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg'),
-('VI_Minecraft_2011','VIDEO GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg'),
-('VI_Stardew Valley_2016','VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg');
+('MU_Dangerous_1991', 'Dangerous', 'MUSIC', 'admin', 0,'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg'),
+('MU_Magical Mystery Tour_1967', 'Magical Mystery Tour', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg'),
+('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars', 'MUSIC', 'admin', 0, 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366'),
+('TV_One Tree Hill_2003', 'One Tree Hill', 'TV SHOWS' ,'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg'),
+('TV_Friends_1994', 'Friends', 'TV SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg'),
+('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0 ,'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg'),
+('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 'BOOKS', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg'),
+('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pics.filmaffinity.com/Love_Rosie-612339378-large.jpg'),
+('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg'),
+('VI_Minecraft_2011', 'Minecraft', 'VIDEO GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg'),
+('VI_Stardew Valley_2016', 'Stardew Valley', 'VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg');
 
 
 CREATE TABLE BADGES (
