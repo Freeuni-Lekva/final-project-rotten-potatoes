@@ -1,6 +1,9 @@
 package Models;
 
 public class Book {
+    // Constant variable declaration.
+    public static final String ATTRIBUTE = "BOOKS";
+
     // Instance variable declarations.
     private String bookID;
     private String title;

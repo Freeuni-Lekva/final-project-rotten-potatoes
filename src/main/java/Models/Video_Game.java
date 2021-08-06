@@ -1,6 +1,9 @@
 package Models;
 
-public class Video_Games {
+public class Video_Game {
+    // Constant variable declaration.
+    public static final String ATTRIBUTE = "VIDEO_GAMES";
+
     // Instance variable declarations.
     private String videoGameID;
     private String title;
@@ -13,8 +16,8 @@ public class Video_Games {
     private int numOfReviews;
 
     // Constructor.
-    public Video_Games(String videoGameID, String title, int releaseDate, String developers, String coverURL,
-                       String summary, String uploader, double score, int numOfReviews){
+    public Video_Game(String videoGameID, String title, int releaseDate, String developers, String coverURL,
+                      String summary, String uploader, double score, int numOfReviews){
         this.videoGameID = videoGameID;
         this.title = title;
         this.releaseDate = releaseDate;
@@ -26,7 +29,7 @@ public class Video_Games {
         this.numOfReviews = numOfReviews;
     }
 
-    public Video_Games getVideoGamesByID(String videoGameID){
+    public Video_Game getVideoGamesByID(String videoGameID){
         // TO BE IMPLEMENTED;
         return null;
     }

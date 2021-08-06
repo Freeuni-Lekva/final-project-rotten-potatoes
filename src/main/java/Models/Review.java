@@ -1,6 +1,9 @@
 package Models;
 
 public class Review {
+    // Constant variable declaration.
+    public static final String ATTRIBUTE = "REVIEWS";
+
     // Instance variable declarations.
     private String itemID;
     private String username;

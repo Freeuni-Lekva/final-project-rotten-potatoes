@@ -1,6 +1,9 @@
 package Models;
 
 public class Item {
+    // Constant variable declaration.
+    public static final String ATTRIBUTE = "ITEMS";
+
     // Instance variable declarations.
     private String itemID;
     private String title;
