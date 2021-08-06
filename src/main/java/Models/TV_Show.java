@@ -3,6 +3,7 @@ package Models;
 public class TV_Show {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "TV_SHOWS";
+    public static final String TABLE_NAME = "TV_SHOWS";
 
     // Instance variable declarations.
     private String tvShowID;

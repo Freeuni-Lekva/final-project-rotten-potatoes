@@ -3,6 +3,7 @@ package Models;
 public class Badge {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "BADGES";
+    public static final String TABLE_NAME = "BADGES";
 
     // Instance variable declarations.
     private String badgeID;

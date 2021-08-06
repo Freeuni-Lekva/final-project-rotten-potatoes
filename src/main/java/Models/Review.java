@@ -3,6 +3,7 @@ package Models;
 public class Review {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "REVIEWS";
+    public static final String TABLE_NAME = "REVIEWS";
 
     // Instance variable declarations.
     private String itemID;

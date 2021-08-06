@@ -3,6 +3,7 @@ package Models;
 public class Video_Game {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "VIDEO_GAMES";
+    public static final String TABLE_NAME = "VIDEO_GAMES";
 
     // Instance variable declarations.
     private String videoGameID;

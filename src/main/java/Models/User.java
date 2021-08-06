@@ -5,6 +5,7 @@ import java.util.List;
 public class User {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "username";
+    public static final String TABLE_NAME = "USERS";
 
     // Instance variable declarations.
     private String username;

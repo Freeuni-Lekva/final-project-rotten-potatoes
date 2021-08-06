@@ -3,6 +3,7 @@ package Models;
 public class Music {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "MUSIC";
+    public static final String TABLE_NAME = "MUSIC";
 
     // Instance variable declarations.
     private String musicID;
