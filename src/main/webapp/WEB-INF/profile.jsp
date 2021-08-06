@@ -18,8 +18,9 @@
     </head>
 
     <body>
-        <%-- !!! Temporarily declared buttons that do not function properly !!! --%>
-        <button name="button" type="button">Return to Homepage</button>
+        <%-- !!! These buttons need reference .jsp names which have been substituted by temporary ones !!! --%>
+        <input type = "button" value = "Homepage" onClick = "javascript:window.location='index.jsp';">
+        <%-- !!! Need a button that will call a log out servlet !!! --%>
         <button name="button" type="button">Log Out</button>
 
         <%-- Display username at top with big chunky letters. --%>
