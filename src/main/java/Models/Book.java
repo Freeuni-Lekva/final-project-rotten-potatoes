@@ -26,6 +26,11 @@ public class Book {
         this.numOfReviews = numOfReviews;
     }
 
+    public Book getBookByID(String bookID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
     // Getter methods.
     public String getBookID(){
         return bookID;

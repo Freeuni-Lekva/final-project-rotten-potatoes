@@ -28,6 +28,11 @@ public class TV_Show {
         this.numOfReviews = numOfReviews;
     }
 
+    public TV_Show getTVShowByID(String tvShowID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
     // Getter methods.
     public String getTVShowID(){
         return tvShowID;

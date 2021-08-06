@@ -28,6 +28,11 @@ public class Music {
         this.numOfReviews = numOfReviews;
     }
 
+    public Music getMusicByID(String musicID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
     // Getter methods.
     public String getMusicID(){
         return musicID;

@@ -19,6 +19,11 @@ public class Item {
         this.coverURL = coverURL;
     }
 
+    public Item getItemByID(String itemID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
     // Getter methods.
     public String getItemID(){
         return itemID;

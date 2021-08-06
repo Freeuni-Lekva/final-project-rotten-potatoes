@@ -26,6 +26,11 @@ public class Video_Games {
         this.numOfReviews = numOfReviews;
     }
 
+    public Video_Games getVideoGamesByID(String videoGameID){
+        // TO BE IMPLEMENTED;
+        return null;
+    }
+
     // Getter methods.
     public String getVideoGameID(){
         return videoGameID;

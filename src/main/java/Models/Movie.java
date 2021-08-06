@@ -28,6 +28,11 @@ public class Movie {
         this.numOfReviews = numOfReviews;
     }
 
+    public Movie getMoveByID(String moveID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
     // Getter methods.
     public String getMovieID(){
         return movieID;
