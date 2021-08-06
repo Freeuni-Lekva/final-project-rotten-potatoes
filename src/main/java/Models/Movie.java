@@ -28,7 +28,7 @@ public class Movie {
         this.numOfReviews = numOfReviews;
     }
 
-    public Movie getMoveByID(String moveID){
+    public Movie getMovieByID(String movieID){
         // TO BE IMPLEMENTED
         return null;
     }
