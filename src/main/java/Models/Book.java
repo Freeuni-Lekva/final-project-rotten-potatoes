@@ -2,15 +2,15 @@ package Models;
 
 public class Book {
     // Instance variable declarations.
-    String bookID;
-    String title;
-    int releaseDate;
-    String writer;
-    String coverURL;
-    String summary;
-    String uploader;
-    double score;
-    int numOfReviews;
+    private String bookID;
+    private String title;
+    private int releaseDate;
+    private String writer;
+    private String coverURL;
+    private String summary;
+    private String uploader;
+    private double score;
+    private int numOfReviews;
 
     // Constructor.
     public Book(String bookID, String title, int releaseDate, String writer, String coverURL, String summary,
@@ -25,4 +25,78 @@ public class Book {
         this.score = score;
         this.numOfReviews = numOfReviews;
     }
+
+    // Getter methods.
+    public String getBookID(){
+        return bookID;
+    };
+
+    public String getTitle(){
+        return title;
+    };
+
+    public int getReleaseDate(){
+        return releaseDate;
+    };
+
+    public String getWriter(){
+        return writer;
+    };
+
+    public String getCoverURL(){
+        return coverURL;
+    };
+
+    public String getSummary(){
+        return summary;
+    };
+
+    public String getUploader(){
+        return uploader;
+    };
+
+    public double getScore(){
+        return score;
+    };
+
+    public int getNumOfReviews(){
+        return numOfReviews;
+    };
+
+    // Setter methods.
+    public void setBookID(String bookID){
+        this.bookID = bookID;
+    };
+
+    public void setTitle(String title){
+        this.title = title;
+    };
+
+    public void setReleaseDate(int releaseDate){
+        this.releaseDate = releaseDate;
+    };
+
+    public void setWriter(String writer){
+        this.writer = writer;
+    };
+
+    public void setCoverURL(String coverURL){
+        this.coverURL = coverURL;
+    };
+
+    public void setSummary(String summary){
+        this.summary = summary;
+    };
+
+    public void setUploader(String uploader){
+        this.uploader = uploader;
+    };
+
+    public void setScore(double score){
+        this.score = score;
+    };
+
+    public void setNumOfReviews(int numOfReviews){
+        this.numOfReviews = numOfReviews;
+    };
 }
