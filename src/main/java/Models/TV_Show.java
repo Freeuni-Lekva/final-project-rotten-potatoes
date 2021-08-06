@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.List;
+
 public class TV_Show {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "TV_SHOWS";
@@ -33,6 +35,11 @@ public class TV_Show {
     }
 
     public TV_Show getTVShowByID(String tvShowID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
+    public List<TV_Show> getTVShows(String sortType){
         // TO BE IMPLEMENTED
         return null;
     }

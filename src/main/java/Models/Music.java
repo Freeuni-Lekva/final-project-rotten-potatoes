@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.List;
+
 public class Music {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "MUSIC";
@@ -33,6 +35,11 @@ public class Music {
     }
 
     public Music getMusicByID(String musicID){
+        // TO BE IMPLEMENTED
+        return null;
+    }
+
+    public List<Music> getMusic(String sortType){
         // TO BE IMPLEMENTED
         return null;
     }

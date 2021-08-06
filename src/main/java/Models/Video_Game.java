@@ -1,5 +1,7 @@
 package Models;
 
+import java.util.List;
+
 public class Video_Game {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "VIDEO_GAMES";
@@ -32,6 +34,11 @@ public class Video_Game {
 
     public Video_Game getVideoGamesByID(String videoGameID){
         // TO BE IMPLEMENTED;
+        return null;
+    }
+
+    public List<Video_Game> getVideoGames(String sortType){
+        // TO BE IMPLEMENTED
         return null;
     }
 
