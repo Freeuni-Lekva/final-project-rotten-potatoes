@@ -36,4 +36,16 @@ public class SQL implements DB {
         }
     }
 
+    @Override
+    public int insert(String tableName, List<String> values) {
+        String allValues = String.join(",", values);
+        try {
+            Statement statement = connection.createStatement();
+            String query = "insert into " + tableName + " values (" + allValues + ");";
+            statement.execute(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 1;
+    }
 }
