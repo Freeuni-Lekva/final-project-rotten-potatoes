@@ -20,18 +20,52 @@ public class Item {
     }
 
     // Getter methods.
+    public String getItemID(){
+        return itemID;
+    }
+
     public String getTitle(){
-        // IMPLEMENT
-        return null;
+        return title;
+    }
+
+    public String getCategory(){
+        return category;
+    }
+
+    public String getUploader(){
+        return uploader;
+    }
+
+    public double getScore(){
+        return score;
     }
 
     public String getCoverURL(){
-        // IMPLEMENT
-        return null;
+        return coverURL;
     }
 
-    public int getScore(){
-        // IMPLEMENT
-        return -1;
+    // Setter methods.
+    public void setItemID(String itemID){
+        this.itemID = itemID;
+    }
+
+    public void setTitle(String title){
+        this.title = title;
+    }
+
+    public void setCategory(String category){
+        this.category = category;
+    }
+
+    public void setUploader(String uploader){
+        this.uploader = uploader;
+    }
+
+    public void setScore(double score){
+        this.score = score;
+    }
+
+    public void setCoverURL(String coverURL){
+        this.coverURL = coverURL;
     }
 }
