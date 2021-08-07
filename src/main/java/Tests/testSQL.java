@@ -63,4 +63,36 @@ public class testSQL {
         }
         assertEquals(1, numOfRowsReturned);
     }
+
+    @Test
+    public void testConditionedAndOrderedSelect() throws SQLException {
+        db = new SQL();
+        int numOfRowsReturned = 0;
+
+        ResultSet items = db.conditionedAndOrderedSelect("ITEMS", "CATEGORY", "'MUSIC'",
+                                                        "TITLE", "'%y%'", "TITLE", "ASC");
+        while(items.next()){
+            numOfRowsReturned++;
+            if(numOfRowsReturned == 1){
+                assertEquals("MU_Magical Mystery Tour_1967", items.getString("item_id"));
+                assertEquals("Magical Mystery Tour", items.getString("title"));
+                assertEquals("MUSIC", items.getString("category"));
+                assertEquals("admin", items.getString("uploader"));
+                assertEquals("0.0", items.getString("score"));
+                assertEquals("https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg" +
+                        "/220px-MagicalMysteryTourDoubleEPcover.jpg", items.getString("cover_url"));
+            } else if(numOfRowsReturned == 2){
+                assertEquals("MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972",
+                            items.getString("item_id"));
+                assertEquals("The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+                            items.getString("title"));
+                assertEquals("MUSIC", items.getString("category"));
+                assertEquals("admin", items.getString("uploader"));
+                assertEquals("0.0", items.getString("score"));
+                assertEquals("https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366",
+                            items.getString("cover_url"));
+            }
+        }
+        assertEquals(2, numOfRowsReturned);
+    }
 }

@@ -17,6 +17,7 @@ public class SQL implements DB {
     // Constant variable declarations for SQL queries.
     private static final String SELECT_FROM = "select * from ";
     private static final String WHERE_CLAUSE = " where ";
+    private static final String LIKE_CLAUSE = " LIKE ";
     private static final String ORDER_BY_CLAUSE = " order by ";
 
     // !!!-----------------------------------------------------
@@ -94,11 +95,12 @@ public class SQL implements DB {
     }
 
     @Override
-    public ResultSet conditionedAndOrderedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
-                                                 String COLUMN_2, String VALUE_2, String ORDER_COLUMN,
+    public ResultSet conditionedAndOrderedSelect(String TABLE_NAME, String EQUALITY_COLUMN, String EQUALITY_VALUE,
+                                                 String LIKENESS_COLUMN, String LIKENESS_VALUE, String ORDER_COLUMN,
                                                  String DESC_OR_ASC) {
-        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + " = " + VALUE_1 + " and " +
-                        COLUMN_2 + " = " + VALUE_2 + ORDER_BY_CLAUSE + ORDER_COLUMN + " " + DESC_OR_ASC + ";";
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + EQUALITY_COLUMN + " = " +
+                        EQUALITY_VALUE + " and " + LIKENESS_COLUMN + LIKE_CLAUSE +
+                        LIKENESS_VALUE + ORDER_BY_CLAUSE + ORDER_COLUMN + " " + DESC_OR_ASC + ";";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();
