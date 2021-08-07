@@ -47,6 +47,10 @@ public class SQL implements DB {
         }
     }
 
+    public Connection getConnection(){
+        return connection;
+    }
+
     /* ფუნქციის გამოყენების სავარაუდო დროები:
     * - როცა index.jsp-ზე მომხმარებელი შეავსებს ფორმას და დააჭერს create account ღილაკს.
     * - როცა მომხმარებელი რაიმე ახალ ბეჯს მიიღებს:
