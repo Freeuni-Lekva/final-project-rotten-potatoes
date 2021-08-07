@@ -64,7 +64,8 @@ public class SQL implements DB {
     *       insert into followers values ('user_username_placeholder', 'follower_username_placeholder');
     * - როცა მოხდება ახალი ნივთის ატვირთვა რომელიმე კატეგორიაში:
     *       1. insert into items values ('item_id_placeholder', 'title_placeholder', 'category_placeholder',
-    *                                   'uploader_placeholder', score_placeholder, 'cover_url_placeholder');
+    *                                   'uploader_placeholder', score_placeholder, 'cover_url_placeholder',
+    *                                   upload_year_placeholder, num_of_reviews_placeholder);
     *       2. insert into category_table_name values (placeholders here...); */
     @Override
     public int insert(String tableName, List<String> values) {
