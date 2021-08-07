@@ -1,8 +1,11 @@
 package Models;
 
+import Database.DB;
 import Database.SQL;
 
+import javax.xml.transform.Result;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +40,11 @@ public class Item extends SQL {
     }
 
     // ******* TO BE TESTED
-    public List<Item> getItems(String category, String searchFieldValue, String orderByValue){
+    public List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
         List<Item> items = new ArrayList<Item>();
 
         // Reformat parameters.
-        String[] splited = orderByValue.split("\\s+");
+        String[] split = orderByValue.split("\\s+");
 
         StringBuilder EQUALITY_VALUE = new StringBuilder();
         EQUALITY_VALUE.append("'");
@@ -50,14 +53,24 @@ public class Item extends SQL {
 
         StringBuilder LIKENESS_VALUE = new StringBuilder();
         EQUALITY_VALUE.append("'%");
-        EQUALITY_VALUE.append(splited[0]);
+        EQUALITY_VALUE.append(searchFieldValue);
         EQUALITY_VALUE.append("%'");
 
-        String DESC_OR_ASC = splited[1];
+        String ORDER_COLUMN = split[0];
+        String DESC_OR_ASC = split[1];
 
-        // SQL ბრძანება გამოიძახე
+        ResultSet rowsOfItems = db.conditionedAndOrderedSelect(TABLE_NAME, EQUALITY_COLUMN, EQUALITY_VALUE.toString(),
+                                                                LIKENESS_COLUMN, LIKENESS_VALUE.toString(),
+                                                                ORDER_COLUMN, DESC_OR_ASC);
 
-        return null;
+        while(rowsOfItems.next()){
+            Item item = new Item(rowsOfItems.getString(0), rowsOfItems.getString(1),
+                                rowsOfItems.getString(2), rowsOfItems.getString(3),
+                                rowsOfItems.getDouble(4), rowsOfItems.getString(5));
+            items.add(item);
+        }
+
+        return items;
     }
 
     // Getter methods.
