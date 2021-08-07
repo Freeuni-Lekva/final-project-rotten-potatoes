@@ -65,6 +65,26 @@ public class testSQL {
     }
 
     @Test
+    public void testDoublyConditionedSelect() throws SQLException, ClassNotFoundException {
+        db = new SQL();
+        int numOfRowsReturned = 0;
+
+        // დააკვირდით, რომ conditionedSelect ფუნქციას სწორად გადასცეთ მესამე პარამეტრი. აქაც მაღლა აღწერილი სიტუაციის
+        // ანალოგიური შემთხვევაა ერთხაზიან ბრჭყალებზე (მაგ: ...where name = 'admin', მაგრამ ...where age = 5).
+        ResultSet user = db.doublyConditionedSelect("USERS", "username", "'admin'",
+                "hash_password", "'RottenPotatoes'");
+        while(user.next()){
+            numOfRowsReturned++;
+            assertEquals("admin", user.getString("username"));
+            assertEquals("Giorgi", user.getString("first_name"));
+            assertEquals("Meore", user.getString("last_name"));
+            assertEquals("1900-03-07", user.getString("date_of_birth"));
+            assertEquals("RottenPotatoes", user.getString("hash_password"));
+        }
+        assertEquals(1, numOfRowsReturned);
+    }
+
+    @Test
     public void testConditionedAndOrderedSelect() throws SQLException, ClassNotFoundException {
         db = new SQL();
         int numOfRowsReturned = 0;
@@ -94,25 +114,5 @@ public class testSQL {
             }
         }
         assertEquals(2, numOfRowsReturned);
-    }
-
-    @Test
-    public void testDoublyConditionedSelect() throws SQLException, ClassNotFoundException {
-        db = new SQL();
-        int numOfRowsReturned = 0;
-
-        // დააკვირდით, რომ conditionedSelect ფუნქციას სწორად გადასცეთ მესამე პარამეტრი. აქაც მაღლა აღწერილი სიტუაციის
-        // ანალოგიური შემთხვევაა ერთხაზიან ბრჭყალებზე (მაგ: ...where name = 'admin', მაგრამ ...where age = 5).
-        ResultSet user = db.doublyConditionedSelect("USERS", "username", "'admin'",
-                                                    "hash_password", "'RottenPotatoes'");
-        while(user.next()){
-            numOfRowsReturned++;
-            assertEquals("admin", user.getString("username"));
-            assertEquals("Giorgi", user.getString("first_name"));
-            assertEquals("Meore", user.getString("last_name"));
-            assertEquals("1900-03-07", user.getString("date_of_birth"));
-            assertEquals("RottenPotatoes", user.getString("hash_password"));
-        }
-        assertEquals(1, numOfRowsReturned);
     }
 }
