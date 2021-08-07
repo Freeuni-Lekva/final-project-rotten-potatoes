@@ -19,6 +19,8 @@ public class SQL implements DB {
     private static final String WHERE_CLAUSE = " where ";
     private static final String LIKE_CLAUSE = " LIKE ";
     private static final String ORDER_BY_CLAUSE = " order by ";
+    private static final String EQUALS = " = ";
+    private static final String AND = " and ";
 
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
@@ -52,7 +54,10 @@ public class SQL implements DB {
     }
 
     /* ფუნქციის გამოყენების სავარაუდო დროები:
-    * - როცა index.jsp-ზე მომხმარებელი შეავსებს ფორმას და დააჭერს create account ღილაკს.
+    * - როცა index.jsp-ზე მომხმარებელი შეავსებს ფორმას და დააჭერს create account ღილაკს:
+    * ('admin', 'Giorgi', 'Meore', '1900-03-07', 'RottenPotatoes');
+    *       insert into users values ('username_placeholder', 'first_name_placeholder',
+            'last_name_placeholder', 'date_placeholder', 'hashed_password_placeholder');
     * - როცა მომხმარებელი რაიმე ახალ ბეჯს მიიღებს:
     *       insert into user_badges values ('username_placeholder', 'badge_id_placeholder');
     * - როცა ერთი მომხმარებელი მეორეს დაა-follower-ებს:
@@ -88,7 +93,7 @@ public class SQL implements DB {
     *       select * from reviews where username = 'username_placeholder'; */
     @Override
     public ResultSet conditionedSelect(String TABLE_NAME, String COLUMN_NAME, String VALUE) {
-        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_NAME + " = " + VALUE + ";";
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_NAME + EQUALS + VALUE + ";";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();
@@ -98,13 +103,37 @@ public class SQL implements DB {
         return null;
     }
 
+    /* ფუნქციის გამოყენების სავარაუდო დროები:
+     *   - როცა გვაინტერესებს, მომხმარებელმა login-ის დროს სწორი username და password მიუთითა თუ არა:
+     *      select * from users where username = 'PLACEHOLDER' and password = 'PLACEHOLDER';
+     *  */
+    @Override
+    public ResultSet doublyConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
+                                             String COLUMN_2, String VALUE_2) {
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 +
+                        AND + COLUMN_2 + EQUALS + VALUE_2 + ";";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /* ფუნქციის გამოყენების სავარაუდო დროები:
+    *   - კატეგორიების (homepage) გვერდზე:
+    *       select * from items where category = 'PLACEHOLDER' and
+    *       title like '%PLACEHOLDER%' order by PLACEHOLDER PLACEHOLDER;
+    *  */
     @Override
     public ResultSet conditionedAndOrderedSelect(String TABLE_NAME, String EQUALITY_COLUMN, String EQUALITY_VALUE,
                                                  String LIKENESS_COLUMN, String LIKENESS_VALUE, String ORDER_COLUMN,
                                                  String DESC_OR_ASC) {
-        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + EQUALITY_COLUMN + " = " +
-                        EQUALITY_VALUE + " and " + LIKENESS_COLUMN + LIKE_CLAUSE +
-                        LIKENESS_VALUE + ORDER_BY_CLAUSE + ORDER_COLUMN + " " + DESC_OR_ASC + ";";
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + EQUALITY_COLUMN + EQUALS +
+                        EQUALITY_VALUE + AND + LIKENESS_COLUMN + LIKE_CLAUSE + LIKENESS_VALUE +
+                        ORDER_BY_CLAUSE + ORDER_COLUMN + " " + DESC_OR_ASC + ";";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();
