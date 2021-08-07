@@ -13,6 +13,13 @@ public class SQL implements DB {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "starwars";
     private static final String DATABASE = "rotten_potatoes";
+    // !!!-----------------------------------------------------
+    // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
+    // შესაბამისი რიცხვი და პირიქით. ასე მოდელ კლასს (რომელიც SQL-ის ფუნქციებს გამოიყენებს) ეცოდინება,
+    // ბრძანება როგორ შესრულდა. თუმცა, მასაც უნდა ჰქონდეს throw/catch.
+    // !!!-----------------------------------------------------
+    private static final int SQL_ERROR = 1;
+    private static final int SQL_SUCCESS = 0;
 
     // Instance variable declarations.
     private final BasicDataSource dataSource;
@@ -33,6 +40,16 @@ public class SQL implements DB {
         }
     }
 
+    /* ფუნქციის გამოყენების სავარაუდო დროები:
+    * - როცა index.jsp-ზე მომხმარებელი შეავსებს ფორმას და დააჭერს create account ღილაკს.
+    * - როცა მომხმარებელი რაიმე ახალ ბეჯს მიიღებს:
+    *       insert into user_badges values ('username_placeholder', 'badge_id_placeholder');
+    * - როცა ერთი მომხმარებელი მეორეს დაა-follower-ებს:
+    *       insert into followers values ('user_username_placeholder', 'follower_username_placeholder');
+    * - როცა მოხდება ახალი ნივთის ატვირთვა რომელიმე კატეგორიაში:
+    *       1. insert into items values ('item_id_placeholder', 'title_placeholder', 'category_placeholder',
+    *                                   'uploader_placeholder', score_placeholder, 'cover_url_placeholder');
+    *       2. insert into category_table_name values (placeholders here...); */
     @Override
     public int insert(String tableName, List<String> values) {
         String allValues = String.join(",", values);
@@ -40,12 +57,24 @@ public class SQL implements DB {
             Statement statement = connection.createStatement();
             String query = "insert into " + tableName + " values (" + allValues + ");";
             statement.execute(query);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            return SQL_ERROR;
         }
-        return 1;
+        return SQL_SUCCESS;
     }
 
+    /* ფუნქციის გამოყენების სავარაუდო დროები:
+    *  - როცა პროფილის გვერდზე ყველა ბეჯის ჩვენება გვინდა:
+    *       select * from user_badges where username = 'username_placeholder';
+    *  - როცა პროფილის გვერდზე ყველა follower-ის სია გვჭირდება:
+    *       select * from followers where user_username = 'user_username_placeholder';
+    *  - როცა პროფილის გვერდზე ყველა following-ის სია გვჭირდება:
+    *       select * from followers where follower_username = 'follower_username_placeholder';
+    *  - როცა პროფილის გვერდზე მომხმარებლის მიერ ატვირთული ყველა item-ის სია გვჭირდება:
+    *       select * from items where uploader = 'uploader_placeholder';
+    *  - როცა პროფილის გვერდზე მომხმარებლის მიერ დაწერილი ყველა review-ს სია გვჭირდება:
+    *       select * from reviews where username = 'username_placeholder'; */
     @Override
     public ResultSet conditionedSelect(String TABLE_NAME, String COLUMN_NAME, String VALUE) {
         String query = "select * from " + TABLE_NAME + " where " + COLUMN_NAME + " = " + VALUE + ";";
@@ -57,4 +86,6 @@ public class SQL implements DB {
         }
         return null;
     }
+
+
 }
