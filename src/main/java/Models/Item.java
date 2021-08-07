@@ -10,9 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Item extends SQL {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
-    public static final String ATTRIBUTE = "ITEMS";
-    public static final String TABLE_NAME = "ITEMS";
+    public static final String ATTRIBUTE = "ITEMS"; // ამ ცვლადს ძირითადად Attribute-ის სახელად გამოვიყენებთ.
+    public static final String TABLE_NAME = "ITEMS"; // ამ ცვლადს ძირითადად SQL ბრძანებებს გადავცემთ პარამეტრად.
     public static final String EQUALITY_COLUMN = "CATEGORY";
     public static final String LIKENESS_COLUMN = "TITLE";
 
@@ -34,6 +39,18 @@ public class Item extends SQL {
         this.coverURL = coverURL;
     }
 
+    // ბევრ SQL ბრძანებაში გვიწევს სტრინგის ერთხაზიან ბრჭყალებში მოქცევა. ფუნქციას გადაეცემა სტრინგი, ის აბრუნებს იგივე
+    // სტრინგს ბრჭყალებით (მაგ; pie -> 'pie').
+    public String surroundWithSingleQuotes(String value){
+        StringBuilder quotedValue = new StringBuilder();
+        quotedValue.append("'");
+        quotedValue.append(value);
+        quotedValue.append("'");
+        return quotedValue.toString();
+    }
+
+    // მეთოდს გადაეცემა itemID (რომელიც შედგენილია შემდეგი წესით: კატეგორიის პირველი ორი ასო_სათაური_გამოშვების წელი.
+    // მაგ; MO_Cruella_2021. მეთოდი აბრუნებს იმ კატეგორიას, რომელსაც ეს ნივთი ეკუთვნის.
     public static String getCategoryByItemID(String itemID){
         StringBuilder categoryPrefix = new StringBuilder(itemID);
         String prefix = categoryPrefix.substring(0, 2);
@@ -51,32 +68,39 @@ public class Item extends SQL {
         return null;
     }
 
-    public Item getItemByID(String itemID){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა itemID (რომლის შექმნის წესიც წინა მეთოდის კომენტარში ვახსენეთ). მეთოდი იძახებს
+    // SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი ცხრილში და წარმატების შემთხვევაში, აბრუნებს Item ობიექტს.
+    public Item getItemByID(DB db, String itemID) throws SQLException {
+        ResultSet singleItemRow = db.conditionedSelect(TABLE_NAME, "item_id",
+                                                        surroundWithSingleQuotes(itemID));
+        while(singleItemRow.next()){
+            Item item = new Item(singleItemRow.getString(0), singleItemRow.getString(1),
+                                singleItemRow.getString(2), singleItemRow.getString(3),
+                                singleItemRow.getDouble(4), singleItemRow.getString(5));
+            return item;
+        }
         return null;
     }
 
-    // ******* TO BE TESTED
+    // აბრუნებს Item-ების სიას შემდეგი მახასიათებლების მიხედვით: სიის ნივთები ერთ გადმოცემულ კატეგორიაში არიან,
+    // ასევე, მათი სათაურები გადაცემულ '%searchFieldValue%'-ს ემთხვევა და ეს ნივთები დალაგებულია orderByValue-თი.
     public List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
         List<Item> items = new ArrayList<Item>();
 
         // Reformat parameters.
         String[] split = orderByValue.split("\\s+");
 
-        StringBuilder EQUALITY_VALUE = new StringBuilder();
-        EQUALITY_VALUE.append("'");
-        EQUALITY_VALUE.append(category.toUpperCase()); // .toUpperCase() might be redundant
-        EQUALITY_VALUE.append("'");
+        String EQUALITY_VALUE = surroundWithSingleQuotes(category.toUpperCase()); // .toUpperCase() might be redundant
 
         StringBuilder LIKENESS_VALUE = new StringBuilder();
-        EQUALITY_VALUE.append("'%");
-        EQUALITY_VALUE.append(searchFieldValue);
-        EQUALITY_VALUE.append("%'");
+        LIKENESS_VALUE.append("'%");
+        LIKENESS_VALUE.append(searchFieldValue);
+        LIKENESS_VALUE.append("%'");
 
         String ORDER_COLUMN = split[0];
         String DESC_OR_ASC = split[1];
 
-        ResultSet rowsOfItems = db.conditionedAndOrderedSelect(TABLE_NAME, EQUALITY_COLUMN, EQUALITY_VALUE.toString(),
+        ResultSet rowsOfItems = db.conditionedAndOrderedSelect(TABLE_NAME, EQUALITY_COLUMN, EQUALITY_VALUE,
                                                                 LIKENESS_COLUMN, LIKENESS_VALUE.toString(),
                                                                 ORDER_COLUMN, DESC_OR_ASC);
 
