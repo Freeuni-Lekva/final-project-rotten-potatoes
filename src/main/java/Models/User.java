@@ -4,6 +4,7 @@ import Database.DB;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -15,6 +16,7 @@ public class User {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "username";
     public static final String TABLE_NAME = "USERS";
+    public static final String FOLLOWERS_TABLE = "FOLLOWERS";
 
     // Instance variable declarations.
     private String username;
@@ -45,7 +47,7 @@ public class User {
                     singleUserRow.getString(4);
             return user;
         }
-        
+
         return null;
     }
 
@@ -64,13 +66,19 @@ public class User {
         return null;
     }
 
-    public List<User> getFollowers(){
-        // TO BE IMPLEMENTED
-        return null;
+    // აბრუნებს იმ User ობიექტების სიას, რომლებიც ა-follower-ებენ მოცემულ მომხმარებელს.
+    public List<User> getFollowers(DB db) throws SQLException {
+        List<User> followers = new ArrayList<User>();
+        ResultSet rowsOfFollowers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
+                                                        username);
+        while(rowsOfFollowers.next()){
+            followers.add(getUserByUsername(db, rowsOfFollowers.getString("follower_username")));
+        }
+        return followers;
     }
 
     public List<User> getFollowing(){
-        // TO BE IMPLEMENTED
+
         return null;
     }
 
