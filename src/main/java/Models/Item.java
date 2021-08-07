@@ -41,7 +41,7 @@ public class Item extends SQL {
 
     // ბევრ SQL ბრძანებაში გვიწევს სტრინგის ერთხაზიან ბრჭყალებში მოქცევა. ფუნქციას გადაეცემა სტრინგი, ის აბრუნებს იგივე
     // სტრინგს ბრჭყალებით (მაგ; pie -> 'pie').
-    public String surroundWithSingleQuotes(String value){
+    public static String surroundWithSingleQuotes(String value){
         StringBuilder quotedValue = new StringBuilder();
         quotedValue.append("'");
         quotedValue.append(value);
