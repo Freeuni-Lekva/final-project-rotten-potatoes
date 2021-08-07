@@ -7,12 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SQL implements DB {
-    // Constant variable declarations.
+    // Constant variable declarations for database connection.
     private static final String HOSTNAME = "127.0.0.1";
     private static final String PORT = "3306";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "starwars";
     private static final String DATABASE = "rotten_potatoes";
+
+    // Constant variable declarations for SQL queries.
+    private static final String SELECT_FROM = "select * from ";
+    private static final String WHERE_CLAUSE = " where ";
+    private static final String ORDER_BY_CLAUSE = " order by ";
+
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
     // შესაბამისი რიცხვი და პირიქით. ასე მოდელ კლასს (რომელიც SQL-ის ფუნქციებს გამოიყენებს) ეცოდინება,
@@ -77,7 +83,7 @@ public class SQL implements DB {
     *       select * from reviews where username = 'username_placeholder'; */
     @Override
     public ResultSet conditionedSelect(String TABLE_NAME, String COLUMN_NAME, String VALUE) {
-        String query = "select * from " + TABLE_NAME + " where " + COLUMN_NAME + " = " + VALUE + ";";
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_NAME + " = " + VALUE + ";";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();
@@ -87,5 +93,18 @@ public class SQL implements DB {
         return null;
     }
 
-
+    @Override
+    public ResultSet conditionedAndOrderedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
+                                                 String COLUMN_2, String VALUE_2, String ORDER_COLUMN,
+                                                 String DESC_OR_ASC) {
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + " = " + VALUE_1 + " and " +
+                        COLUMN_2 + " = " + VALUE_2 + ORDER_BY_CLAUSE + ORDER_COLUMN + " " + DESC_OR_ASC + ";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
