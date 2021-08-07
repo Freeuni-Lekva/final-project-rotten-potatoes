@@ -1,8 +1,17 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Movie {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
     public static final String ATTRIBUTE = "MOVIES";
     public static final String TABLE_NAME = "MOVIES";
@@ -34,8 +43,21 @@ public class Movie {
         this.numOfReviews = numOfReviews;
     }
 
-    public Movie getMovieByID(String movieID){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა movieID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Movie ობიექტს.
+    public Movie getMovieByID(DB db, String movieID) throws SQLException {
+        ResultSet singleMovieRow = db.conditionedSelect(TABLE_NAME, "movie_id",
+                Item.surroundWithSingleQuotes(movieID));
+
+        while(singleMovieRow.next()){
+            Movie movie = new Movie
+                    (singleMovieRow.getString(0), singleMovieRow.getString(1),
+                    singleMovieRow.getInt(2), singleMovieRow.getString(3),
+                    singleMovieRow.getString(4), singleMovieRow.getString(5),
+                    singleMovieRow.getString(6), singleMovieRow.getString(7),
+                    singleMovieRow.getDouble(8), singleMovieRow.getInt(9));
+            return movie;
+        }
         return null;
     }
 
