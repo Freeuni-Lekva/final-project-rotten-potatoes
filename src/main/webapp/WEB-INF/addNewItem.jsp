@@ -14,9 +14,9 @@
 
 <%--this and second line should be changed--%>
 <% String category="VIDEO GAMES"; %>
-  
+
 <form name="insertForm" method="post" action="">
-  
+
         <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
         <label for="title"> Title :</label>
         <input type="text" id="title" name="title"> <br/>
@@ -30,17 +30,17 @@
         <input type="text" id="movieCast" name="movieCast"> <br/>
 
         <label for="movieSummary"> Summary: </label>
-        <input type="text" id="movieSummery" name="movieSummery"> <br/>
-<% } %>
+        <input type="text" id="movieSummary" name="movieSummary"> <br/>
+    <% } %>
 
 
     <% if(category.equals(MUSIC.ATTRIBUTE)){  %>
-        <label for="movieArtist"> Artist: </label>
-        <input type="text" id="movieArtist" name="movieArtist">  <br/>
+        <label for="musicArtist"> Artist: </label>
+        <input type="text" id="musicArtist" name="musicArtist">  <br/>
 
 
-        <label for="movieLabel">Label: </label>
-        <input type="text" id="movieLabel" name="movieLabel">  <br/>
+        <label for="musicLabel">Label: </label>
+        <input type="text" id="musicLabel" name="musicLabel">  <br/>
 
         <label for="musicGenre" > Genre: </label>
         <input type="text" id="musicGenre" name="musicGenre">  <br/>
@@ -57,7 +57,7 @@
 
 
         <label for="showSummary"> Summary: </label>
-        <input type="text" id="showSummery" name="showSummery"> <br/>
+        <input type="text" id="showSummary" name="showSummary"> <br/>
 
         <label for="showDate"> Airing year: </label>
         <input type="text" id="showDate" name="showDate"> <br/>
@@ -72,7 +72,7 @@
 
 
         <label for="bookSummary"> Summary: </label>
-        <input type="text" id="bookSummery" name="bookSummery"> <br/>
+        <input type="text" id="bookSummary" name="bookSummary"> <br/>
 
     <%} %>
 
@@ -82,26 +82,26 @@
         <input type="text" id="gameDevelopers" name="gameDevelopers"> <br/>
 
 
-        <label for="gameSummery"> Summary: </label>
-        <input type="text" id="gameSummery" name="gameSummery"> <br/>
+        <label for="gameSummary"> Summary: </label>
+        <input type="text" id="gameSummary" name="gameSummary"> <br/>
 
     <%} %>
 
 
     <% if(category.equals(Video_Game.ATTRIBUTE) || category.equals(MOVIE.ATTRIBUTE)||
             category.equals(MUSIC.ATTRIBUTE) || category.equals(BOOK.ATTRIBUTE)){  %>
-  
-          <label for="date"> Release date:</label>
-          <input type="text" id="date" name="date"> <br/>
+
+        <label for="date"> Release date:</label>
+        <input type="text" id="date" name="date"> <br/>
 
     <%} %>
 
-          <label for="cover"> Cover url:</label>
-          <input type="text" id="cover" name="cover"> <br/>
+        <label for="cover"> Cover url:</label>
+        <input type="text" id="cover" name="cover"> <br/>
 
-          <button type="submit"> REGISTER </button>
+        <button type="submit"> REGISTER </button>
 
-          <button type="reset"> RESET </button>
+        <button type="reset"> RESET </button>
 </form>
 
 </body>
