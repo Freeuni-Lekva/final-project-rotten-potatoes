@@ -14,91 +14,94 @@
 
 <%--this and second line should be changed--%>
 <% String category="VIDEO GAMES"; %>
+  
 <form name="insertForm" method="post" action="">
-    <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
-    <label for="title"> Title :</label>
-    <input type="text" id="title" name="title"> <br/>
+  
+        <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
+        <label for="title"> Title :</label>
+        <input type="text" id="title" name="title"> <br/>
 
 
-    <% if (category.equals("MOVIES")) { %>
-    <label for="movieDirector"> Director: </label>
-    <input type="text" id="movieDirector" name="movieDirector"> <br/>
+    <% if (category.equals(MOVIE.ATTRIBUTE)) { %>
+        <label for="movieDirector"> Director: </label>
+        <input type="text" id="movieDirector" name="movieDirector"> <br/>
 
-    <label for="movieCast">Cast: </label>
-    <input type="text" id="movieCast" name="movieCast"> <br/>
+        <label for="movieCast"> Cast: </label>
+        <input type="text" id="movieCast" name="movieCast"> <br/>
 
-    <label for="movieSummery"> Summary: </label>
-    <input type="text" id="movieSummery" name="movieSummery"> <br/>
+        <label for="movieSummary"> Summary: </label>
+        <input type="text" id="movieSummery" name="movieSummery"> <br/>
 <% } %>
 
 
-    <% if(category.equals("MUSIC")){  %>
-    <label for="movieArtist"> Artist: </label>
-    <input type="text" id="movieArtist" name="movieArtist">  <br/>
+    <% if(category.equals(MUSIC.ATTRIBUTE)){  %>
+        <label for="movieArtist"> Artist: </label>
+        <input type="text" id="movieArtist" name="movieArtist">  <br/>
 
 
-    <label for="movieLabel">Label: </label>
-    <input type="text" id="movieLabel" name="movieLabel">  <br/>
+        <label for="movieLabel">Label: </label>
+        <input type="text" id="movieLabel" name="movieLabel">  <br/>
 
-    <label for="musicGenre" > Genre: </label>
-    <input type="text" id="musicGenre" name="musicGenre">  <br/>
+        <label for="musicGenre" > Genre: </label>
+        <input type="text" id="musicGenre" name="musicGenre">  <br/>
     <%} %>
 
 
-    <% if(category.equals("TV SHOWS")){  %>
+    <% if(category.equals(TV_Show.ATTRIBUTE)){  %>
 
-    <label for="showDirector"> Director: </label>
-    <input type="text" id="showDirector" name="showDirector"> <br/>
+        <label for="showDirector"> Director: </label>
+        <input type="text" id="showDirector" name="showDirector"> <br/>
 
-    <label for="showCast"> Cast: </label>
-    <input type="text" id="showCast" name="showCast"> <br/>
-
-
-    <label for="showSummery"> Summary: </label>
-    <input type="text" id="showSummery" name="showSummery"> <br/>
-
-    <label for="showDate"> Airing year: </label>
-    <input type="text" id="showDate" name="showDate"> <br/>
-
-    <%} %>
+        <label for="showCast"> Cast: </label>
+        <input type="text" id="showCast" name="showCast"> <br/>
 
 
-    <% if(category.equals("BOOKS")){  %>
+        <label for="showSummary"> Summary: </label>
+        <input type="text" id="showSummery" name="showSummery"> <br/>
 
-    <label for="bookWriter"> Writer: </label>
-    <input type="text" id="bookWriter" name="bookWriter"> <br/>
-
-
-    <label for="bookSummery"> Summary: </label>
-    <input type="text" id="bookSummery" name="bookSummery"> <br/>
-
-    <%} %>
-
-    <% if(category.equals("VIDEO GAMES")){  %>
-
-    <label for="gameDevelopers"> Developers: </label>
-    <input type="text" id="gameDevelopers" name="gameDevelopers"> <br/>
-
-
-    <label for="gameSummery"> Summary: </label>
-    <input type="text" id="gameSummery" name="gameSummery"> <br/>
+        <label for="showDate"> Airing year: </label>
+        <input type="text" id="showDate" name="showDate"> <br/>
 
     <%} %>
 
 
-    <% if(category.equals("VIDEO GAMES") || category.equals("MOVIES")||
-            category.equals("MUSIC") || category.equals("BOOKS")){  %>
-    <label for="date"> Release date:</label>
-    <input type="text" id="date" name="date"> <br/>
+    <% if(category.equals(BOOK.ATTRIBUTE)){  %>
+
+        <label for="bookWriter"> Writer: </label>
+        <input type="text" id="bookWriter" name="bookWriter"> <br/>
+
+
+        <label for="bookSummary"> Summary: </label>
+        <input type="text" id="bookSummery" name="bookSummery"> <br/>
+
+    <%} %>
+
+    <% if(category.equals(Video_Game.ATTRIBUTE)){  %>
+
+        <label for="gameDevelopers"> Developers: </label>
+        <input type="text" id="gameDevelopers" name="gameDevelopers"> <br/>
+
+
+        <label for="gameSummery"> Summary: </label>
+        <input type="text" id="gameSummery" name="gameSummery"> <br/>
 
     <%} %>
 
 
-    <label for="cover"> Cover url:</label>
-    <input type="text" id="cover" name="cover"> <br/>
+    <% if(category.equals(Video_Game.ATTRIBUTE) || category.equals(MOVIE.ATTRIBUTE)||
+            category.equals(MUSIC.ATTRIBUTE) || category.equals(BOOK.ATTRIBUTE)){  %>
+  
+          <label for="date"> Release date:</label>
+          <input type="text" id="date" name="date"> <br/>
 
-    <button type="submit"> REGISTER </button>
-    <button type="reset"> RESET </button>
+    <%} %>
+
+          <label for="cover"> Cover url:</label>
+          <input type="text" id="cover" name="cover"> <br/>
+
+          <button type="submit"> REGISTER </button>
+
+          <button type="reset"> RESET </button>
 </form>
 
 </body>
