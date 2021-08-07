@@ -77,9 +77,15 @@ public class User {
         return followers;
     }
 
-    public List<User> getFollowing(){
-
-        return null;
+    // აბრუნებს იმ User ობიექტების სიას, რომლებსაც ა-follower-ებს მოცემული მომხმარებელი.
+    public List<User> getFollowing(DB db) throws SQLException {
+        List<User> following = new ArrayList<User>();
+        ResultSet rowsOfFollowing = db.conditionedSelect(FOLLOWERS_TABLE, "follower_username",
+                username);
+        while(rowsOfFollowing.next()){
+            following.add(getUserByUsername(db, rowsOfFollowing.getString("user_username")));
+        }
+        return following;
     }
 
     // Getter methods.
