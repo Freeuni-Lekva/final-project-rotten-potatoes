@@ -2,10 +2,7 @@ package Database;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,5 +44,17 @@ public class SQL implements DB {
             throwables.printStackTrace();
         }
         return 1;
+    }
+
+    @Override
+    public ResultSet conditionedSelect(String TABLE_NAME, String COLUMN_NAME, String VALUE) {
+        String query = "select * from " + TABLE_NAME + " where " + COLUMN_NAME + " = " + VALUE + ";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
