@@ -1,8 +1,17 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class User {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
     public static final String ATTRIBUTE = "username";
     public static final String TABLE_NAME = "USERS";
@@ -23,8 +32,20 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public static User getUserByUsername(String username){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა username. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს User ობიექტს.
+    public static User getUserByUsername(DB db, String username) throws SQLException {
+        ResultSet singleUserRow = db.conditionedSelect(TABLE_NAME, "username",
+                Item.surroundWithSingleQuotes(username));
+
+        while(singleUserRow.next()){
+            User user = new User
+                    (singleUserRow.getString(0), singleUserRow.getString(1),
+                    singleUserRow.getInt(2), singleUserRow.getString(3),
+                    singleUserRow.getString(4);
+            return user;
+        }
+        
         return null;
     }
 
