@@ -20,7 +20,7 @@ public class SQL implements DB {
     private static final String LIKE_CLAUSE = " LIKE ";
     private static final String ORDER_BY_CLAUSE = " order by ";
     private static final String EQUALS = " = ";
-    private static final String AND = " and "
+    private static final String AND = " and ";
 
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
@@ -112,6 +112,13 @@ public class SQL implements DB {
                                              String COLUMN_2, String VALUE_2) {
         String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 +
                         AND + COLUMN_2 + EQUALS + VALUE_2 + ";";
+
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
