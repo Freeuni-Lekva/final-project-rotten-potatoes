@@ -43,8 +43,8 @@ public class User {
         while(singleUserRow.next()){
             User user = new User
                     (singleUserRow.getString(0), singleUserRow.getString(1),
-                    singleUserRow.getInt(2), singleUserRow.getString(3),
-                    singleUserRow.getString(4);
+                    singleUserRow.getString(2), singleUserRow.getString(3),
+                    singleUserRow.getString(4));
             return user;
         }
 
