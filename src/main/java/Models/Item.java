@@ -1,12 +1,17 @@
 package Models;
 
+import Database.SQL;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Item {
+public class Item extends SQL {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "ITEMS";
     public static final String TABLE_NAME = "ITEMS";
-    public static final String TITLE_COLUMN = "title";
+    public static final String EQUALITY_COLUMN = "CATEGORY";
+    public static final String LIKENESS_COLUMN = "TITLE";
 
     // Instance variable declarations.
     private String itemID;
@@ -33,8 +38,25 @@ public class Item {
 
     // ******* TO BE TESTED
     public List<Item> getItems(String category, String searchFieldValue, String orderByValue){
-        // orderByValue გაპარსე
+        List<Item> items = new ArrayList<Item>();
+
+        // Reformat parameters.
+        String[] splited = orderByValue.split("\\s+");
+
+        StringBuilder EQUALITY_VALUE = new StringBuilder();
+        EQUALITY_VALUE.append("'");
+        EQUALITY_VALUE.append(category.toUpperCase()); // .toUpperCase() might be redundant
+        EQUALITY_VALUE.append("'");
+
+        StringBuilder LIKENESS_VALUE = new StringBuilder();
+        EQUALITY_VALUE.append("'%");
+        EQUALITY_VALUE.append(splited[0]);
+        EQUALITY_VALUE.append("%'");
+
+        String DESC_OR_ASC = splited[1];
+
         // SQL ბრძანება გამოიძახე
+
         return null;
     }
 
