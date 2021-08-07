@@ -12,23 +12,23 @@
 </head>
 <body>
 <form action="" method="POST">
-    <button name = "CATEGORY" type = "submit" value = "MOVIES"> MOVIES </button>
-    <button name = "CATEGORY" type = "submit" value = "TV SHOWS">TV SHOWS </button>
-    <button name = "CATEGORY" type = "submit" value = "MUSIC"> MUSIC </button>
-    <button name = "CATEGORY" type = "submit" value = "VIDEO GAMES"> VIDEO GAMES </button>
-    <button name = "CATEGORY" type = "submit" value = "BOOKS"> BOOKS </button>
-    <input type = "text" placeholder="search...">
-    <button type= "submit">search</button><br/>
+    <button name = "CATEGORY" type = "submit" value = <%Movie.ATTRIBUTE%> > MOVIES </button>
+    <button name = "CATEGORY" type = "submit" value = <%Tv_Shows.ATTRIBUTE%> >TV SHOWS </button>
+    <button name = "CATEGORY" type = "submit" value = <%Music.ATTRIBUTE%> > MUSIC </button>
+    <button name = "CATEGORY" type = "submit" value = <%Video_Game.ATTRIBUTE%> > VIDEO GAMES </button>
+    <button name = "CATEGORY" type = "submit" value = <%Book.ATTRIBUTE%> > BOOKS </button> <br/>
+
     <select name= "SORTING">
         <option value = "">Select</option>
         <option value = "RATING ASC">Rating ascending</option>
         <option value = "RATING DESC">Rating descending</option>
-        <option value = "REWS ASC">Number of reviews ascending</option>
-        <option value = "REWS DESC">Number of reviews descending</option>
-        <option value = "DATE ASC">Date added ascending</option>
-        <option value = "DATE DESC">Date added descending</option>
+        <option value = "REVIEWS ASC">Number of reviews ascending</option>
+        <option value = "REVIEWS DESC">Number of reviews descending</option>
+        <option value = "DATE ASC">Release date ascending</option>
+        <option value = "DATE DESC">Release date descending</option>
     </select>
-    <button type = "submit">Sort</button>
+    <input type = "text" placeholder="search...">
+    <button type= "submit">Submit</button><br/>
 </form>
 </body>
 </html>
