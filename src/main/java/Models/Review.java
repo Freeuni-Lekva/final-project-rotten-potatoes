@@ -1,5 +1,11 @@
 package Models;
 
+import Database.DB;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Review {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "REVIEWS";
@@ -19,6 +25,16 @@ public class Review {
         this.score = score;
         this.review = review;
         this.category = category;
+    }
+
+    // ამატებს review-ს, რომელიც მომხმარებელმა გააკეთა, შესაბამის ცხრილში.
+    public int addReview(DB db, String itemID, String username, double score, String review){
+        String category = Item.getCategoryByItemID(itemID);
+        List<String> values = Arrays.asList(Item.surroundWithSingleQuotes(itemID),
+                                            Item.surroundWithSingleQuotes(username),
+                                            String.valueOf(score), Item.surroundWithSingleQuotes(review),
+                                            Item.surroundWithSingleQuotes(category));
+        return db.insert(TABLE_NAME, values);
     }
 
     // Getter methods.
