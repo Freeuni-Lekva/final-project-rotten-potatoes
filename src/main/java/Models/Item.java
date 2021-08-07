@@ -34,6 +34,23 @@ public class Item extends SQL {
         this.coverURL = coverURL;
     }
 
+    public static String getCategoryByItemID(String itemID){
+        StringBuilder categoryPrefix = new StringBuilder(itemID);
+        String prefix = categoryPrefix.substring(0, 2);
+        if(prefix.equals("MO")){
+            return Movie.TABLE_NAME;
+        } else if(prefix.equals("TV")){
+            return TV_Show.TABLE_NAME;
+        } else if(prefix.equals("MU")){
+            return Music.TABLE_NAME;
+        } else if(prefix.equals("BO")){
+            return Book.TABLE_NAME;
+        } else if(prefix.equals("VI")){
+            return Video_Game.TABLE_NAME;
+        }
+        return null;
+    }
+
     public Item getItemByID(String itemID){
         // TO BE IMPLEMENTED
         return null;
