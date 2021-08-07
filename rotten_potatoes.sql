@@ -15,39 +15,33 @@ DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 DROP TABLE IF EXISTS USERS;
 
-
 CREATE TABLE CATEGORIES(
-		category_name CHAR(25), CONSTRAINT category_name_pk PRIMARY KEY (category_name)
+		category_name CHAR(25) NOT NULL, CONSTRAINT category_name_pk PRIMARY KEY (category_name) 
 );
-
 
 INSERT INTO CATEGORIES VALUES
 ('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
 
-
 CREATE TABLE USERS (
-	username CHAR(20), CONSTRAINT pk_username PRIMARY KEY (username),
-    first_name CHAR(20),
-    last_name CHAR(30),
-    date_of_birth DATE,
-    hash_password CHAR(64)
+	username CHAR(20) NOT NULL, CONSTRAINT pk_username PRIMARY KEY (username),
+    first_name CHAR(20) NOT NULL,
+    last_name CHAR(30) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    hash_password CHAR(64) NOT NULL
 );
-
 
 INSERT INTO USERS VALUES 
 	('admin', 'Giorgi', 'Meore', '1900-03-07', 'RottenPotatoes');
 
-
 CREATE TABLE ITEMS (
-	item_id CHAR(100), CONSTRAINT ck_item_id PRIMARY KEY (item_id),
+	item_id CHAR(100) NOT NULL, CONSTRAINT ck_item_id PRIMARY KEY (item_id),
 	-- title column is neither primary key nor unique key, because for instance, books and movies can have same titles.
-	title CHAR(100),
-    category CHAR(25), CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
-    uploader CHAR(50), CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-    score DOUBLE, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
-    cover_url TEXT 
+	title CHAR(100) NOT NULL,
+    category CHAR(25) NOT NULL, CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    uploader CHAR(50) NOT NULL, CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+    score DOUBLE NOT NULL, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
+    cover_url TEXT NOT NULL
 );
-
 
 INSERT INTO ITEMS VALUES
 ('MU_Dangerous_1991', 'Dangerous', 'MUSIC', 'admin', 0,'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg'),
@@ -62,14 +56,12 @@ INSERT INTO ITEMS VALUES
 ('VI_Minecraft_2011', 'Minecraft', 'VIDEO GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg'),
 ('VI_Stardew Valley_2016', 'Stardew Valley', 'VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg');
 
-
 CREATE TABLE BADGES (
-	badge_id CHAR(6), CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
-	badge_name CHAR(20),
-    badge_icon CHAR(28),
-    badge_description CHAR(64)
+	badge_id CHAR(6) NOT NULL, CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
+	badge_name CHAR(20) NOT NULL,
+    badge_icon CHAR(28) NOT NULL,
+    badge_description CHAR(64) NOT NULL
 );
-
 
 INSERT INTO BADGES VALUES
 	-- badges are given so easily for the sake of testing their work ability
@@ -80,32 +72,28 @@ INSERT INTO BADGES VALUES
     ('TP_CRT', 'Top Critic', 'Top_Critic.png', 'Badge is given when the user has given more than 10 reviews.'),
     ('TP_FAN', 'Top Fan', 'Top_Fan.png', 'Badge is given when the user has uploaded more than 10 items.');
 
-
 CREATE TABLE USER_BADGES (
-	username CHAR(20), CONSTRAINT username_fk2 FOREIGN KEY (username) REFERENCES USERS (username),
-    badge_id CHAR(6), CONSTRAINT badge_id_fk FOREIGN KEY (badge_id) REFERENCES BADGES (badge_id)
+	username CHAR(20) NOT NULL, CONSTRAINT username_fk2 FOREIGN KEY (username) REFERENCES USERS (username),
+    badge_id CHAR(6) NOT NULL, CONSTRAINT badge_id_fk FOREIGN KEY (badge_id) REFERENCES BADGES (badge_id)
 );
-
 
 CREATE TABLE FOLLOWERS (
-	user_username CHAR(20), CONSTRAINT user_username_fk FOREIGN KEY (user_username) REFERENCES USERS (username),
-    follower_username CHAR(20), CONSTRAINT follower_username_fk FOREIGN KEY (follower_username) REFERENCES USERS (username)
+	user_username CHAR(20) NOT NULL, CONSTRAINT user_username_fk FOREIGN KEY (user_username) REFERENCES USERS (username),
+    follower_username CHAR(20) NOT NULL, CONSTRAINT follower_username_fk FOREIGN KEY (follower_username) REFERENCES USERS (username)
 );
-
 
 CREATE TABLE MUSIC (
-    music_id CHAR(100), CONSTRAINT music_id_fk FOREIGN KEY (music_id) REFERENCES ITEMS (item_id),
-    artist CHAR(100),
-    title CHAR(100),
-    label CHAR(50),
-    release_year YEAR,
-    genre CHAR(100),
-    album_cover_url TEXT,
-    uploader CHAR(20), CONSTRAINT music_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-    score DOUBLE, CONSTRAINT ck_score_music CHECK (score BETWEEN 0 AND 10),
-    num_of_reviews INTEGER
+    music_id CHAR(100) NOT NULL, CONSTRAINT music_id_fk FOREIGN KEY (music_id) REFERENCES ITEMS (item_id),
+    artist CHAR(100) NOT NULL,
+    title CHAR(100) NOT NULL,
+    label CHAR(50) NOT NULL,
+    release_year YEAR NOT NULL,
+    genre CHAR(100) NOT NULL,
+    album_cover_url TEXT NOT NULL,
+    uploader CHAR(20) NOT NULL, CONSTRAINT music_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+    score DOUBLE NOT NULL, CONSTRAINT ck_score_music CHECK (score BETWEEN 0 AND 10),
+    num_of_reviews INTEGER NOT NULL
 );
-
 
 INSERT INTO MUSIC VALUES
         ('MU_Dangerous_1991', 'Michael Jackson', 'Dangerous', 'Epic Records', 1991, 'New Jack Swing, R&B, Pop', 'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg', 'admin', 0, 0),
@@ -115,16 +103,16 @@ INSERT INTO MUSIC VALUES
 
 
 CREATE TABLE TV_SHOWS (
-        tv_show_id CHAR(100) , CONSTRAINT tv_shows_id_fk FOREIGN KEY (tv_show_id) REFERENCES ITEMS (item_id),
-        title CHAR(100),
-        airing_year YEAR,
-        director CHAR(60),
-        tv_show_cast CHAR(100),
-        cover_url TEXT,
-        summary TEXT,
-        uploader CHAR(20), CONSTRAINT tv_show_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS(username),
-        score DOUBLE, CONSTRAINT ck_score_tv_shows CHECK (score BETWEEN 0 AND 10),
-        num_of_reviews INTEGER
+        tv_show_id CHAR(100) NOT NULL, CONSTRAINT tv_shows_id_fk FOREIGN KEY (tv_show_id) REFERENCES ITEMS (item_id),
+        title CHAR(100) NOT NULL,
+        airing_year YEAR NOT NULL,
+        director CHAR(60) NOT NULL,
+        tv_show_cast CHAR(100) NOT NULL,
+        cover_url TEXT NOT NULL,
+        summary TEXT NOT NULL,
+        uploader CHAR(20) NOT NULL, CONSTRAINT tv_show_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS(username),
+        score DOUBLE NOT NULL, CONSTRAINT ck_score_tv_shows CHECK (score BETWEEN 0 AND 10),
+        num_of_reviews INTEGER NOT NULL
 );
 
 
@@ -146,25 +134,25 @@ INSERT INTO TV_SHOWS VALUES
 
 
 CREATE TABLE REVIEWS (
-        item_id CHAR(100), CONSTRAINT item_id_fk FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
-        username CHAR(20), CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES USERS (username),
-        score DOUBLE, CONSTRAINT ck_score_in_review CHECK (score BETWEEN 0 AND 10),
-        review TEXT,
-        category CHAR(15)
+        item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
+        username CHAR(20) NOT NULL, CONSTRAINT username_fk FOREIGN KEY (username) REFERENCES USERS (username),
+        score DOUBLE NOT NULL, CONSTRAINT ck_score_in_review CHECK (score BETWEEN 0 AND 10),
+        review TEXT NOT NULL,
+        category CHAR(15) NOT NULL
 );
 
 
 CREATE TABLE MOVIES (
-	movie_id CHAR(100), CONSTRAINT movie_id_fk FOREIGN KEY (movie_id) REFERENCES ITEMS (item_id),
-	title CHAR(100),
-    release_date YEAR,
-    director CHAR(60),
-  	movie_cast CHAR(100),
-  	cover_url TEXT,
-  	summary TEXT,
-  	uploader CHAR(20), CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-  	score DOUBLE, CONSTRAINT ck2_score_books CHECK (score BETWEEN 0 AND 10),
-  	num_of_reviews INTEGER
+	movie_id CHAR(100) NOT NULL, CONSTRAINT movie_id_fk FOREIGN KEY (movie_id) REFERENCES ITEMS (item_id),
+	title CHAR(100) NOT NULL,
+    release_date YEAR NOT NULL,
+    director CHAR(60) NOT NULL,
+  	movie_cast CHAR(100) NOT NULL,
+  	cover_url TEXT NOT NULL,
+  	summary TEXT NOT NULL,
+  	uploader CHAR(20) NOT NULL, CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE NOT NULL, CONSTRAINT ck2_score_books CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER NOT NULL
 );
 
 
@@ -180,15 +168,15 @@ INSERT INTO MOVIES VALUES
 
 
 CREATE TABLE BOOKS (
-	book_id CHAR(100), CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES ITEMS (item_id),
-	title CHAR(100),
-    release_date YEAR,
-    writer CHAR(60),
-  	cover_url TEXT,
-  	summary TEXT,
-  	uploader CHAR(20), CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-  	score DOUBLE, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
-  	num_of_reviews INTEGER
+	book_id CHAR(100) NOT NULL, CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES ITEMS (item_id),
+	title CHAR(100) NOT NULL,
+    release_date YEAR NOT NULL,
+    writer CHAR(60) NOT NULL,
+  	cover_url TEXT NOT NULL,
+  	summary TEXT NOT NULL,
+  	uploader CHAR(20) NOT NULL, CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE NOT NULL, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER NOT NULL
 );
 
 
@@ -204,15 +192,15 @@ INSERT INTO BOOKS VALUES
 
 
 CREATE TABLE VIDEO_GAMES (
-	video_game_id CHAR(100), CONSTRAINT video_game_id_fk FOREIGN KEY (video_game_id) REFERENCES ITEMS (item_id),
-	title CHAR(100),
-    release_date YEAR,
-    developers CHAR(100),
-  	cover_url TEXT,
-  	summary TEXT,
-  	uploader CHAR(20), CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
-  	score DOUBLE, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
-  	num_of_reviews INTEGER
+	video_game_id CHAR(100) NOT NULL, CONSTRAINT video_game_id_fk FOREIGN KEY (video_game_id) REFERENCES ITEMS (item_id),
+	title CHAR(100) NOT NULL,
+    release_date YEAR NOT NULL,
+    developers CHAR(100) NOT NULL,
+  	cover_url TEXT NOT NULL,
+  	summary TEXT NOT NULL,
+  	uploader CHAR(20) NOT NULL, CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
+  	score DOUBLE NOT NULL, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
+  	num_of_reviews INTEGER NOT NULL
 );
 
 
