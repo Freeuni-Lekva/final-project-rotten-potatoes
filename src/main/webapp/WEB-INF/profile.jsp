@@ -26,11 +26,11 @@
         <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
         <form action="registration_form.jsp" method="POST"> <%-- !!! .jsp file name might change !!! --%>
             <select name="PARAMETER_NAME">
-                <option value= <%Movie.ATTRIBUTE%> >Movies</option>
-                <option value= <%TV_Show.ATTRIBUTE%> >TV Shows</option>
-                <option value= <%Music.ATTRIBUTE%> >Music</option>
-                <option value= <%Video_Game.ATTRIBUTE%> >Video Games</option>
-                <option value= <%Book.ATTRIBUTE%> >Books</option>
+                <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
+                <option value= <%= TV_Show.ATTRIBUTE% > >TV Shows</option>
+                <option value= <%= Music.ATTRIBUTE% > >Music</option>
+                <option value= <%= Video_Game.ATTRIBUTE% > >Video Games</option>
+                <option value= <%= Book.ATTRIBUTE% > >Books</option>
             </select>
             <input type="submit"/>
         </form>
