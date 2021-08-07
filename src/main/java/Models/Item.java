@@ -28,15 +28,20 @@ public class Item extends SQL {
     private String uploader;
     private double score;
     private String coverURL;
+    private int releaseDate;
+    private int numOfReviews;
 
     // Constructor.
-    public Item(String itemID, String title, String category, String uploader, double score, String coverURL){
+    public Item(String itemID, String title, String category, String uploader, double score, String coverURL,
+                int releaseDate, int numOfReviews){
         this.itemID = itemID;
         this.title = title;
         this.category = category;
         this.uploader = uploader;
         this.score = score;
         this.coverURL = coverURL;
+        this.releaseDate = releaseDate;
+        this.numOfReviews = numOfReviews;
     }
 
     // ბევრ SQL ბრძანებაში გვიწევს სტრინგის ერთხაზიან ბრჭყალებში მოქცევა. ფუნქციას გადაეცემა სტრინგი, ის აბრუნებს იგივე
@@ -76,7 +81,8 @@ public class Item extends SQL {
         while(singleItemRow.next()){
             Item item = new Item(singleItemRow.getString(0), singleItemRow.getString(1),
                                 singleItemRow.getString(2), singleItemRow.getString(3),
-                                singleItemRow.getDouble(4), singleItemRow.getString(5));
+                                singleItemRow.getDouble(4), singleItemRow.getString(5),
+                                singleItemRow.getInt(6), singleItemRow.getInt(7));
             return item;
         }
         return null;
@@ -107,7 +113,8 @@ public class Item extends SQL {
         while(rowsOfItems.next()){
             Item item = new Item(rowsOfItems.getString(0), rowsOfItems.getString(1),
                                 rowsOfItems.getString(2), rowsOfItems.getString(3),
-                                rowsOfItems.getDouble(4), rowsOfItems.getString(5));
+                                rowsOfItems.getDouble(4), rowsOfItems.getString(5),
+                                rowsOfItems.getInt(6), rowsOfItems.getInt(7));
             items.add(item);
         }
 
@@ -139,6 +146,10 @@ public class Item extends SQL {
         return coverURL;
     }
 
+    public int getReleaseDate(){ return releaseDate; }
+
+    public int getNumOfReviews(){ return numOfReviews; }
+
     // Setter methods.
     public void setItemID(String itemID){
         this.itemID = itemID;
@@ -163,4 +174,8 @@ public class Item extends SQL {
     public void setCoverURL(String coverURL){
         this.coverURL = coverURL;
     }
+
+    public void setReleaseDate(int releaseDate){ this.releaseDate = releaseDate; }
+
+    public void setNumOfReviews(int numOfReviews){ this.numOfReviews = numOfReviews; }
 }
