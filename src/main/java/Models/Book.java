@@ -37,11 +37,6 @@ public class Book {
         return null;
     }
 
-    public List<Book> getBooks(String sortType){
-        // TO BE IMPLEMENTED
-        return null;
-    }
-
     // Getter methods.
     public String getBookID(){
         return bookID;

@@ -39,11 +39,6 @@ public class Movie {
         return null;
     }
 
-    public List<Movie> getMovies(String sortType){
-        // TO BE IMPLEMENTED
-        return null;
-    }
-
     // Getter methods.
     public String getMovieID(){
         return movieID;

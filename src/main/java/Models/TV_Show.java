@@ -39,11 +39,6 @@ public class TV_Show {
         return null;
     }
 
-    public List<TV_Show> getTVShows(String sortType){
-        // TO BE IMPLEMENTED
-        return null;
-    }
-
     // Getter methods.
     public String getTVShowID(){
         return tvShowID;

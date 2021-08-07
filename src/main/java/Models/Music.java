@@ -39,11 +39,6 @@ public class Music {
         return null;
     }
 
-    public List<Music> getMusic(String sortType){
-        // TO BE IMPLEMENTED
-        return null;
-    }
-
     // Getter methods.
     public String getMusicID(){
         return musicID;

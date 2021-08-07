@@ -37,11 +37,6 @@ public class Video_Game {
         return null;
     }
 
-    public List<Video_Game> getVideoGames(String sortType){
-        // TO BE IMPLEMENTED
-        return null;
-    }
-
     // Getter methods.
     public String getVideoGameID(){
         return videoGameID;

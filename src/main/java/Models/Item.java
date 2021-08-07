@@ -1,9 +1,12 @@
 package Models;
 
+import java.util.List;
+
 public class Item {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "ITEMS";
     public static final String TABLE_NAME = "ITEMS";
+    public static final String TITLE_COLUMN = "title";
 
     // Instance variable declarations.
     private String itemID;
@@ -25,6 +28,13 @@ public class Item {
 
     public Item getItemByID(String itemID){
         // TO BE IMPLEMENTED
+        return null;
+    }
+
+    // ******* TO BE TESTED
+    public List<Item> getItems(String category, String searchFieldValue, String orderByValue){
+        // orderByValue გაპარსე
+        // SQL ბრძანება გამოიძახე
         return null;
     }
 
