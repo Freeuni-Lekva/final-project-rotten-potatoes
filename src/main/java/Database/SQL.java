@@ -63,7 +63,7 @@ public class SQL implements DB {
         try {
             Statement statement = connection.createStatement();
             String query = "insert into " + tableName + " values (" + allValues + ");";
-            statement.execute(query);
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             // e.printStackTrace();
             return SQL_ERROR;
