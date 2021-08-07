@@ -47,6 +47,10 @@ public class SQL implements DB {
         }
     }
 
+    public Connection getConnection(){
+        return connection;
+    }
+
     /* ფუნქციის გამოყენების სავარაუდო დროები:
     * - როცა index.jsp-ზე მომხმარებელი შეავსებს ფორმას და დააჭერს create account ღილაკს.
     * - როცა მომხმარებელი რაიმე ახალ ბეჯს მიიღებს:
@@ -63,7 +67,7 @@ public class SQL implements DB {
         try {
             Statement statement = connection.createStatement();
             String query = "insert into " + tableName + " values (" + allValues + ");";
-            statement.execute(query);
+            statement.executeUpdate(query);
         } catch (SQLException e) {
             // e.printStackTrace();
             return SQL_ERROR;

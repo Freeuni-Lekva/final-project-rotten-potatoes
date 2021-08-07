@@ -24,7 +24,7 @@ public class testSQL {
     // insert ოპერაციების სისწორის შემოწმება უკეთ მოხდება, როცა search-ის იმპლემენტაციაც მოხდება. ამჟამად, მთავარი მიზანია,
     // რომ დაინახოთ, როგორ ხდება insert ოპერაციაში პარამეტრების გადაცემა.
     @Test
-    public void testInsert(){
+    public void testInsert() throws ClassNotFoundException {
         db = new SQL();
         // სხვადასხვა ცხრილებზე insert ოპერაციის გაშვების მაგალითები. დააკვირდით, რომ TEXT, CHAR(n), DATE და ა.შ. ტიპის
         // სვეტების შესაბამისი მნიშვნელობები დამატებით მოქცეულია ერთხაზიან ბრჭყალებში ('...'), ხოლო ასეთი ბრჭყალები აღარ
@@ -46,7 +46,7 @@ public class testSQL {
     }
 
     @Test
-    public void testConditionedSelect() throws SQLException {
+    public void testConditionedSelect() throws SQLException, ClassNotFoundException {
         db = new SQL();
         int numOfRowsReturned = 0;
 
@@ -65,7 +65,7 @@ public class testSQL {
     }
 
     @Test
-    public void testConditionedAndOrderedSelect() throws SQLException {
+    public void testConditionedAndOrderedSelect() throws SQLException, ClassNotFoundException {
         db = new SQL();
         int numOfRowsReturned = 0;
 
