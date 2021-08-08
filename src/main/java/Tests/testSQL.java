@@ -121,5 +121,8 @@ public class testSQL {
         db = new SQL();
         db.update("MUSIC", "release_year", "'1982'",
                 "music_id", "'MU_Dangerous_1991'");
+        // test increment by 1:
+        db.update("MUSIC", "release_year", "release_year + 1",
+                "music_id", "'MU_Magical Mystery Tour_1967'");
     }
 }
