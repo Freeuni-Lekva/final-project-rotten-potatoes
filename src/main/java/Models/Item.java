@@ -73,6 +73,23 @@ public class Item extends SQL {
         return null;
     }
 
+    // ფუნქციას გადაეცემა კატეგორიის სახელი და აბრუნებს ამ კატეგორიაში იმ სვეტის სახელს, რომელშიც
+    // ნივთის იდენტიფიკატორი ინახება.
+    public static String getColumnIDByCategory(String category){
+        if(category.equals(Movie.TABLE_NAME)){
+            return "movie_id";
+        } else if(category.equals(TV_Show.TABLE_NAME)){
+            return "tv_show_id";
+        } else if(category.equals(Music.TABLE_NAME)){
+            return "music_id";
+        } else if(category.equals(Book.TABLE_NAME)){
+            return "book_id";
+        } else if(category.equals(Video_Game.TABLE_NAME)){
+            return "video_game_id";
+        }
+        return null;
+    }
+
     // მეთოდს გადაეცემა itemID (რომლის შექმნის წესიც წინა მეთოდის კომენტარში ვახსენეთ). მეთოდი იძახებს
     // SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი ცხრილში და წარმატების შემთხვევაში, აბრუნებს Item ობიექტს.
     public Item getItemByID(DB db, String itemID) throws SQLException {
