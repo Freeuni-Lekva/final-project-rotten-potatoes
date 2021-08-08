@@ -1,5 +1,9 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class TV_Show {
@@ -34,8 +38,21 @@ public class TV_Show {
         this.numOfReviews = numOfReviews;
     }
 
-    public TV_Show getTVShowByID(String tvShowID){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა tvShowID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს TV_Show ობიექტს.
+    public TV_Show getTVShowByID(DB db, String tvShowID) throws SQLException {
+        ResultSet singleTVShowRow = db.conditionedSelect(TABLE_NAME, "tv_show_id",
+                Item.surroundWithSingleQuotes(tvShowID));
+
+        while(singleTVShowRow.next()){
+            TV_Show tvShow = new TV_Show
+                    (singleTVShowRow.getString(0), singleTVShowRow.getString(1),
+                    singleTVShowRow.getInt(2), singleTVShowRow.getString(3),
+                    singleTVShowRow.getString(4), singleTVShowRow.getString(5),
+                    singleTVShowRow.getString(6), singleTVShowRow.getString(7),
+                    singleTVShowRow.getDouble(8), singleTVShowRow.getInt(9));
+            return tvShow;
+        }
         return null;
     }
 

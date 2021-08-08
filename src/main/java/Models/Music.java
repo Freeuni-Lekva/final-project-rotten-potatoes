@@ -1,8 +1,17 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Music {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
     public static final String ATTRIBUTE = "MUSIC";
     public static final String TABLE_NAME = "MUSIC";
@@ -34,8 +43,21 @@ public class Music {
         this.numOfReviews = numOfReviews;
     }
 
-    public Music getMusicByID(String musicID){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა musicID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Music ობიექტს.
+    public Music getMusicByID(DB db, String musicID) throws SQLException {
+        ResultSet singleMusicRow = db.conditionedSelect(TABLE_NAME, "music_id",
+                Item.surroundWithSingleQuotes(musicID));
+
+        while(singleMusicRow.next()){
+            Music music = new Music
+                    (singleMusicRow.getString(0), singleMusicRow.getString(1),
+                    singleMusicRow.getString(2), singleMusicRow.getString(3),
+                    singleMusicRow.getInt(4), singleMusicRow.getString(5),
+                    singleMusicRow.getString(6), singleMusicRow.getString(7),
+                    singleMusicRow.getDouble(8), singleMusicRow.getInt(9));
+            return music;
+        }
         return null;
     }
 

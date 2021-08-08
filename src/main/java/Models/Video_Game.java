@@ -1,8 +1,17 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Video_Game {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
     public static final String ATTRIBUTE = "VIDEO_GAMES";
     public static final String TABLE_NAME = "VIDEO_GAMES";
@@ -32,8 +41,21 @@ public class Video_Game {
         this.numOfReviews = numOfReviews;
     }
 
-    public Video_Game getVideoGamesByID(String videoGameID){
-        // TO BE IMPLEMENTED;
+    // მეთოდს გადაეცემა videoGameID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Video_Game ობიექტს.
+    public Video_Game getVideoGameByID(DB db, String videoGameID) throws SQLException {
+        ResultSet singleVideoGameRow = db.conditionedSelect(TABLE_NAME, "video_game_id",
+                Item.surroundWithSingleQuotes(videoGameID));
+
+        while(singleVideoGameRow.next()){
+            Video_Game videoGame = new Video_Game
+                    (singleVideoGameRow.getString(0), singleVideoGameRow.getString(1),
+                    singleVideoGameRow.getInt(2), singleVideoGameRow.getString(3),
+                    singleVideoGameRow.getString(4), singleVideoGameRow.getString(5),
+                    singleVideoGameRow.getString(6), singleVideoGameRow.getDouble(8),
+                    singleVideoGameRow.getInt(9));
+            return videoGame;
+        }
         return null;
     }
 

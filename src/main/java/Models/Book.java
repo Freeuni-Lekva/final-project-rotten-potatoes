@@ -1,8 +1,17 @@
 package Models;
 
+import Database.DB;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 public class Book {
+    // !!!! ---------------------------------------------- !!!!
+    // იმ ფუნქციების საბოლოო ფორმები, რომლებიც SQL ბრძანებებს იძახებენ არ არის
+    // გადაწყვეტილი. შესაძლოა, რომ მათი პარამეტრების სიას DB db გამოაკლდეს. თუმცა,
+    // იგი ამჟამად წერია, რათა მეთოდების გამოძახება მოვახერხოთ.
+
     // Constant variable declaration.
     public static final String ATTRIBUTE = "BOOKS";
     public static final String TABLE_NAME = "BOOKS";
@@ -32,8 +41,19 @@ public class Book {
         this.numOfReviews = numOfReviews;
     }
 
-    public Book getBookByID(String bookID){
-        // TO BE IMPLEMENTED
+    // მეთოდს გადაეცემა bookID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
+    // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Book ობიექტს.
+    public Book getBookByID(DB db, String bookID) throws SQLException {
+        ResultSet singleBookRow = db.conditionedSelect(TABLE_NAME, "book_id",
+                Item.surroundWithSingleQuotes(bookID));
+        while(singleBookRow.next()){
+            Book book = new Book(singleBookRow.getString(0), singleBookRow.getString(1),
+                                singleBookRow.getInt(2), singleBookRow.getString(3),
+                                singleBookRow.getString(4), singleBookRow.getString(5),
+                                singleBookRow.getString(6), singleBookRow.getDouble(7),
+                                singleBookRow.getInt(8));
+            return book;
+        }
         return null;
     }
 
