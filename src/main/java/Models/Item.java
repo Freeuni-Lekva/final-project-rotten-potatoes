@@ -134,7 +134,6 @@ public class Item extends SQL {
                                 rowsOfItems.getInt(6), rowsOfItems.getInt(7));
             items.add(item);
         }
-
         return items;
     }
 

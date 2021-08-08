@@ -47,7 +47,6 @@ public class User {
                     singleUserRow.getString(4));
             return user;
         }
-
         return null;
     }
 
