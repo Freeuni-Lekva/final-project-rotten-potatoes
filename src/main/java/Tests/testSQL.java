@@ -115,4 +115,11 @@ public class testSQL {
         }
         assertEquals(2, numOfRowsReturned);
     }
+
+    @Test
+    public void testUpdate(){
+        db = new SQL();
+        db.update("MUSIC", "release_year", "'1982'",
+                "music_id", "'MU_Dangerous_1991'");
+    }
 }
