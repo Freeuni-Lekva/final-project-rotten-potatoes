@@ -29,8 +29,8 @@ public class SQL implements DB {
     // შესაბამისი რიცხვი და პირიქით. ასე მოდელ კლასს (რომელიც SQL-ის ფუნქციებს გამოიყენებს) ეცოდინება,
     // ბრძანება როგორ შესრულდა. თუმცა, მასაც უნდა ჰქონდეს throw/catch.
     // !!!-----------------------------------------------------
-    private static final int SQL_ERROR = 1;
-    private static final int SQL_SUCCESS = 0;
+    public static final int SQL_ERROR = 1;
+    public static final int SQL_SUCCESS = 0;
 
     // Instance variable declarations.
     private final BasicDataSource dataSource;

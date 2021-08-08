@@ -75,7 +75,7 @@ public class Item extends SQL {
 
     // ფუნქციას გადაეცემა კატეგორიის სახელი და აბრუნებს ამ კატეგორიაში იმ სვეტის სახელს, რომელშიც
     // ნივთის იდენტიფიკატორი ინახება.
-    public static String getColumnIDByCategory(String category){
+    public static String getColumnByCategory(String category){
         if(category.equals(Movie.TABLE_NAME)){
             return "movie_id";
         } else if(category.equals(TV_Show.TABLE_NAME)){
