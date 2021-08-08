@@ -17,8 +17,10 @@ public class SQL implements DB {
     // Constant variable declarations for SQL queries.
     private static final String SELECT_FROM = "select * from ";
     private static final String WHERE_CLAUSE = " where ";
-    private static final String LIKE_CLAUSE = " LIKE ";
+    private static final String LIKE_CLAUSE = " like ";
     private static final String ORDER_BY_CLAUSE = " order by ";
+    private static final String UPDATE_CLAUSE = "update ";
+    private static final String SET_CLAUSE = " set ";
     private static final String EQUALS = " = ";
     private static final String AND = " and ";
 
@@ -142,5 +144,19 @@ public class SQL implements DB {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public int update(String TABLE_NAME, String SET_COLUMN, String SET_VALUE, String WHERE_COLUMN, String WHERE_VALUE) {
+        String query = UPDATE_CLAUSE + TABLE_NAME + SET_CLAUSE + SET_COLUMN + EQUALS + SET_VALUE + WHERE_CLAUSE +
+                        WHERE_COLUMN + EQUALS + WHERE_VALUE + ";";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            // e.printStackTrace();
+            return SQL_ERROR;
+        }
+        return SQL_SUCCESS;
     }
 }

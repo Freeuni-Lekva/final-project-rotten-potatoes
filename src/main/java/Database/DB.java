@@ -11,5 +11,5 @@ public interface DB {
     public ResultSet conditionedAndOrderedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
                                                  String COLUMN_2, String VALUE_2, String ORDER_COLUMN,
                                                  String DESC_OR_ASC);
-
+    public int update(String TABLE_NAME, String SET_COLUMN, String SET_VALUE, String WHERE_COLUMN, String WHERE_VALUE);
 }
