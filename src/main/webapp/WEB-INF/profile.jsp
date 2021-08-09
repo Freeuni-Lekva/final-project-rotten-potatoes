@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 
-<%@ page import="Database.SQL" %>
-<%@ page import="Database.DB" %>
-<%@ page import="Models.User" %>
-<%@ page import="Models.Item" %>
-<%@ page import="Models.Movie" %>
-<%@ page import="Models.Music" %>
-<%@ page import="Models.TV_Show" %>
-<%@ page import="Models.Book" %>
-<%@ page import="Models.Video_Game" %>
-<%@ page import="Servlets.ContextListener" %>
+<%@ page import="Database.*" %>
+<%@ page import="Models.*" %>
+<%@ page import="Servlets.*" %>
 
 <!DOCTYPE html>
 <html>
@@ -36,16 +29,18 @@
         <%-- !!! Need a button that will call a log out servlet !!! --%>
         <button name="button" type="button">Log Out</button>
 
+        <br><br>
+
         <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
-        <form action="registration_form.jsp" method="POST"> <%-- !!! .jsp file name might change !!! --%>
-            <select name="PARAMETER_NAME">
+        <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
+            <select name="NEW_ITEM_CATEGORY">
                 <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
-                <option value= <%= TV_Show.ATTRIBUTE% > >TV Shows</option>
-                <option value= <%= Music.ATTRIBUTE% > >Music</option>
-                <option value= <%= Video_Game.ATTRIBUTE% > >Video Games</option>
-                <option value= <%= Book.ATTRIBUTE% > >Books</option>
+                <option value= <%= TV_Show.ATTRIBUTE %> >TV Shows</option>
+                <option value= <%= Music.ATTRIBUTE %> >Music</option>
+                <option value= <%= Video_Game.ATTRIBUTE %> >Video Games</option>
+                <option value= <%= Book.ATTRIBUTE %> >Books</option>
             </select>
-            <input type="submit"/>
+            <input type="submit" value="Add New Item"/>
         </form>
 
         <%-- Display username at top with big chunky letters. --%>
@@ -65,11 +60,11 @@
             My Badges:
         </h2>
         <%
-            for(Badge badge : user.getBadges()){
+            for(Badge badge : user.getBadges(db)){
                 String badgeIcon = badge.getBadgeIcon(); %>
 
                 <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
-                <img src = <%= "images/" + badgeIcon %> >
+                <img src = <%= "images/" + badgeIcon %> width = "50">
         <% } %>
 
         <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
@@ -78,7 +73,7 @@
             My Followers:
         </h2>
         <%
-            for(User follower : user.getFollowers()){
+            for(User follower : user.getFollowers(db)){
                 String followerUsername = follower.getUsername(); %>
                 <p><%= followerUsername %></p>
         <% } %>
@@ -88,7 +83,7 @@
             My Following:
         </h2>
         <%
-            for(User following : user.getFollowing()){
+            for(User following : user.getFollowing(db)){
                 String followingUsername = following.getUsername(); %>
                 <p><%= followingUsername %></p>
         <% } %>
@@ -98,15 +93,16 @@
             My Items:
         </h2>
         <%
-            for(Item item : user.getItems()){
+            for(Item item : user.getItems(db)){
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();
-                int score = item.getScore(); %>
+                double score = item.getScore();
+                int releaseDate = item.getReleaseDate(); %>
 
             <%-- !!! Cover images will probably need resizing !!! --%>
-            <img src = <%= coverURL %> >
+            <img src = <%= coverURL %> width = "100">
             <h3>
-                <%= title %> <b>(<%= score %>/10)</b>
+                <%= title %> <b>(<%= score %>/10) <%= releaseDate %></b>
             </h3>
         <% } %>
 
@@ -115,10 +111,11 @@
             My Reviews:
         </h2>
         <%
-            for(Review review : user.getReviews()){
-                Item item = review.getItem();
-                String userReview = review.getUserReview();
-                int userScore = review.getUserScore(); %>
+            for(Review review : user.getReviews(db)){
+                String itemID = review.getItemID();
+                Item item = Item.getItemByID(db, itemID);
+                String userReview = review.getReview();
+                double userScore = review.getScore(); %>
 
             <%-- !!! Cover images will probably need resizing !!! --%>
             <img src = <%= item.getCoverURL() %> >
