@@ -1,13 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
     pageEncoding="US-ASCII"%>
 
+<%@ page import="Database.SQL" %>
+<%@ page import="Database.DB" %>
+<%@ page import="Models.User" %>
+<%@ page import="Models.Item" %>
+<%@ page import="Models.Movie" %>
+<%@ page import="Models.Music" %>
+<%@ page import="Models.TV_Show" %>
+<%@ page import="Models.Book" %>
+<%@ page import="Models.Video_Game" %>
+<%@ page import="Servlets.ContextListener" %>
+
 <!DOCTYPE html>
 <html>
     <%-- Information is transferred using attributes. Get username attribute and search for a user
         with given username. --%>
+
     <%
-        String username = (String) request.getSession().getAttribute(User.ATTRIBUTE);
-        User user = User.getUserByUsername(username);
+        String username = (String) request.getAttribute(User.ATTRIBUTE);
+        DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
+        User user = User.getUserByUsername(db, username);
     %>
 
     <head>
