@@ -51,11 +51,11 @@ public class Movie {
 
         while(singleMovieRow.next()){
             Movie movie = new Movie
-                    (singleMovieRow.getString(0), singleMovieRow.getString(1),
-                    singleMovieRow.getInt(2), singleMovieRow.getString(3),
-                    singleMovieRow.getString(4), singleMovieRow.getString(5),
-                    singleMovieRow.getString(6), singleMovieRow.getString(7),
-                    singleMovieRow.getDouble(8), singleMovieRow.getInt(9));
+                    (singleMovieRow.getString(1), singleMovieRow.getString(2),
+                    singleMovieRow.getInt(3), singleMovieRow.getString(4),
+                    singleMovieRow.getString(5), singleMovieRow.getString(6),
+                    singleMovieRow.getString(7), singleMovieRow.getString(8),
+                    singleMovieRow.getDouble(9), singleMovieRow.getInt(10));
             return movie;
         }
         return null;

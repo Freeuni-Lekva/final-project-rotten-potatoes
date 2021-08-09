@@ -5,6 +5,7 @@ import Database.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class User {
@@ -20,18 +21,18 @@ public class User {
 
     // Instance variable declarations.
     private String username;
-    private String password;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
+    private Date dateOfBirth;
+    private String password;
 
     // Constructor.
-    public User(String username, String password, String firstName, String lastName, String dateOfBirth){
+    public User(String username, String firstName, String lastName, Date dateOfBirth, String password){
         this.username = username;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
+        this.password = password;
     }
 
     // მეთოდს გადაეცემა username. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
@@ -42,9 +43,9 @@ public class User {
 
         while(singleUserRow.next()){
             User user = new User
-                    (singleUserRow.getString(0), singleUserRow.getString(1),
-                    singleUserRow.getString(2), singleUserRow.getString(3),
-                    singleUserRow.getString(4));
+                    (singleUserRow.getString(1), singleUserRow.getString(2),
+                    singleUserRow.getString(3), singleUserRow.getDate(4),
+                    singleUserRow.getString(5));
             return user;
         }
         return null;
@@ -69,7 +70,7 @@ public class User {
     public List<User> getFollowers(DB db) throws SQLException {
         List<User> followers = new ArrayList<User>();
         ResultSet rowsOfFollowers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
-                                                        username);
+                                                        Item.surroundWithSingleQuotes(username));
         while(rowsOfFollowers.next()){
             followers.add(getUserByUsername(db, rowsOfFollowers.getString("follower_username")));
         }
@@ -80,7 +81,7 @@ public class User {
     public List<User> getFollowing(DB db) throws SQLException {
         List<User> following = new ArrayList<User>();
         ResultSet rowsOfFollowing = db.conditionedSelect(FOLLOWERS_TABLE, "follower_username",
-                username);
+                                                        Item.surroundWithSingleQuotes(username));
         while(rowsOfFollowing.next()){
             following.add(getUserByUsername(db, rowsOfFollowing.getString("user_username")));
         }
@@ -92,29 +93,25 @@ public class User {
         return username;
     }
 
-    public String password(){
-        return password;
-    }
-
-    public String firstName(){
+    public String getFirstName(){
         return firstName;
     }
 
-    public String lastName(){
+    public String getLastName(){
         return lastName;
     }
 
-    public String dateOfBirth(){
+    public Date getDateOfBirth(){
         return dateOfBirth;
+    }
+
+    public String getPassword(){
+        return password;
     }
 
     // Setter methods.
     public void setUsername(String username){
         this.username = username;
-    }
-
-    public void setPassword(String password){
-        this.password = password;
     }
 
     public void setFirstName(String firstName){
@@ -125,7 +122,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(String dateOfBirth){
+    public void setDateOfBirth(Date dateOfBirth){
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 }

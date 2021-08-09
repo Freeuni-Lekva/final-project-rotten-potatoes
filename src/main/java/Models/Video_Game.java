@@ -49,10 +49,10 @@ public class Video_Game {
 
         while(singleVideoGameRow.next()){
             Video_Game videoGame = new Video_Game
-                    (singleVideoGameRow.getString(0), singleVideoGameRow.getString(1),
-                    singleVideoGameRow.getInt(2), singleVideoGameRow.getString(3),
-                    singleVideoGameRow.getString(4), singleVideoGameRow.getString(5),
-                    singleVideoGameRow.getString(6), singleVideoGameRow.getDouble(8),
+                    (singleVideoGameRow.getString(1), singleVideoGameRow.getString(2),
+                    singleVideoGameRow.getInt(3), singleVideoGameRow.getString(4),
+                    singleVideoGameRow.getString(5), singleVideoGameRow.getString(6),
+                    singleVideoGameRow.getString(7), singleVideoGameRow.getDouble(8),
                     singleVideoGameRow.getInt(9));
             return videoGame;
         }
