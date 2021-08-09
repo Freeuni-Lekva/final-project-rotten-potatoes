@@ -9,13 +9,14 @@
 <%@ page import="Models.*" %>
 <%@ page import="Database.*" %>
 <%@ page import="Servlets.*" %>
+
 <%@ page import="java.awt.desktop.UserSessionEvent" %>
 <html>
     <head>
         <title>Categories</title>
     </head>
     <body>
-        <form action="" method="POST">
+        <form action="guest" method="POST">
             <button name = "CATEGORY" type = "submit" value = <%=Movie.ATTRIBUTE%> > MOVIES </button>
             <button name = "CATEGORY" type = "submit" value = <%=TV_Show.ATTRIBUTE%> >TV SHOWS </button>
             <button name = "CATEGORY" type = "submit" value = <%=Music.ATTRIBUTE%> > MUSIC </button>
@@ -34,10 +35,11 @@
             <button type= "submit">Submit</button><br/>
         </form>
         <%
-            DB db = application.getAttribute(ContextListener.DB_ATTRIBUTE);
-            String category = request.getParameter("CATEGORY");
-            String sorting = request.getParameter("SORTING");
-            String search = request.getParameter("SEARCH");
+
+            DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
+            String category = (String)request.getAttribute("CATEGORY");
+            String sorting = (String)request.getAttribute("SORTING");
+            String search = (String)request.getAttribute("SEARCH");
             for(Item item : Item.getItems(db, category, search, sorting)){
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();
