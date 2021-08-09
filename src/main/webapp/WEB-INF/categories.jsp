@@ -35,17 +35,17 @@
     String category = request.getParameter("CATEGORY");
     String sorting = request.getParameter("SORTING");
     String search = request.getParameter("SEARCH");
-    for(Item item : Item.getItems()){
+    for(Item item : Item.getItems(category, search, sorting)){
         String title = item.getTitle();
         String coverURL = item.getCoverURL();
         String itemId = item.getItemID();
         String individualLink = "show-item.jsp?id=" + itemId;
         double score = item.getScore(); %>
-
-<img src = <%= coverURL %> >
-<h3>
-    <%= title %> <b>(<%= score %>/10)</b>
-</h3>
-<% } %>
+        <a href= <%= individualLink %>><%= title %>
+    <img src = <%= coverURL %> >
+    <h3>
+        <%= title %> <b>(<%= score %>/10)</b>
+    </h3>
+    <% } %>
 </body>
 </html>
