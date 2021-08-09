@@ -17,6 +17,7 @@ public class addNewItem extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+
         String category= (String) request.getAttribute("category");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getAttribute("username");
@@ -48,8 +49,6 @@ public class addNewItem extends HttpServlet {
 
         if(categoryWithoutQuotes.equals(Music.ATTRIBUTE)){
 
-
-            System.out.println("ak var");
             String artist=request.getParameter("musicArtist");
             artist=Item.surroundWithSingleQuotes(artist);
             forCurrTable.add(artist);
@@ -99,7 +98,6 @@ public class addNewItem extends HttpServlet {
 
 
         if(categoryWithoutQuotes.equals(Book.ATTRIBUTE)){
-
 
             forCurrTable.add(title);
             forCurrTable.add(date);
@@ -151,6 +149,8 @@ public class addNewItem extends HttpServlet {
         } else{
 
         }
+
+
     }
 
 
