@@ -107,11 +107,11 @@ public class Item extends SQL {
 
     // აბრუნებს Item-ების სიას შემდეგი მახასიათებლების მიხედვით: სიის ნივთები ერთ გადმოცემულ კატეგორიაში არიან,
     // ასევე, მათი სათაურები გადაცემულ '%searchFieldValue%'-ს ემთხვევა და ეს ნივთები დალაგებულია orderByValue-თი.
-    public List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
+    public static List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
         List<Item> items = new ArrayList<Item>();
 
         // Reformat parameters.
-        String[] split = orderByValue.split("\\s+");
+        String[] split = orderByValue.split(" ");
 
         String EQUALITY_VALUE = surroundWithSingleQuotes(category.toUpperCase()); // .toUpperCase() might be redundant
 
