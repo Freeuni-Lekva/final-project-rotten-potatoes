@@ -46,11 +46,11 @@ public class TV_Show {
 
         while(singleTVShowRow.next()){
             TV_Show tvShow = new TV_Show
-                    (singleTVShowRow.getString(0), singleTVShowRow.getString(1),
-                    singleTVShowRow.getInt(2), singleTVShowRow.getString(3),
-                    singleTVShowRow.getString(4), singleTVShowRow.getString(5),
-                    singleTVShowRow.getString(6), singleTVShowRow.getString(7),
-                    singleTVShowRow.getDouble(8), singleTVShowRow.getInt(9));
+                    (singleTVShowRow.getString(1), singleTVShowRow.getString(2),
+                    singleTVShowRow.getInt(3), singleTVShowRow.getString(4),
+                    singleTVShowRow.getString(5), singleTVShowRow.getString(6),
+                    singleTVShowRow.getString(7), singleTVShowRow.getString(8),
+                    singleTVShowRow.getDouble(9), singleTVShowRow.getInt(10));
             return tvShow;
         }
         return null;
