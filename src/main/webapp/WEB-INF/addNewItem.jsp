@@ -18,12 +18,10 @@
 
 
 <% String category=(String) request.getAttribute("category"); %>
-<% String currUser= (String) request.getAttribute("user") ; %>
+
 
 <form name="insertForm" method="post" action="addNewItem">
 
-    <input type="hidden" id="hiddenCategory" name="hiddenCategory" value= <%= category %> >
-    <input type="hidden" id="hiddenUser" name="hiddenUser" value= <%= currUser %> >
 
     <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
     <label for="title"> Title :</label>
