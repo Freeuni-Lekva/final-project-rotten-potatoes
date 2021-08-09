@@ -96,10 +96,10 @@ public class Item extends SQL {
         ResultSet singleItemRow = db.conditionedSelect(TABLE_NAME, "item_id",
                                                         surroundWithSingleQuotes(itemID));
         while(singleItemRow.next()){
-            Item item = new Item(singleItemRow.getString(0), singleItemRow.getString(1),
-                                singleItemRow.getString(2), singleItemRow.getString(3),
-                                singleItemRow.getDouble(4), singleItemRow.getString(5),
-                                singleItemRow.getInt(6), singleItemRow.getInt(7));
+            Item item = new Item(singleItemRow.getString(1), singleItemRow.getString(2),
+                                singleItemRow.getString(3), singleItemRow.getString(4),
+                                singleItemRow.getDouble(5), singleItemRow.getString(6),
+                                singleItemRow.getInt(7), singleItemRow.getInt(8));
             return item;
         }
         return null;
@@ -128,10 +128,10 @@ public class Item extends SQL {
                                                                 ORDER_COLUMN, DESC_OR_ASC);
 
         while(rowsOfItems.next()){
-            Item item = new Item(rowsOfItems.getString(0), rowsOfItems.getString(1),
-                                rowsOfItems.getString(2), rowsOfItems.getString(3),
-                                rowsOfItems.getDouble(4), rowsOfItems.getString(5),
-                                rowsOfItems.getInt(6), rowsOfItems.getInt(7));
+            Item item = new Item(rowsOfItems.getString(1), rowsOfItems.getString(2),
+                                rowsOfItems.getString(3), rowsOfItems.getString(4),
+                                rowsOfItems.getDouble(5), rowsOfItems.getString(6),
+                                rowsOfItems.getInt(7), rowsOfItems.getInt(8));
             items.add(item);
         }
         return items;

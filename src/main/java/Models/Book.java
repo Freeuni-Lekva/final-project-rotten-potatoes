@@ -47,11 +47,11 @@ public class Book {
         ResultSet singleBookRow = db.conditionedSelect(TABLE_NAME, "book_id",
                 Item.surroundWithSingleQuotes(bookID));
         while(singleBookRow.next()){
-            Book book = new Book(singleBookRow.getString(0), singleBookRow.getString(1),
-                                singleBookRow.getInt(2), singleBookRow.getString(3),
-                                singleBookRow.getString(4), singleBookRow.getString(5),
-                                singleBookRow.getString(6), singleBookRow.getDouble(7),
-                                singleBookRow.getInt(8));
+            Book book = new Book(singleBookRow.getString(1), singleBookRow.getString(2),
+                                singleBookRow.getInt(3), singleBookRow.getString(4),
+                                singleBookRow.getString(5), singleBookRow.getString(6),
+                                singleBookRow.getString(7), singleBookRow.getDouble(8),
+                                singleBookRow.getInt(9));
             return book;
         }
         return null;

@@ -51,11 +51,11 @@ public class Music {
 
         while(singleMusicRow.next()){
             Music music = new Music
-                    (singleMusicRow.getString(0), singleMusicRow.getString(1),
-                    singleMusicRow.getString(2), singleMusicRow.getString(3),
-                    singleMusicRow.getInt(4), singleMusicRow.getString(5),
-                    singleMusicRow.getString(6), singleMusicRow.getString(7),
-                    singleMusicRow.getDouble(8), singleMusicRow.getInt(9));
+                    (singleMusicRow.getString(1), singleMusicRow.getString(2),
+                    singleMusicRow.getString(3), singleMusicRow.getString(4),
+                    singleMusicRow.getInt(5), singleMusicRow.getString(6),
+                    singleMusicRow.getString(7), singleMusicRow.getString(8),
+                    singleMusicRow.getDouble(9), singleMusicRow.getInt(10));
             return music;
         }
         return null;

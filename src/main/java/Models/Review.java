@@ -77,23 +77,23 @@ public class Review {
     };
 
     // Setter methods.
-    public void getItemID(String itemID){
+    public void setItemID(String itemID){
         this.itemID = itemID;
     };
 
-    public void getUsername(String username){
+    public void setUsername(String username){
         this.username = username;
     };
 
-    public void getScore(double score){
+    public void setScore(double score){
         this.score = score;
     };
 
-    public void getReview(String review){
+    public void setReview(String review){
         this.review = review;
     };
 
-    public void getCategory(String category){
+    public void setCategory(String category){
         this.category = category;
     };
 }
