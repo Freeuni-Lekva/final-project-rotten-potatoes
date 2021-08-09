@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+
+  <servlet>
+    <servlet-name>addNewItem</servlet-name>
+    <servlet-class>Servlets.addNewItem</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>addNewItem</servlet-name>
+    <url-pattern>/addNewItem</url-pattern>
+  </servlet-mapping>
+
 </web-app>
