@@ -92,7 +92,7 @@ public class Item extends SQL {
 
     // მეთოდს გადაეცემა itemID (რომლის შექმნის წესიც წინა მეთოდის კომენტარში ვახსენეთ). მეთოდი იძახებს
     // SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი ცხრილში და წარმატების შემთხვევაში, აბრუნებს Item ობიექტს.
-    public Item getItemByID(DB db, String itemID) throws SQLException {
+    public static Item getItemByID(DB db, String itemID) throws SQLException {
         ResultSet singleItemRow = db.conditionedSelect(TABLE_NAME, "item_id",
                                                         surroundWithSingleQuotes(itemID));
         while(singleItemRow.next()){
