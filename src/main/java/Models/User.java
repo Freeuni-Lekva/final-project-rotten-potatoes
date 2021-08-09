@@ -50,17 +50,17 @@ public class User {
         return null;
     }
 
-    public List<Badge> getBadges(){
+    public List<Badge> getBadges(DB db){
         // TO BE IMPLEMENTED
         return null;
     }
 
-    public List<Item> getItems(){
+    public List<Item> getItems(DB db){
         // TO BE IMPLEMENTED
         return null;
     }
 
-    public List<Review> getReviews(){
+    public List<Review> getReviews(DB db){
         // TO BE IMPLEMENTED
         return null;
     }
