@@ -13,6 +13,10 @@
     <servlet-class>Servlets.LoginServlet</servlet-class>
   </servlet>
 
+  <listener>
+    <listener-class>Servlets.ContextListener</listener-class>
+  </listener>
+
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/</url-pattern>
