@@ -16,7 +16,9 @@ public class addNewItem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         String category= (String) request.getAttribute("category");
+        String categoryWithoutQuotes=category;
         String uploader= (String) request.getAttribute("username");
         String smallVersion=category.substring(0,2);
         String title=request.getParameter("title");
@@ -26,7 +28,6 @@ public class addNewItem extends HttpServlet {
         String numReviews="0";
         List<String> forItem= new ArrayList<>();
         List<String> forCurrTable= new ArrayList<>();
-
 
 
         if(category.equals(TV_Show.ATTRIBUTE)){
@@ -39,14 +40,15 @@ public class addNewItem extends HttpServlet {
         item_id= Item.surroundWithSingleQuotes(item_id);
         forCurrTable.add(item_id);
 
-
         uploader=Item.surroundWithSingleQuotes(uploader);
         title=Item.surroundWithSingleQuotes(title);
         cover_url=Item.surroundWithSingleQuotes(cover_url);
+        category=Item.surroundWithSingleQuotes(category);
 
-        if(category.equals(Music.ATTRIBUTE)){
 
-            category=Item.surroundWithSingleQuotes(category);
+        if(categoryWithoutQuotes.equals(Music.ATTRIBUTE)){
+
+
             System.out.println("ak var");
             String artist=request.getParameter("musicArtist");
             artist=Item.surroundWithSingleQuotes(artist);
@@ -62,9 +64,8 @@ public class addNewItem extends HttpServlet {
             forCurrTable.add(cover_url);
         }
 
-        if(category.equals(Movie.ATTRIBUTE)){
+        if(categoryWithoutQuotes.equals(Movie.ATTRIBUTE)){
 
-            category=Item.surroundWithSingleQuotes(category);
             forCurrTable.add(title);
             forCurrTable.add(date);
             String director= request.getParameter("movieDirector");
@@ -80,9 +81,8 @@ public class addNewItem extends HttpServlet {
         }
 
 
-        if(category.equals(TV_Show.ATTRIBUTE)){
+        if(categoryWithoutQuotes.equals(TV_Show.ATTRIBUTE)){
 
-            category=Item.surroundWithSingleQuotes(category);
             forCurrTable.add(title);
             forCurrTable.add(date);
             String showDirector= request.getParameter("showDirector");
@@ -98,9 +98,9 @@ public class addNewItem extends HttpServlet {
         }
 
 
-        if(category.equals(Book.ATTRIBUTE)){
+        if(categoryWithoutQuotes.equals(Book.ATTRIBUTE)){
 
-            category=Item.surroundWithSingleQuotes(category);
+
             forCurrTable.add(title);
             forCurrTable.add(date);
             String writer= request.getParameter("bookWriter");
@@ -112,9 +112,8 @@ public class addNewItem extends HttpServlet {
             forCurrTable.add(bookSummary);
         }
 
-        if(category.equals(Video_Game.ATTRIBUTE)){
+        if(categoryWithoutQuotes.equals(Video_Game.ATTRIBUTE)){
 
-            category=Item.surroundWithSingleQuotes(category);
             forCurrTable.add(title);
             forCurrTable.add(date);
             String developers= request.getParameter("gameDevelopers");
@@ -125,6 +124,7 @@ public class addNewItem extends HttpServlet {
             gameSummary=Item.surroundWithSingleQuotes(gameSummary);
             forCurrTable.add(gameSummary);
         }
+
 
         forCurrTable.add(uploader);
         forCurrTable.add(score);
@@ -141,14 +141,15 @@ public class addNewItem extends HttpServlet {
         forItem.add(numReviews);
 
        DB db= (DB) getServletContext().getAttribute(ContextListener.DB_ATTRIBUTE);
-       db.insert(Item.TABLE_NAME, forItem);
-       int answer= db.insert(category,forCurrTable);
+
+       int insertInItems= db.insert(Item.TABLE_NAME, forItem);
+       int insertInCategory= db.insert(categoryWithoutQuotes,forCurrTable);
 
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
-        if (answer== SQL.SQL_SUCCESS){
+        if (insertInCategory == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
 
         } else{
-            
+
         }
     }
 

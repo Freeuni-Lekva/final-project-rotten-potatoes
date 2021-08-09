@@ -9,7 +9,7 @@ import javax.servlet.ServletContextListener;
 
 public class ContextListener implements ServletContextListener {
     // Constant variable declarations.
-    private static final String DB_ATTRIBUTE = "db";
+    public static final String DB_ATTRIBUTE = "db";
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
