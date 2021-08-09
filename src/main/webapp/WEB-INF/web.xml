@@ -19,7 +19,7 @@
 
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/index.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
