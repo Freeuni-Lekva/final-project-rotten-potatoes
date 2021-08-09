@@ -7,22 +7,24 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Welcome</title>
-</head>
-<body>
-<p>Welcome</p>
-</body>
-<form action = "" method = "post">
-    <label for = "username">User name: </label>
-    <input type = "text" id = "username" name = "username" /><br/><br/>
-    <label for = "password">Password: </label>
-    <input type = "text" id = "password" name = "password"  />
-    <input type = "submit" value= "Login" /><br/><br/>
-</form>
+    <head>
+        <title>Welcome</title>
+    </head>
 
-<form action = "guest" method = "get">
-    <input type = "submit" value= "Continue as a guest" />
-</form>
+    <body>
+    <p>Welcome</p>
+    </body>
+
+    <form action = "" method = "post">
+        <label for = "username">User name: </label>
+        <input type = "text" id = "username" name = "username" /><br/><br/>
+        <label for = "password">Password: </label>
+        <input type = "text" id = "password" name = "password"  />
+        <input type = "submit" value= "Login" /><br/><br/>
+    </form>
+
+    <form action = "guest" method = "get">
+        <input type = "submit" value= "Continue as a guest" />
+    </form>
 
 </html>
