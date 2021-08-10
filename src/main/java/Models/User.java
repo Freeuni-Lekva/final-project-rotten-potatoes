@@ -123,9 +123,9 @@ public class User {
     }
 
     // მოცემულ მომხმარებელს აკლდება მოცემული გამომწერი.
-    public static int unfollow(DB db, User user, User wannabeUnfollower){
-        return db.delete(FOLLOWERS_TABLE , "user_username" ,user.username ,
-                "follower_username" , wannabeUnfollower.username);
+    public static int unfollow(DB db, String user, String wannabeUnfollower){
+        return db.delete(FOLLOWERS_TABLE , "user_username" , Item.surroundWithSingleQuotes(user) ,
+                "follower_username" , Item.surroundWithSingleQuotes(wannabeUnfollower));
     }
 
     // აბრუნებს true-ს ან false-ს იმის მიხედვით , მოცემული შესაძლო გამომწერი არის თუ არა მოცემული მომხმარებლის გამომწერი.
