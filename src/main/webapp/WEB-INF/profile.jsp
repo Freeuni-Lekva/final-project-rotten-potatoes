@@ -286,7 +286,7 @@
                     </h2>
 
                     <%
-                        for(Item item : user.getItems(db)){
+                        for(Item item : userItems){
                             String title = item.getTitle();
                             String coverURL = item.getCoverURL();
                             double score = item.getScore();
