@@ -150,6 +150,20 @@
             </h3>
         <% } %>
 
+        <%-- Follow/Unfollow ბათონი. --%>
+        <% if(VISIT == USER_VISIT){
+            // Check if I (user) am following them (guest).
+            if(User.isFollowing(db, guest, user)){ %>
+                <form action= <%= "/unfollowed?guest_visitor_id=" + guestUsername %> method="post">
+                    <input type="submit" value="UNFOLLOW"/>
+                </form>
+            <% } else { %>
+                <form action= <%= "/followed?guest_visitor_id=" + guestUsername %> method="post">
+                    <input type="submit" value="FOLLOW"/>
+                </form>
+            <% } %>
+        <% } %>
+
         <%-- badge-ების გამოსახვა ვიზიტების შესაბამისად. --%>
 
         <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
