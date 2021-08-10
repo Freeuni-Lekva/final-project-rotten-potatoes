@@ -141,5 +141,49 @@
                 <b>DATE OF BIRTH:</b> <%= user.getDateOfBirth() %>
             </h3>
         <% } %>
+
+        <%-- badge-ების გამოსახვა ვიზიტების შესაბამისად. --%>
+
+        <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
+            List<Badge> guestBadges = guest.getBadges(db);
+
+            if(guestBadges.isEmpty()){ %>
+                <h2>
+                  <b><%= guest.getUsername() %> hasn&#39t earned any badges yet.</b>
+                </h2>
+            <% } else { %>
+                <h2>
+                    <b><%= guest.getUsername() %>&#39S BADGES:</b>
+                </h2>
+
+                <%
+                    for(Badge badge : guestBadges){
+                        String badgeIcon = badge.getBadgeIcon(); %>
+
+                        <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
+                        <img src = <%= "images/" + badgeIcon %> width = "50">
+                <% } %>
+
+            <% } %>
+
+        <% } else if(VISIT == PERSONAL_VISIT){
+             List<Badge> userBadges = user.getBadges(db);
+
+             if(userBadges.isEmpty()){ %>
+                <h2>
+                    <b>You haven&#39t earned any badges yet.</b>
+                </h2>
+            <% } else { %>
+                <%
+                    for(Badge badge : userBadges){
+                        String badgeIcon = badge.getBadgeIcon(); %>
+
+                        <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
+                        <img src = <%= "images/" + badgeIcon %> width = "50">
+                <% } %>
+
+            <% } %>
+            
+        <% } %>
     </body>
 </html>
