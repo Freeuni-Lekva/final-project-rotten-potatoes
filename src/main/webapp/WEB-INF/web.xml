@@ -43,4 +43,14 @@
     <url-pattern>/addNewItem.jsp</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>NewAccount</servlet-name>
+    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>NewAccount</servlet-name>
+    <url-pattern>/createNewAcc</url-pattern>
+  </servlet-mapping>
+
 </web-app>
