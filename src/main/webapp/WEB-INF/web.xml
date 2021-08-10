@@ -2,6 +2,48 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         version="2.5"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
   <display-name>Archetype Created Web Application</display-name>
+
+
+
+  <servlet>
+    <servlet-name>addNewItem</servlet-name>
+    <servlet-class>Servlets.addNewItem</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>addNewItem</servlet-name>
+    <url-pattern>/addNewItem</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>Servlets.LoginServlet</servlet-class>
+  </servlet>
+
+  <listener>
+    <listener-class>Servlets.ContextListener</listener-class>
+  </listener>
+
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Guest</servlet-name>
+    <servlet-class>Servlets.GuestServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Guest</servlet-name>
+    <url-pattern>/guest</url-pattern>
+
+  </servlet-mapping>
+
 </web-app>
