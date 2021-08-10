@@ -116,10 +116,19 @@ public class User {
         }
         return followers;
     }
+
+    // ამატებს FOLLOWER ცხრილში მომხმარებელს და ამ მომხმარებლის გამომწერს , შედეგად მომხმარებელს ემატება ახალი გამომწერი.
     public static int follow(DB db ,String user, String wannabeFollower){
         return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(Item.surroundWithSingleQuotes(user) , Item.surroundWithSingleQuotes(wannabeFollower))));
     }
 
+    // მოცემულ მომხმარებელს აკლდება მოცემული გამომწერი.
+    public static int unfollow(DB db, String user, String wannabeUnfollower){
+        return db.delete(FOLLOWERS_TABLE , "user_username" , Item.surroundWithSingleQuotes(user) ,
+                "follower_username" , Item.surroundWithSingleQuotes(wannabeUnfollower));
+    }
+
+    // აბრუნებს true-ს ან false-ს იმის მიხედვით , მოცემული შესაძლო გამომწერი არის თუ არა მოცემული მომხმარებლის გამომწერი.
     public static boolean isFollowing(DB db ,User user, User possibleFollower) throws SQLException {
         ResultSet followers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
                 Item.surroundWithSingleQuotes(user.username));
