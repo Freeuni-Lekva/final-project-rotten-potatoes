@@ -103,5 +103,22 @@
         <% } %>
 
         <br><br>
+
+        <%-- ახალი ნივთის შექმნა მხოლოდ მაშინ შეიძლება, როდესაც გვყავს რეგისტრირებული მომხმარებელი, რომელიც ამჟამად
+                     საკუთარი პროფილის გვერდზე იმყოფება. --%>
+        <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
+
+        <% if(VISIT == PERSONAL_VISIT){ %>
+            <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                <select name="NEW_ITEM_CATEGORY">
+                    <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
+                    <option value= <%= TV_Show.ATTRIBUTE %> >TV Shows</option>
+                    <option value= <%= Music.ATTRIBUTE %> >Music</option>
+                    <option value= <%= Video_Game.ATTRIBUTE %> >Video Games</option>
+                    <option value= <%= Book.ATTRIBUTE %> >Books</option>
+                </select>
+                <input type="submit" value="Add New Item"/>
+            </form>
+        <% } %>
     </body>
 </html>
