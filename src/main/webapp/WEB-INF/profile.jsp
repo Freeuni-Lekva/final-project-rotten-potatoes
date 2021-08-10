@@ -120,5 +120,26 @@
                 <input type="submit" value="Add New Item"/>
             </form>
         <% } %>
+
+        <%-- პირადი ინფორმაციის გამოსახვა ვიზიტების შესაბამისად. --%>
+
+        <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
+            <%-- Display username at top with big chunky letters. --%>
+            <h2>
+                YOU ARE VIEWING <b><%= guest.getUsername() %></b>&#39S PROFILE.
+            </h2>
+        <% } else if(VISIT == PERSONAL_VISIT){ %>
+            <%-- Display username at top with big chunky letters. --%>
+            <h2>
+                WELCOME TO YOUR PROFILE, <b><%= user.getUsername() %></b>!
+            </h2>
+            <%-- რადგან ეს პირადი გვერდია, გამოვსახავთ დამატებით პირად ინფორმაციას. --%>
+            <%-- Display additional information about the user. --%>
+            <h3>
+                <b>FIRST NAME:</b> <%= user.getFirstName() %> <br>
+                <b>LAST NAME:</b> <%= user.getLastName() %> <br>
+                <b>DATE OF BIRTH:</b> <%= user.getDateOfBirth() %>
+            </h3>
+        <% } %>
     </body>
 </html>
