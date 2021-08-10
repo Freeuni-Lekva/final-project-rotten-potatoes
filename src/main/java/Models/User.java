@@ -77,6 +77,15 @@ public class User {
         return followers;
     }
 
+    public static boolean isFollowing(DB db ,User user, User possibleFollower) throws SQLException {
+        ResultSet followers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
+                Item.surroundWithSingleQuotes(user.username));
+        while(followers.next()){
+            if(followers.getString("follower_username").equals(possibleFollower.username)) return true;
+        }
+        return false;
+    }
+
     // აბრუნებს იმ User ობიექტების სიას, რომლებსაც ა-follower-ებს მოცემული მომხმარებელი.
     public List<User> getFollowing(DB db) throws SQLException {
         List<User> following = new ArrayList<User>();
