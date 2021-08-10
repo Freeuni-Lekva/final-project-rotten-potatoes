@@ -53,7 +53,7 @@ INSERT INTO ITEMS VALUES
    ('TV_Friends_1994', 'Friends', 'TV SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg', 1994, 0),
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 1946, 0),
    ('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 'BOOKS', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg', 2013, 0),
-   ('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pics.filmaffinity.com/Love_Rosie-612339378-large.jpg', 2014, 0),
+   ('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg', 2014, 0),
    ('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg', 2014, 0),
    ('VI_Minecraft_2011', 'Minecraft', 'VIDEO GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg', 2011, 0),
    ('VI_Stardew Valley_2016', 'Stardew Valley', 'VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg', 2016, 0);
@@ -148,7 +148,7 @@ CREATE TABLE MOVIES (
 
 INSERT INTO MOVIES VALUES
    ('MO_Love, Rosie_2014', 'Love, Rosie', 2014, 'Christian Ditter', 'Sam Claflin, Lily Collins, Christian Cooke',
-    'https://pics.filmaffinity.com/Love_Rosie-612339378-large.jpg', 
+    'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg', 
     'Rosie and Alex have been best friends since they were 5, so they could not possibly be right for one another... or could they? When it comes to love, life and making the right choices, these two are their own worst enemies.', 'admin', 0, 0),
    ('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 2014, 'Wes Anderson', 
     'Ralph Fiennes, Saoirse Ronan, Adrien Brody, Tilda Swinton', 
