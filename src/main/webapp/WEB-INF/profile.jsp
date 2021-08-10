@@ -105,7 +105,7 @@
         <br><br>
 
         <%-- ახალი ნივთის შექმნა მხოლოდ მაშინ შეიძლება, როდესაც გვყავს რეგისტრირებული მომხმარებელი, რომელიც ამჟამად
-                     საკუთარი პროფილის გვერდზე იმყოფება. --%>
+             საკუთარი პროფილის გვერდზე იმყოფება. --%>
         <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
 
         <% if(VISIT == PERSONAL_VISIT){ %>
@@ -187,7 +187,7 @@
         <% } %>
 
         <%-- Followers/Following-ის გამოსახვა ვიზიტის შესაბამისად. სტუმრებთან მხოლოდ followers/following-ის რაოდენობები
-                     გამოჩნდება. პირად პროფილზე კონკრეტული მომხმარებლების სია გამოჩდნება. --%>
+             გამოჩნდება. პირად პროფილზე კონკრეტული მომხმარებლების სია გამოჩდნება. --%>
         <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
 
         <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
