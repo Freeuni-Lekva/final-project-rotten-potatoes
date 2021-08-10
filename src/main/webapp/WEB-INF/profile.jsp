@@ -31,8 +31,14 @@
             არც ვდგავართ.
         */
 
-        String username = (String) request.getAttribute(User.ATTRIBUTE);
-        String guestUsername = (String) request.getAttribute("guest");
+        String username = (String) application.getAttribute("username");
+        String guestUsername = (String) request.getParameter("guest_visitor_id");
+
+        if(guestUsername != null && username != null){
+            if(guestUsername.equals(username)){
+                guestUsername = null;
+            }
+        }
 
         /* სანამ სერვლეტ/ჯეესპეებზე არ მაქვს წვდომა, ტესტი:
         String username = "admin";
