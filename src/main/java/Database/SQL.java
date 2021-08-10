@@ -84,11 +84,11 @@ public class SQL implements DB {
     }
 
     @Override
-    public int delete(String tableName , String columnName1 , String value1 , String columnName2 , String value2){
+    public int delete(String TABLE_NAME , String COLUMN_1 , String VALUE_1 , String COLUMN_2 , String VALUE_2){
         try {
             Statement statement = connection.createStatement();
-            String query = "delete from " + tableName + " where " + columnName1 + " = " + value1 + " and "
-                    + columnName2 + " = " + value2;
+            String query = "delete from " + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 + AND
+                    + COLUMN_2 + EQUALS + VALUE_2;
             statement.executeUpdate(query);
         } catch (SQLException e) {
             return SQL_ERROR;
