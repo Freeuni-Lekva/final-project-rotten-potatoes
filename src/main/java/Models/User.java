@@ -116,8 +116,8 @@ public class User {
         }
         return followers;
     }
-    public static int follow(DB db ,User user, User wannabeFollower){
-        return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(user.username , wannabeFollower.username)));
+    public static int follow(DB db ,String user, String wannabeFollower){
+        return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(Item.surroundWithSingleQuotes(user) , Item.surroundWithSingleQuotes(wannabeFollower))));
     }
 
     public static boolean isFollowing(DB db ,User user, User possibleFollower) throws SQLException {
