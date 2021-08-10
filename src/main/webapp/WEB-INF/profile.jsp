@@ -183,7 +183,43 @@
                 <% } %>
 
             <% } %>
-            
+
+        <% } %>
+
+        <%-- Followers/Following-ის გამოსახვა ვიზიტის შესაბამისად. სტუმრებთან მხოლოდ followers/following-ის რაოდენობები
+                     გამოჩნდება. პირად პროფილზე კონკრეტული მომხმარებლების სია გამოჩდნება. --%>
+        <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
+
+        <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
+
+            <h2>
+                <b><%= guest.getUsername() %>&#39S FOLLOWERS: </b><%= guest.getFollowers(db).size() %> <br>
+                <b><%= guest.getUsername() %>&#39S FOLLOWING: </b><%= guest.getFollowing(db).size() %>
+            </h2>
+
+        <% } else if(VISIT == PERSONAL_VISIT){ %>
+
+            <%-- აქ მოგვიანებით ერთი ცვლილება უნდა დაემატოს: მომხმარებელს უნდა შეეძლოს, რომ hyperlink-ით
+                 თავისი რომელიმე follower/following მომხმარებლის პროფილის გვერდზე გადავიდეს. --%>
+
+            <h2>
+                YOUR FOLLOWERS (<%= user.getFollowers(db).size() %>):
+            </h2>
+            <%
+                for(User follower : user.getFollowers(db)){
+                    String followerUsername = follower.getUsername(); %>
+                    <p><%= followerUsername %></p>
+            <% } %>
+
+            <h2>
+                YOUR FOLLOWING (<%= user.getFollowing(db).size() %>):
+            </h2>
+            <%
+                for(User following : user.getFollowing(db)){
+                    String followingUsername = following.getUsername(); %>
+                    <p><%= followingUsername %></p>
+            <% } %>
+
         <% } %>
     </body>
 </html>
