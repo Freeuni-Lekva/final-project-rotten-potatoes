@@ -90,7 +90,9 @@
             <button name="button" type="button">HOMEPAGE</button>
 
             <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
-            <button name="button" type="button">MY PROFILE</button>
+            <form action="/my_profile" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                <input type="submit" value="MY PROFILE"/>
+            </form>
 
             <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
             <button name="button" type="button">LOG OUT</button>
