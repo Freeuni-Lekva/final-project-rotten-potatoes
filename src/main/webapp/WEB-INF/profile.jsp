@@ -229,19 +229,19 @@
             </h2>
             <%
                 for(User follower : user.getFollowers(db)){
-                    String followerUsername = follower.getUsername(); %>
-                    <p><%= followerUsername %></p>
+                    String followerUsername = follower.getUsername();
+                    String link = "index.jsp?guest_visitor_id=" + followerUsername; %>
+                    <p><a href=<%= link %>><%= followerUsername %></a></p>
             <% } %>
-
             <h2>
                 YOUR FOLLOWING (<%= user.getFollowing(db).size() %>):
             </h2>
             <%
                 for(User following : user.getFollowing(db)){
-                    String followingUsername = following.getUsername(); %>
-                    <p><%= followingUsername %></p>
+                    String followingUsername = following.getUsername();
+                    String link = "index.jsp?guest_visitor_id=" + followingUsername; %>
+                    <p><a href=<%= link %>><%= followingUsername %></a></p>
             <% } %>
-
         <% } %>
 
         <%-- ატვირთული ნივთების სიის გამოქვეყნება. --%>
