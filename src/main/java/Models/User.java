@@ -118,8 +118,8 @@ public class User {
     }
 
     // ამატებს FOLLOWER ცხრილში მომხმარებელს და ამ მომხმარებლის გამომწერს , შედეგად მომხმარებელს ემატება ახალი გამომწერი.
-    public static int follow(DB db ,User user, User wannabeFollower){
-        return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(user.username , wannabeFollower.username)));
+    public static int follow(DB db ,String user, String wannabeFollower){
+        return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(Item.surroundWithSingleQuotes(user) , Item.surroundWithSingleQuotes(wannabeFollower))));
     }
 
     // მოცემულ მომხმარებელს აკლდება მოცემული გამომწერი.
