@@ -117,10 +117,18 @@ public class User {
         return followers;
     }
 
+    // ამატებს FOLLOWER ცხრილში მომხმარებელს და ამ მომხმარებლის გამომწერს , შედეგად მომხმარებელს ემატება ახალი გამომწერი.
     public static int follow(DB db ,User user, User wannabeFollower){
         return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(user.username , wannabeFollower.username)));
     }
 
+    // მოცემულ მომხმარებელს აკლდება მოცემული გამომწერი.
+    public static int unfollow(DB db, User user, User wannabeUnfollower){
+        return db.delete(FOLLOWERS_TABLE , "user_username" ,user.username ,
+                "follower_username" , wannabeUnfollower.username);
+    }
+
+    // აბრუნებს true-ს ან false-ს იმის მიხედვით , მოცემული შესაძლო გამომწერი არის თუ არა მოცემული მომხმარებლის გამომწერი.
     public static boolean isFollowing(DB db ,User user, User possibleFollower) throws SQLException {
         ResultSet followers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
                 Item.surroundWithSingleQuotes(user.username));

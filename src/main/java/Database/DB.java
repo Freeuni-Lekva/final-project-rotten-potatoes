@@ -12,4 +12,5 @@ public interface DB {
                                                  String LIKENESS_COLUMN, String LIKENESS_VALUE, String ORDER_COLUMN,
                                                  String DESC_OR_ASC);
     public int update(String TABLE_NAME, String SET_COLUMN, String SET_VALUE, String WHERE_COLUMN, String WHERE_VALUE);
+    public int delete(String tableName , String columnName1 , String value1 , String columnName2 , String value2);
 }

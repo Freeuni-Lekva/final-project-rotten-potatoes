@@ -83,6 +83,19 @@ public class SQL implements DB {
         return SQL_SUCCESS;
     }
 
+    @Override
+    public int delete(String tableName , String columnName1 , String value1 , String columnName2 , String value2){
+        try {
+            Statement statement = connection.createStatement();
+            String query = "delete from " + tableName + " where " + columnName1 + " = " + value1 + " and "
+                    + columnName2 + " = " + value2;
+            statement.executeUpdate(query);
+        } catch (SQLException e) {
+            return SQL_ERROR;
+        }
+        return SQL_SUCCESS;
+
+    }
     /* ფუნქციის გამოყენების სავარაუდო დროები:
     *  - როცა პროფილის გვერდზე ყველა ბეჯის ჩვენება გვინდა:
     *       select * from user_badges where username = 'username_placeholder';
