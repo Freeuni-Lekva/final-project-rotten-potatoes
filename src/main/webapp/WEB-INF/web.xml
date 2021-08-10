@@ -19,7 +19,8 @@
   <servlet-mapping>
     <servlet-name>addNewItem</servlet-name>
     <url-pattern>/addNewItem</url-pattern>
-
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>Servlets.LoginServlet</servlet-class>

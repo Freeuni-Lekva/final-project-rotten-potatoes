@@ -34,7 +34,7 @@
             <button type= "submit">Submit</button><br/>
         </form>
         <%
-            DB db = application.getAttribute(ContextListener.DB_ATTRIBUTE);
+            DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             String category = request.getParameter("CATEGORY");
             String sorting = request.getParameter("SORTING");
             String search = request.getParameter("SEARCH");
