@@ -23,34 +23,31 @@
             <button name = "CATEGORY" type = "submit" value = <%=Video_Game.ATTRIBUTE%> > VIDEO GAMES </button>
             <button name = "CATEGORY" type = "submit" value = <%=Book.ATTRIBUTE%> > BOOKS </button> <br/>
 
-            <select name= "SORTING">
-                <option value = "RATING ASC">Rating ascending</option>
-                <option value = "RATING DESC">Rating descending</option>
-                <option value = "REVIEWS ASC">Number of reviews ascending</option>
-                <option value = "REVIEWS DESC">Number of reviews descending</option>
-                <option value = "DATE ASC">Release date ascending</option>
-                <option value = "DATE DESC">Release date descending</option>
+            <select id = "SORTING" name= "SORTING">
+                <option value = "score ASC">Rating ascending</option>
+                <option value = "score DESC">Rating descending</option>
+                <option value = "num_of_reviews ASC">Number of reviews ascending</option>
+                <option value = "num_of_reviews DESC">Number of reviews descending</option>
+                <option value = "release_date ASC">Release date ascending</option>
+                <option value = "release_date DESC">Release date descending</option>
             </select>
-            <input type = "text" id = "SEARCH" placeholder="search...">
+            <input type = "text" name = "SEARCH" id = "SEARCH" placeholder="search...">
             <button type= "submit">Submit</button><br/>
         </form>
         <%
 
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
-            String category = (String)request.getAttribute("CATEGORY");
-            String sorting = (String)request.getAttribute("SORTING");
-            String search = (String)request.getAttribute("SEARCH");
+            String category = (String)request.getSession().getAttribute("CATEGORY");
+            String sorting = (String)request.getSession().getAttribute("SORTING");
+            String search = (String)request.getSession().getAttribute("SEARCH");
             for(Item item : Item.getItems(db, category, search, sorting)){
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();
                 String itemId = item.getItemID();
                 String individualLink = "show-item.jsp?id=" + itemId;
                 double score = item.getScore(); %>
-                <a href= <%= individualLink %>><%= title %>
-            </ img src = <%= coverURL %> width = "100" />
-            <h3>
-                <%= title %> <b>(<%= score %>/10)</b>
-            </h3>
+                <a href= <%= individualLink %>> <b> <%= title %> <b>(<%= score %>/10)</b>
+                <img src = <%= coverURL %>>
             <% } %>
     </body>
 </html>

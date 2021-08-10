@@ -1,4 +1,5 @@
 -- change this line so that is uses your database
+
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
@@ -193,3 +194,4 @@ INSERT INTO VIDEO_GAMES VALUES
    ('VI_Stardew Valley_2016', 'Stardew Valley', 2016, 'Eric Barone, Sickhead Games, ConcernedApe', 
 	'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg',
     'Stardew Valley is a farming simulation game primarily inspired by the Harvest Moon video game series. At the start of the game, players create a character, who becomes the recipient of a plot of land and a small house once owned by their grandfather in a small town called Pelican Town.', 'admin', 0, 0);
+
