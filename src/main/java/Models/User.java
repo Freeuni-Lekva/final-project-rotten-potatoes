@@ -116,6 +116,7 @@ public class User {
         }
         return followers;
     }
+
     public static int follow(DB db ,User user, User wannabeFollower){
         return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(user.username , wannabeFollower.username)));
     }
