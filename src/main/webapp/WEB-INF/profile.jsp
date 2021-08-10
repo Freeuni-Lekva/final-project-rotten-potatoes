@@ -278,5 +278,73 @@
                     <% } %>
                 <% } %>
         <% } %>
+
+        <%-- დაწერილი კრიტიკის ნახვა. --%>
+        <%-- აქაც კარგი იქნება შემდეგი დამატება: hyperlink-ები, რომლებიც მომხმარებელს იმ პროდუქტის გვერდზე გადაიყვანენ,
+             რომელზეც დაიწერა შეფასება. --%>
+
+        <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
+            List<Review> guestReviews = guest.getReviews(db);
+
+            if(guestReviews.isEmpty()){ %>
+                <h2>
+                    <b><%= guest.getUsername() %> hasn&#39t written any reviews yet.</b>
+                </h2>
+            <% } else { %>
+                <h2>
+                    <b><%= guest.getUsername() %>&#39S REVIEWS:</b>
+                </h2>
+                <%
+                    for(Review review : guestReviews){
+                        String itemID = review.getItemID();
+                        Item item = Item.getItemByID(db, itemID);
+                        String userReview = review.getReview();
+                        double userScore = review.getScore(); %>
+
+                        <%-- !!! Cover images will probably need resizing !!! --%>
+                        <img src = <%= item.getCoverURL() %> width = "160">
+                        <h2>
+                            <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
+                        </h2>
+                        <h3>
+                            <%= guest.getUsername() %>&#39s personal score: <%= userScore %> <br>
+                            <%= guest.getUsername() %>&#39s review: <%= userReview %>
+                        </h3>
+                <% } %>
+
+            <% } %>
+        <% } else if(VISIT == PERSONAL_VISIT){
+                List<Review> userReviews = user.getReviews(db);
+
+                if(userReviews.isEmpty()){ %>
+                    <h2>
+                        <b>You haven&#39t written any reviews yet.</b>
+                    </h2>
+                <% } else { %>
+                    <h2>
+                        <b>YOUR ITEMS:</b>
+                    </h2>
+
+                    <%
+                        for(Review review : userReviews){
+                            String itemID = review.getItemID();
+                            Item item = Item.getItemByID(db, itemID);
+                            String userReview = review.getReview();
+                            double userScore = review.getScore(); %>
+
+                            <%-- !!! Cover images will probably need resizing !!! --%>
+                            <img src = <%= item.getCoverURL() %> width = "160">
+                            <h2>
+                                <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
+                            </h2>
+                            <h3>
+                                Your personal score: <%= userScore %> <br>
+                                Your review: <%= userReview %>
+                            </h3>
+                    <% } %>
+
+                <% } %>
+
+        <% } %>
     </body>
 </html>
