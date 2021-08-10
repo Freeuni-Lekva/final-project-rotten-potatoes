@@ -5,6 +5,7 @@ import Database.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -114,6 +115,18 @@ public class User {
             followers.add(getUserByUsername(db, rowsOfFollowers.getString("follower_username")));
         }
         return followers;
+    }
+    public static int follow(DB db ,User user, User wannabeFollower){
+        return db.insert(FOLLOWERS_TABLE , new ArrayList<String>(Arrays.asList(user.username , wannabeFollower.username)));
+    }
+
+    public static boolean isFollowing(DB db ,User user, User possibleFollower) throws SQLException {
+        ResultSet followers = db.conditionedSelect(FOLLOWERS_TABLE, "user_username",
+                Item.surroundWithSingleQuotes(user.username));
+        while(followers.next()){
+            if(followers.getString("follower_username").equals(possibleFollower.username)) return true;
+        }
+        return false;
     }
 
     // აბრუნებს იმ User ობიექტების სიას, რომლებსაც ა-follower-ებს მოცემული მომხმარებელი.
