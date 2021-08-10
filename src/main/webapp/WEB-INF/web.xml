@@ -19,6 +19,11 @@
     <servlet-class>Servlets.ChooseNewItemServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>ReturnToProfileServlet</servlet-name>
+    <servlet-class>Servlets.ReturnToProfileServlet</servlet-class>
+  </servlet>
+
   <listener>
     <listener-class>Servlets.ContextListener</listener-class>
   </listener>
@@ -33,6 +38,16 @@
     <servlet-class>Servlets.GuestServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>FollowServlet</servlet-name>
+    <servlet-class>Servlets.FollowServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UnfollowServlet</servlet-name>
+    <servlet-class>Servlets.UnfollowServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Guest</servlet-name>
     <url-pattern>/guest</url-pattern>
@@ -41,6 +56,21 @@
   <servlet-mapping>
     <servlet-name>ChooseNewItemServlet</servlet-name>
     <url-pattern>/addNewItem.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ReturnToProfileServlet</servlet-name>
+    <url-pattern>/my_profile</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>FollowServlet</servlet-name>
+    <url-pattern>/followed</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UnfollowServlet</servlet-name>
+    <url-pattern>/unfollowed</url-pattern>
   </servlet-mapping>
 
   <servlet>
