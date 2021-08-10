@@ -78,6 +78,30 @@
     </head>
 
     <body>
+        <%-- ეს ბათონები სხვანაირად უნდა იყოს შექმნილი. ჯერ-ჯერობით, კომენტარად მივუწერ, მათზე დაჭერისას რაები უნდა მოხდეს. --%>
+        <% if(VISIT == USER_VISIT){ %>
+            <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
+            <button name="button" type="button">HOMEPAGE</button>
 
+            <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
+            <button name="button" type="button">MY PROFILE</button>
+
+            <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
+            <button name="button" type="button">LOG OUT</button>
+        <% } else if(VISIT == PERSONAL_VISIT){ %>
+            <%-- მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
+            <button name="button" type="button">HOMEPAGE</button>
+
+            <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
+            <button name="button" type="button">LOG OUT</button>
+        <% } else if(VISIT == GUEST_VISIT){ %>
+            <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
+            <button name="button" type="button">HOMEPAGE</button>
+
+            <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
+            <button name="button" type="button">LOG IN/REGISTER</button>
+        <% } %>
+
+        <br><br>
     </body>
 </html>
