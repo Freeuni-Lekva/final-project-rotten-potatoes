@@ -221,5 +221,62 @@
             <% } %>
 
         <% } %>
+
+        <%-- ატვირთული ნივთების სიის გამოქვეყნება. --%>
+        <%-- აქაც კარგი იქნება შემდეგი დამატება: hyperlink-ები, რომლებიც მომხმარებელს პროდუქტის გვერდზე გადაიყვანენ. --%>
+
+        <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
+              List<Item> guestItems = guest.getItems(db);
+
+              if(guestItems.isEmpty()){ %>
+                  <h2>
+                      <b><%= guest.getUsername() %> hasn&#39t uploaded any items yet.</b>
+                  </h2>
+              <% } else { %>
+                    <h2>
+                        <b><%= guest.getUsername() %>&#39S ITEMS:</b>
+                    </h2>
+
+                    <%
+                        for(Item item : guestItems){
+                            String title = item.getTitle();
+                            String coverURL = item.getCoverURL();
+                            double score = item.getScore();
+                            int releaseDate = item.getReleaseDate(); %>
+
+                        <%-- !!! Cover images will probably need resizing !!! --%>
+                        <img src = <%= coverURL %> width = "100">
+                        <h3>
+                            <%= title %>, <%= releaseDate %> (<%= score %>/10)
+                        </h3>
+                    <% } %>
+              <% } %>
+        <% } else if(VISIT == PERSONAL_VISIT){
+                List<Item> userItems = user.getItems(db);
+
+                if(userItems.isEmpty()){ %>
+                    <h2>
+                      <b>You haven&#39t uploaded any items yet.</b>
+                    </h2>
+                <% } else { %>
+                    <h2>
+                        <b>YOUR ITEMS:</b>
+                    </h2>
+
+                    <%
+                        for(Item item : user.getItems(db)){
+                            String title = item.getTitle();
+                            String coverURL = item.getCoverURL();
+                            double score = item.getScore();
+                            int releaseDate = item.getReleaseDate(); %>
+
+                        <%-- !!! Cover images will probably need resizing !!! --%>
+                        <img src = <%= coverURL %> width = "100">
+                        <h3>
+                            <%= title %>, <%= releaseDate %> (<%= score %>/10)
+                        </h3>
+                    <% } %>
+                <% } %>
+        <% } %>
     </body>
 </html>
