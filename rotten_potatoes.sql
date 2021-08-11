@@ -3,6 +3,7 @@
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
+
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
@@ -28,7 +29,7 @@ CREATE TABLE USERS (
    first_name CHAR(20) NOT NULL,
    last_name CHAR(30) NOT NULL,
    date_of_birth DATE NOT NULL,
-   hash_password CHAR(64) NOT NULL
+   hash_password CHAR(255) NOT NULL
 );
 
 INSERT INTO USERS VALUES 
@@ -195,3 +196,16 @@ INSERT INTO VIDEO_GAMES VALUES
 	'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg',
     'Stardew Valley is a farming simulation game primarily inspired by the Harvest Moon video game series. At the start of the game, players create a character, who becomes the recipient of a plot of land and a small house once owned by their grandfather in a small town called Pelican Town.', 'admin', 0, 0);
 
+CREATE TABLE REPORTS (
+	reportID int NOT NULL AUTO_INCREMENT, CONSTRAINT pk_reportID PRIMARY KEY (reportID),
+    reporter_username CHAR(20) NOT NULL, CONSTRAINT reporter_fk FOREIGN KEY (reporter_username) REFERENCES USERS (username),
+    item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk2 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
+    category CHAR(25) NOT NULL, CONSTRAINT category_fk2 FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    title CHAR(100) NOT NULL,
+    release_date YEAR NOT NULL,
+    url TEXT NOT NULL, CONSTRAINT url CHECK (url NOT LIKE '%  %'),
+    producer CHAR(100) NOT NULL,
+    info TEXT NOT NULL,
+    members CHAR(100) NOT NULL,
+    user_comment TEXT
+);
