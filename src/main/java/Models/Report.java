@@ -1,7 +1,14 @@
 package Models;
 
-public class Report {
+import Database.DB;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Report {
+    private static final String REPORTS = "REPORTS";
     private int reportId;
     private String reporterUsername;
     private String itemId;
@@ -13,6 +20,7 @@ public class Report {
     private String info;
     private String members;
     private String comment;
+
     public Report(int reportId ,String reporterUsername ,String itemId, String category, String title,
                   int releaseDate, String URL, String producer, String info , String members , String comment){
 
@@ -28,6 +36,33 @@ public class Report {
         this.members = members;
         this.comment = comment;
 
+    }
+
+    public static Report getReportById(DB db, int reportId) throws SQLException {
+        ResultSet eachReportRow = db.conditionedSelect(REPORTS, "reportId",
+                Item.surroundWithSingleQuotes(String.valueOf(reportId)));
+
+        while(eachReportRow.next()){
+            Report report = new Report
+                    (eachReportRow.getInt(1), eachReportRow.getString(2),
+                            eachReportRow.getString(3), eachReportRow.getString(4),
+                            eachReportRow.getString(5) , eachReportRow.getInt(6) ,
+                            eachReportRow.getString(7), eachReportRow.getString(8),
+                            eachReportRow.getString(9), eachReportRow.getString(10),
+                            eachReportRow.getString(11));
+            return report;
+        }
+        return null;
+    }
+
+    public static List<Report> getReports(DB db) throws SQLException {
+        List<Report> allReports = new ArrayList<>();
+
+        ResultSet reports = db.selectAll("REPORTS");
+        while(reports.next()){
+            allReports.add(getReportById(db, reports.getInt(6)));
+        }
+        return allReports;
     }
 
     //getter methods

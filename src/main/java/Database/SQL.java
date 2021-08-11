@@ -119,6 +119,18 @@ public class SQL implements DB {
         return null;
     }
 
+    @Override
+    public ResultSet selectAll(String TABLE_NAME){
+        String query = SELECT_FROM + TABLE_NAME;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /* ფუნქციის გამოყენების სავარაუდო დროები:
      *   - როცა გვაინტერესებს, მომხმარებელმა login-ის დროს სწორი username და password მიუთითა თუ არა:
      *      select * from users where username = 'PLACEHOLDER' and password = 'PLACEHOLDER';
