@@ -160,5 +160,36 @@
         <h3>Original: <%= oProducer.toString() %></h3>
         <h3>Reported: <%= rProducer.toString() %></h3>
 
+        <%
+        if(category != null){
+            if(category.equals(Movie.TABLE_NAME) || category.equals(TV_Show.TABLE_NAME) ||
+               category.equals(Book.TABLE_NAME) || category.equals(Video_Game.TABLE_NAME)){ %>
+                <h2>Summary</h2>
+            <% } else if(category.equals(Music.TABLE_NAME)){ %>
+                <h2>Genre</h2>
+            <% }
+        } %>
+
+        <%
+        StringBuilder oInfo = new StringBuilder();
+        StringBuilder rInfo = new StringBuilder();
+
+        LinkedList<DiffMatchPatch.Diff> infoDiffs = dmp.diffMain(originalInfo, reportedInfo, false);
+
+        for(DiffMatchPatch.Diff diff : infoDiffs){
+            if(diff.operation.equals(DiffMatchPatch.Operation.EQUAL)){
+                oInfo.append(diff.text);
+                rInfo.append(diff.text);
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
+                oInfo.append("<mark>" + diff.text + "</mark>");
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
+                rInfo.append("<mark>" + diff.text + "</mark>");
+            }
+        }
+        %>
+
+        <h3>Original: <%= oInfo.toString() %></h3>
+        <h3>Reported: <%= rInfo.toString() %></h3>
+
     </body>
 </html>
