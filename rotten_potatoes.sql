@@ -29,7 +29,7 @@ CREATE TABLE USERS (
    first_name CHAR(20) NOT NULL,
    last_name CHAR(30) NOT NULL,
    date_of_birth DATE NOT NULL,
-   hash_password CHAR(64) NOT NULL
+   hash_password CHAR(255) NOT NULL
 );
 
 INSERT INTO USERS VALUES 
