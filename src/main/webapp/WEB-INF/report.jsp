@@ -104,5 +104,27 @@
         <h3>Original: <%= oTitle.toString() %></h3>
         <h3>Reported: <%= rTitle.toString() %></h3>
 
+        <h2>Release Date</h2>
+        <%
+        StringBuilder oReleaseDate = new StringBuilder();
+        StringBuilder rReleaseDate = new StringBuilder();
+
+        LinkedList<DiffMatchPatch.Diff> releaseDateDiffs = dmp.diffMain(originalReleaseDate, reportedReleaseDate, false);
+
+        for(DiffMatchPatch.Diff diff : releaseDateDiffs){
+            if(diff.operation.equals(DiffMatchPatch.Operation.EQUAL)){
+                oReleaseDate.append(diff.text);
+                rReleaseDate.append(diff.text);
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
+                oReleaseDate.append("<mark>" + diff.text + "</mark>");
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
+                rReleaseDate.append("<mark>" + diff.text + "</mark>");
+            }
+        }
+        %>
+
+        <h3>Original: <%= oReleaseDate.toString() %></h3>
+        <h3>Reported: <%= rReleaseDate.toString() %></h3>
+
     </body>
 </html>
