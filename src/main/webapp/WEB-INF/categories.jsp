@@ -35,11 +35,11 @@
             <button type= "submit">Submit</button><br/>
         </form>
         <%
-
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             String category = (String)request.getSession().getAttribute("CATEGORY");
             String sorting = (String)request.getSession().getAttribute("SORTING");
             String search = (String)request.getSession().getAttribute("SEARCH");
+
             for(Item item : Item.getItems(db, category, search, sorting)){
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();

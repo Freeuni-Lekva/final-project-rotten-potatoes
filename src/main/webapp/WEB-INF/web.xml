@@ -8,6 +8,19 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <display-name>Archetype Created Web Application</display-name>
+
+
+
+  <servlet>
+    <servlet-name>addNewItem</servlet-name>
+    <servlet-class>Servlets.addNewItem</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>addNewItem</servlet-name>
+    <url-pattern>/addNewItem</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>Servlets.LoginServlet</servlet-class>
@@ -19,7 +32,7 @@
 
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>/index.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -30,6 +43,7 @@
   <servlet-mapping>
     <servlet-name>Guest</servlet-name>
     <url-pattern>/guest</url-pattern>
+
   </servlet-mapping>
 
 </web-app>
