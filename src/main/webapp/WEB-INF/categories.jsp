@@ -47,7 +47,7 @@
                 String individualLink = "show-item.jsp?id=" + itemId;
                 double score = item.getScore(); %>
                 <a href= <%= individualLink %>> <b> <%= title %> <b>(<%= score %>/10)</b>
-                <img src = <%= coverURL %>>
+                <img src = <%= coverURL %> width="300" height="300"> <br/>
             <% } %>
     </body>
 </html>
