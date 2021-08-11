@@ -126,5 +126,39 @@
         <h3>Original: <%= oReleaseDate.toString() %></h3>
         <h3>Reported: <%= rReleaseDate.toString() %></h3>
 
+        <%
+        if(category != null){
+            if(category.equals(Movie.TABLE_NAME) || category.equals(TV_Show.TABLE_NAME)){ %>
+                <h2>Director</h2>
+            <% } else if(category.equals(Music.TABLE_NAME)){ %>
+                <h2>Label</h2>
+            <% } else if(category.equals(Book.TABLE_NAME)){ %>
+                <h2>Writer</h2>
+            <% } else if(category.equals(Video_Game.TABLE_NAME)){ %>
+                <h2>Developers</h2>
+            <% }
+        } %>
+
+        <%
+        StringBuilder oProducer = new StringBuilder();
+        StringBuilder rProducer = new StringBuilder();
+
+        LinkedList<DiffMatchPatch.Diff> producerDiffs = dmp.diffMain(originalProducer, reportedProducer, false);
+
+        for(DiffMatchPatch.Diff diff : producerDiffs){
+            if(diff.operation.equals(DiffMatchPatch.Operation.EQUAL)){
+                oProducer.append(diff.text);
+                rProducer.append(diff.text);
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
+                oProducer.append("<mark>" + diff.text + "</mark>");
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
+                rProducer.append("<mark>" + diff.text + "</mark>");
+            }
+        }
+        %>
+
+        <h3>Original: <%= oProducer.toString() %></h3>
+        <h3>Reported: <%= rProducer.toString() %></h3>
+
     </body>
 </html>
