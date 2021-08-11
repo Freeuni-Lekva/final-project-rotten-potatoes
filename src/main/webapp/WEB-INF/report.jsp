@@ -77,5 +77,10 @@
                 originalMembers = null;
             }
         } %>
+
+        <h2>Cover Picture</h2>
+        <h3>Original: <img src = <%= originalURL %> width = "100"></h3>
+        <h3>Reported: <img src = <%= reportedURL %> width = "100"></h3>
+
     </body>
 </html>
