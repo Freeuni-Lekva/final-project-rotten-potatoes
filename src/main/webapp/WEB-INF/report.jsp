@@ -82,5 +82,27 @@
         <h3>Original: <img src = <%= originalURL %> width = "100"></h3>
         <h3>Reported: <img src = <%= reportedURL %> width = "100"></h3>
 
+        <h2>Title</h2>
+        <%
+        StringBuilder oTitle = new StringBuilder();
+        StringBuilder rTitle = new StringBuilder();
+
+        LinkedList<DiffMatchPatch.Diff> titleDiffs = dmp.diffMain(originalTitle, reportedTitle, false);
+
+        for(DiffMatchPatch.Diff diff : titleDiffs){
+            if(diff.operation.equals(DiffMatchPatch.Operation.EQUAL)){
+                oTitle.append(diff.text);
+                rTitle.append(diff.text);
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
+                oTitle.append("<mark>" + diff.text + "</mark>");
+            } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
+                rTitle.append("<mark>" + diff.text + "</mark>");
+            }
+        }
+        %>
+
+        <h3>Original: <%= oTitle.toString() %></h3>
+        <h3>Reported: <%= rTitle.toString() %></h3>
+
     </body>
 </html>
