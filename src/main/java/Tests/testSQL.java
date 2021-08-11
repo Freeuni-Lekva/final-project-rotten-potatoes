@@ -1,9 +1,9 @@
 package Tests;
 
+import org.junit.jupiter.api.BeforeAll;
 import Database.DB;
 import Database.SQL;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
