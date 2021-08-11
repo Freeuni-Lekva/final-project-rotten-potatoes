@@ -3,6 +3,7 @@
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
+DROP TABLE IF EXISTS REPORTS;
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
@@ -15,7 +16,6 @@ DROP TABLE IF EXISTS VIDEO_GAMES;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 DROP TABLE IF EXISTS USERS;
-DROP TABLE IF EXISTS REPORTS;
 
 CREATE TABLE CATEGORIES(
    category_name CHAR(25) NOT NULL, CONSTRAINT category_name_pk PRIMARY KEY (category_name) 
@@ -200,7 +200,7 @@ CREATE TABLE REPORTS (
 	reportID int NOT NULL AUTO_INCREMENT, CONSTRAINT pk_reportID PRIMARY KEY (reportID),
     reporter_username CHAR(20) NOT NULL, CONSTRAINT reporter_fk FOREIGN KEY (reporter_username) REFERENCES USERS (username),
     item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk2 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
-    category CHAR(25) NOT NULL, CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    category CHAR(25) NOT NULL, CONSTRAINT category_fk2 FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
     title CHAR(100) NOT NULL,
     release_date YEAR NOT NULL,
     url TEXT NOT NULL, CONSTRAINT url CHECK (url NOT LIKE '%  %'),
