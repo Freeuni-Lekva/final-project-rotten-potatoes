@@ -28,4 +28,8 @@
         <input type = "submit" value= "Continue as a guest" />
     </form>
 
+    <form action = "createNewAcc" method = "get">
+        <input type = "submit" value= "Create new account" />
+    </form>
+
 </html>
