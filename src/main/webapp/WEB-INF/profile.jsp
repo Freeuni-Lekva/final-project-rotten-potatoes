@@ -130,24 +130,28 @@
         <% } %>
 
         <%-- პირადი ინფორმაციის გამოსახვა ვიზიტების შესაბამისად. --%>
-
+        <%-- Display usernames at top with big chunky letters. --%>
         <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
-            <%-- Display username at top with big chunky letters. --%>
             <h2>
                 YOU ARE VIEWING <b><%= guest.getUsername() %></b>&#39S PROFILE.
             </h2>
-        <% } else if(VISIT == PERSONAL_VISIT){ %>
-            <%-- Display username at top with big chunky letters. --%>
-            <h2>
-                WELCOME TO YOUR PROFILE, <b><%= user.getUsername() %></b>!
-            </h2>
-            <%-- რადგან ეს პირადი გვერდია, გამოვსახავთ დამატებით პირად ინფორმაციას. --%>
-            <%-- Display additional information about the user. --%>
-            <h3>
-                <b>FIRST NAME:</b> <%= user.getFirstName() %> <br>
-                <b>LAST NAME:</b> <%= user.getLastName() %> <br>
-                <b>DATE OF BIRTH:</b> <%= user.getDateOfBirth() %>
-            </h3>
+        <% } else if(VISIT == PERSONAL_VISIT){
+                if(user.getUsername() != null && user.getUsername().equals("admin")){ %>
+                    <h2>
+                        ADMINISTRATOR&#39S PAGE
+                    </h2>
+                <% } else { %>
+                    <h2>
+                        WELCOME TO YOUR PROFILE, <b><%= user.getUsername() %></b>!
+                    </h2>
+                    <%-- რადგან ეს პირადი გვერდია, გამოვსახავთ დამატებით პირად ინფორმაციას. --%>
+                    <%-- Display additional information about the user. --%>
+                    <h3>
+                        <b>FIRST NAME:</b> <%= user.getFirstName() %> <br>
+                        <b>LAST NAME:</b> <%= user.getLastName() %> <br>
+                        <b>DATE OF BIRTH:</b> <%= user.getDateOfBirth() %>
+                    </h3>
+                <% } %>
         <% } %>
 
         <%-- Follow/Unfollow ბათონი. --%>
