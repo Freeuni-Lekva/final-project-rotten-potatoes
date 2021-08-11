@@ -22,8 +22,8 @@
     <input type = "text" id = "firstname" name = "firstname" /><br/><br/>
     <label for = "lastname">Last name: </label>
     <input type = "text" id = "lastname" name = "lastname" /><br/><br/>
-    <label for = "birthdate">Date of Birth (format: 00-00-0000): </label>
-    <input type = "text" id = "birthdate" name = "birthdate" /><br/><br/>
+    <label for = "birthdate">Date of Birth: </label>
+    <input type = "date" id = "birthdate" name = "birthdate" /><br/><br/>
     <label for = "password">Password: </label>
     <input type = "password" id = "password" name = "password" /><br/><br/>
     <input type = "submit" value= "Create" /><br/><br/>
