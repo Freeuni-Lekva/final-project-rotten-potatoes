@@ -191,5 +191,38 @@
         <h3>Original: <%= oInfo.toString() %></h3>
         <h3>Reported: <%= rInfo.toString() %></h3>
 
+        <%
+        if(category != null){
+            if(category.equals(Movie.TABLE_NAME)){ %>
+                <h2>Movie Cast</h2>
+            <% } else if(category.equals(TV_Show.TABLE_NAME)){ %>
+                <h2>TV Show Cast</h2>
+            <% } else if(category.equals(Music.TABLE_NAME)){ %>
+                <h2>Artist</h2>
+            <% }
+        }
+
+        if(category != null){
+            if(!category.equals(Book.TABLE_NAME) && !category.equals(Video_Game.TABLE_NAME)){
+                StringBuilder oMembers = new StringBuilder();
+                StringBuilder rMembers = new StringBuilder();
+
+                LinkedList<DiffMatchPatch.Diff> memberDiffs = dmp.diffMain(originalMembers, reportedMembers, false);
+
+                for(DiffMatchPatch.Diff diff : memberDiffs){
+                    if(diff.operation.equals(DiffMatchPatch.Operation.EQUAL)){
+                        oMembers.append(diff.text);
+                        rMembers.append(diff.text);
+                    } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
+                        oMembers.append("<mark>" + diff.text + "</mark>");
+                    } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
+                        rMembers.append("<mark>" + diff.text + "</mark>");
+                    }
+                } %>
+
+                <h3>Original: <%= oMembers.toString() %></h3>
+                <h3>Reported: <%= rMembers.toString() %></h3>
+            <% }
+        } %>
     </body>
 </html>
