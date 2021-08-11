@@ -40,7 +40,7 @@ public class TV_Show {
 
     // მეთოდს გადაეცემა tvShowID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
     // ცხრილში და წარმატების შემთხვევაში, აბრუნებს TV_Show ობიექტს.
-    public TV_Show getTVShowByID(DB db, String tvShowID) throws SQLException {
+    public static TV_Show getTVShowByID(DB db, String tvShowID) throws SQLException {
         ResultSet singleTVShowRow = db.conditionedSelect(TABLE_NAME, "tv_show_id",
                 Item.surroundWithSingleQuotes(tvShowID));
 

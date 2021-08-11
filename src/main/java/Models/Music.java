@@ -45,7 +45,7 @@ public class Music {
 
     // მეთოდს გადაეცემა musicID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
     // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Music ობიექტს.
-    public Music getMusicByID(DB db, String musicID) throws SQLException {
+    public static Music getMusicByID(DB db, String musicID) throws SQLException {
         ResultSet singleMusicRow = db.conditionedSelect(TABLE_NAME, "music_id",
                 Item.surroundWithSingleQuotes(musicID));
 
