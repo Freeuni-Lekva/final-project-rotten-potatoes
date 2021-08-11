@@ -3,7 +3,7 @@
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
-
+DROP TABLE IF EXISTS REPORTS;
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
