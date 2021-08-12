@@ -17,6 +17,7 @@
         String GUEST_VISIT = "GUEST_VISIT";
 
         String VISIT = "";
+        boolean isAdministrator = false;
 
         /*  სულ მჭირდება ორი ატრიბუტი: username და guest. ოთხი ვარიანტის აღწერა:
             username not null, guest not null: ე.ი. ვიღაცა იუზერი ამჟამად დალოგინებულია და სტუმრობს
@@ -49,6 +50,9 @@
             VISIT = USER_VISIT;
         } else if(username != null && guestUsername == null){
             VISIT = PERSONAL_VISIT;
+            if(username.equals("admin")){
+                isAdministrator = true;
+            }
         } else if(username == null && guestUsername != null){
             VISIT = GUEST_VISIT;
         }
@@ -136,7 +140,7 @@
                 YOU ARE VIEWING <b><%= guest.getUsername() %></b>&#39S PROFILE.
             </h2>
         <% } else if(VISIT == PERSONAL_VISIT){
-                if(user.getUsername() != null && user.getUsername().equals("admin")){ %>
+                if(isAdministrator){ %>
                     <h2>
                         ADMINISTRATOR&#39S PAGE
                     </h2>
@@ -200,6 +204,9 @@
                     <b>You haven&#39t earned any badges yet.</b>
                 </h2>
             <% } else { %>
+                <h2>
+                    <b>YOUR BADGES:</b>
+                </h2>
                 <%
                     for(Badge badge : userBadges){
                         String badgeIcon = badge.getBadgeIcon(); %>
