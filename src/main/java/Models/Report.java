@@ -60,7 +60,7 @@ public class Report {
 
         ResultSet reports = db.selectAll("REPORTS");
         while(reports.next()){
-            allReports.add(getReportById(db, reports.getInt(6)));
+            allReports.add(getReportById(db, reports.getInt(1)));
         }
         return allReports;
     }
