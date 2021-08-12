@@ -12,6 +12,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <%
         int reportID = (int) Integer.valueOf(request.getParameter("report_id")); %>
         <title>Report #<%= reportID %></title>
@@ -78,11 +80,6 @@
             }
         } %>
 
-        <h2>Cover Picture</h2>
-        <h3>Original: <img src = <%= originalURL %> width = "100"></h3>
-        <h3>Reported: <img src = <%= reportedURL %> width = "100"></h3>
-
-        <h2>Title</h2>
         <%
         StringBuilder oTitle = new StringBuilder();
         StringBuilder rTitle = new StringBuilder();
@@ -101,10 +98,6 @@
         }
         %>
 
-        <h3>Original: <%= oTitle.toString() %></h3>
-        <h3>Reported: <%= rTitle.toString() %></h3>
-
-        <h2>Release Date</h2>
         <%
         StringBuilder oReleaseDate = new StringBuilder();
         StringBuilder rReleaseDate = new StringBuilder();
@@ -123,20 +116,18 @@
         }
         %>
 
-        <h3>Original: <%= oReleaseDate.toString() %></h3>
-        <h3>Reported: <%= rReleaseDate.toString() %></h3>
-
         <%
+        String producerDisplay = "";
         if(category != null){
-            if(category.equals(Movie.TABLE_NAME) || category.equals(TV_Show.TABLE_NAME)){ %>
-                <h2>Director</h2>
-            <% } else if(category.equals(Music.TABLE_NAME)){ %>
-                <h2>Label</h2>
-            <% } else if(category.equals(Book.TABLE_NAME)){ %>
-                <h2>Writer</h2>
-            <% } else if(category.equals(Video_Game.TABLE_NAME)){ %>
-                <h2>Developers</h2>
-            <% }
+            if(category.equals(Movie.TABLE_NAME) || category.equals(TV_Show.TABLE_NAME)){
+                producerDisplay = "Director";
+            } else if(category.equals(Music.TABLE_NAME)){
+                producerDisplay = "Label";
+            } else if(category.equals(Book.TABLE_NAME)){
+                producerDisplay = "Writer";
+            } else if(category.equals(Video_Game.TABLE_NAME)){
+                producerDisplay = "Developers";
+            }
         } %>
 
         <%
@@ -157,17 +148,15 @@
         }
         %>
 
-        <h3>Original: <%= oProducer.toString() %></h3>
-        <h3>Reported: <%= rProducer.toString() %></h3>
-
         <%
+        String infoDisplay = "";
         if(category != null){
             if(category.equals(Movie.TABLE_NAME) || category.equals(TV_Show.TABLE_NAME) ||
-               category.equals(Book.TABLE_NAME) || category.equals(Video_Game.TABLE_NAME)){ %>
-                <h2>Summary</h2>
-            <% } else if(category.equals(Music.TABLE_NAME)){ %>
-                <h2>Genre</h2>
-            <% }
+               category.equals(Book.TABLE_NAME) || category.equals(Video_Game.TABLE_NAME)){
+                infoDisplay = "Summary";
+            } else if(category.equals(Music.TABLE_NAME)){
+                infoDisplay = "Genre";
+            }
         } %>
 
         <%
@@ -188,24 +177,22 @@
         }
         %>
 
-        <h3>Original: <%= oInfo.toString() %></h3>
-        <h3>Reported: <%= rInfo.toString() %></h3>
-
         <%
+        String memberDisplay = "";
         if(category != null){
-            if(category.equals(Movie.TABLE_NAME)){ %>
-                <h2>Movie Cast</h2>
-            <% } else if(category.equals(TV_Show.TABLE_NAME)){ %>
-                <h2>TV Show Cast</h2>
-            <% } else if(category.equals(Music.TABLE_NAME)){ %>
-                <h2>Artist</h2>
-            <% }
+            if(category.equals(Movie.TABLE_NAME)){
+                memberDisplay = "Movie Cast";
+            } else if(category.equals(TV_Show.TABLE_NAME)){
+                memberDisplay = "TV Show Cast";
+            } else if(category.equals(Music.TABLE_NAME)){
+                memberDisplay = "Artist";
+            }
         }
 
+        StringBuilder oMembers = new StringBuilder();
+        StringBuilder rMembers = new StringBuilder();
         if(category != null){
             if(!category.equals(Book.TABLE_NAME) && !category.equals(Video_Game.TABLE_NAME)){
-                StringBuilder oMembers = new StringBuilder();
-                StringBuilder rMembers = new StringBuilder();
 
                 LinkedList<DiffMatchPatch.Diff> memberDiffs = dmp.diffMain(originalMembers, reportedMembers, false);
 
@@ -219,19 +206,94 @@
                         rMembers.append("<mark>" + diff.text + "</mark>");
                     }
                 } %>
-
-                <h3>Original: <%= oMembers.toString() %></h3>
-                <h3>Reported: <%= rMembers.toString() %></h3>
             <% }
         } %>
 
-        <form action="/report_resolved" method="post"> <%-- !!! .jsp file name might change !!! --%>
-            <select name="RESOLVED">
-                <option value="APPROVE">APPROVE OF CHANGES</option>
-                <option value="DISAPPROVE">DISAPPROVE OF CHANGES</option>
-                <input type="hidden" name="REPORT_ID" value=<%=request.getParameter("report_id")%>>
-            </select>
-            <input type="submit" value="VERIFY"/>
-        </form>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1><b><center>Original</center></b></h1>
+                </div>
+                <div class="col">
+                    <h1><b><center>Reported</center></b></h1>
+                </div>
+            </div>
+            <div class="row">
+                <h2><b><center>Cover Picture</center></b></h2>
+                <div class="col">
+                    <h3><img src = <%= originalURL %> width = "100"></h3>
+                </div>
+                <div class="col">
+                    <h3><img src = <%= reportedURL %> width = "100"></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <h2><b><center>Title</center></b></h2>
+                <div class="col">
+                    <h3><%= oTitle.toString() %></h3>
+                </div>
+                <div class="col">
+                    <h3><%= rTitle.toString() %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <h2><b><center>Release Date</center></b></h2>
+                <div class="col">
+                    <h3><%= oReleaseDate.toString() %></h3>
+                </div>
+                <div class="col">
+                    <h3><%= rReleaseDate.toString() %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <h2><b><center><%= producerDisplay %></center></b></h2>
+                <div class="col">
+                    <h3><%= oProducer.toString() %></h3>
+                </div>
+                <div class="col">
+                    <h3><%= rProducer.toString() %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <h2><b><center><%= infoDisplay %></center></b></h2>
+                <div class="col">
+                    <h3><%= oInfo.toString() %></h3>
+                </div>
+                <div class="col">
+                    <h3><%= rInfo.toString() %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <h2><b><center><%= memberDisplay %></center></b></h2>
+                <div class="col">
+                    <h3><%= oMembers.toString() %></h3>
+                </div>
+                <div class="col">
+                    <h3><%= rMembers.toString() %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
+                <center><form action="/report_resolved" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                    <select name="RESOLVED">
+                        <option value="APPROVE">APPROVE OF CHANGES</option>
+                        <option value="DISAPPROVE">DISAPPROVE OF CHANGES</option>
+                        <input type="hidden" name="REPORT_ID" value=<%=request.getParameter("report_id")%>>
+                    </select>
+                    <input type="submit" value="VERIFY"/>
+                </form></center>
+            </div>
+            <br><br><br>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     </body>
 </html>
