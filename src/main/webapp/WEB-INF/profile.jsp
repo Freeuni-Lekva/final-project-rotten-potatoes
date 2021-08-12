@@ -158,6 +158,36 @@
                 <% } %>
         <% } %>
 
+        <%-- თუ ამჟამად PERSONAL_VISIT-ის ტიპის ვიზიტია და ასევე, ის ხორციელდება ადმინისტრატორის მიერ,
+             უნდა გამოვსახოთ რეპორტების სია მისთვის. ეს ნაწილი გასატესტია (რადგან ჯერ შესაბამისი მეთოდები
+             და ცხრილები არ არსებობს). --%>
+        <% if(VISIT == PERSONAL_VISIT && isAdministrator){
+            List<Report> reports = Report.getReports(db);
+
+            if(reports.isEmpty()){ %>
+                <h2>
+                  <b>No user reports present.</b>
+                </h2>
+            <% } else { %>
+                <h2>
+                    <b>USER REPORTS:</b>
+                </h2>
+                <%
+                for(Report report : reports){
+                    int reportID = report.getReportId();
+                    String reporter = report.getReporterUsername();
+                    String itemID = report.getItemId();
+                    Item item = Item.getItemByID(db, itemID);
+                    String link = "report.jsp?report_id=" + reportID; %>
+                    <h3>
+                    <%-- REPORT #5: sjanj19 is reporting about - Dangerous, 1991. --%>
+                    REPORT #<%= reportID %>: <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
+                    <a href=<%= link %>>RESOLVE</a>
+                    </h3>
+                <% } %>
+            <% } %>
+        <% } %>
+
         <%-- Follow/Unfollow ბათონი. --%>
         <% if(VISIT == USER_VISIT){
             // Check if I (user) am following them (guest).
