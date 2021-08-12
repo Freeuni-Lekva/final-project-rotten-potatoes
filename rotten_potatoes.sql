@@ -1,7 +1,9 @@
 -- change this line so that is uses your database
+
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
+DROP TABLE IF EXISTS REPORTS;
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS BADGES;
 DROP TABLE IF EXISTS FOLLOWERS;
@@ -20,14 +22,14 @@ CREATE TABLE CATEGORIES(
 );
 
 INSERT INTO CATEGORIES VALUES
-   ('MUSIC'), ('VIDEO GAMES'), ('BOOKS'), ('TV SHOWS'), ('MOVIES'); 
+   ('MUSIC'), ('VIDEO_GAMES'), ('BOOKS'), ('TV_SHOWS'), ('MOVIES');
 
 CREATE TABLE USERS (
    username CHAR(20) NOT NULL, CONSTRAINT pk_username PRIMARY KEY (username),
    first_name CHAR(20) NOT NULL,
    last_name CHAR(30) NOT NULL,
    date_of_birth DATE NOT NULL,
-   hash_password CHAR(64) NOT NULL
+   hash_password CHAR(255) NOT NULL
 );
 
 INSERT INTO USERS VALUES 
@@ -40,7 +42,7 @@ CREATE TABLE ITEMS (
    category CHAR(25) NOT NULL, CONSTRAINT category_fk FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
    uploader CHAR(50) NOT NULL, CONSTRAINT uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
    score DOUBLE NOT NULL, CONSTRAINT ck_ForItem CHECK (score BETWEEN 0 AND 10),
-   cover_url TEXT NOT NULL,
+   cover_url TEXT NOT NULL, CONSTRAINT items_url CHECK (cover_url NOT LIKE '% %'),
    release_date YEAR NOT NULL,
    num_of_reviews INTEGER NOT NULL
 );
@@ -49,14 +51,14 @@ INSERT INTO ITEMS VALUES
    ('MU_Dangerous_1991', 'Dangerous', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg', 1991, 0),
    ('MU_Magical Mystery Tour_1967', 'Magical Mystery Tour', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg', 1967, 0),
    ('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars', 'MUSIC', 'admin', 0, 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366', 1972, 0),
-   ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV SHOWS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg', 2003, 0),
-   ('TV_Friends_1994', 'Friends', 'TV SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg', 1994, 0),
+   ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV_SHOWS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg', 2003, 0),
+   ('TV_Friends_1994', 'Friends', 'TV_SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg', 1994, 0),
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 1946, 0),
    ('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 'BOOKS', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg', 2013, 0),
    ('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg', 2014, 0),
    ('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg', 2014, 0),
-   ('VI_Minecraft_2011', 'Minecraft', 'VIDEO GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg', 2011, 0),
-   ('VI_Stardew Valley_2016', 'Stardew Valley', 'VIDEO GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg', 2016, 0);
+   ('VI_Minecraft_2011', 'Minecraft', 'VIDEO_GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg', 2011, 0),
+   ('VI_Stardew Valley_2016', 'Stardew Valley', 'VIDEO_GAMES', 'admin', 0, 'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg', 2016, 0);
 
 CREATE TABLE BADGES (
    badge_id CHAR(6) NOT NULL, CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
@@ -91,7 +93,7 @@ CREATE TABLE MUSIC (
    label CHAR(50) NOT NULL,
    release_year YEAR NOT NULL,
    genre CHAR(100) NOT NULL,
-   album_cover_url TEXT NOT NULL,
+   album_cover_url TEXT NOT NULL, CONSTRAINT music_url CHECK (album_cover_url NOT LIKE '% %'),
    uploader CHAR(20) NOT NULL, CONSTRAINT music_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
    score DOUBLE NOT NULL, CONSTRAINT ck_score_music CHECK (score BETWEEN 0 AND 10),
    num_of_reviews INTEGER NOT NULL
@@ -108,7 +110,7 @@ CREATE TABLE TV_SHOWS (
    airing_year YEAR NOT NULL,
    director CHAR(60) NOT NULL,
    tv_show_cast CHAR(100) NOT NULL,
-   cover_url TEXT NOT NULL,
+   cover_url TEXT NOT NULL, CONSTRAINT tv_shows_url CHECK (cover_url NOT LIKE '% %'),
    summary TEXT NOT NULL,
    uploader CHAR(20) NOT NULL, CONSTRAINT tv_show_uploader_fk FOREIGN KEY (uploader) REFERENCES USERS(username),
    score DOUBLE NOT NULL, CONSTRAINT ck_score_tv_shows CHECK (score BETWEEN 0 AND 10),
@@ -139,7 +141,7 @@ CREATE TABLE MOVIES (
    release_date YEAR NOT NULL,
    director CHAR(60) NOT NULL,
    movie_cast CHAR(100) NOT NULL,
-   cover_url TEXT NOT NULL,
+   cover_url TEXT NOT NULL, CONSTRAINT movies_url CHECK (cover_url NOT LIKE '% %'),
    summary TEXT NOT NULL,
    uploader CHAR(20) NOT NULL, CONSTRAINT movies_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
    score DOUBLE NOT NULL, CONSTRAINT ck2_score_books CHECK (score BETWEEN 0 AND 10),
@@ -160,7 +162,7 @@ CREATE TABLE BOOKS (
    title CHAR(100) NOT NULL,
    release_date YEAR NOT NULL,
    writer CHAR(60) NOT NULL,
-   cover_url TEXT NOT NULL,
+   cover_url TEXT NOT NULL, CONSTRAINT books_url CHECK (cover_url NOT LIKE '% %'),
    summary TEXT NOT NULL,
    uploader CHAR(20) NOT NULL, CONSTRAINT books_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
    score DOUBLE NOT NULL, CONSTRAINT ck_score_books CHECK (score BETWEEN 0 AND 10),
@@ -180,7 +182,7 @@ CREATE TABLE VIDEO_GAMES (
    title CHAR(100) NOT NULL,
    release_date YEAR NOT NULL,
    developers CHAR(100) NOT NULL,
-   cover_url TEXT NOT NULL,
+   cover_url TEXT NOT NULL, CONSTRAINT video_games_url CHECK (cover_url NOT LIKE '% %'),
    summary TEXT NOT NULL,
    uploader CHAR(20) NOT NULL, CONSTRAINT video_games_author_fk FOREIGN KEY (uploader) REFERENCES USERS (username),
    score DOUBLE NOT NULL, CONSTRAINT ck_score_vide_games CHECK (score BETWEEN 0 AND 10),
@@ -193,3 +195,17 @@ INSERT INTO VIDEO_GAMES VALUES
    ('VI_Stardew Valley_2016', 'Stardew Valley', 2016, 'Eric Barone, Sickhead Games, ConcernedApe', 
 	'https://www.researchgate.net/publication/342704239/figure/fig1/AS:960471637192707@1606005691630/Stardew-Valley-promotional-image-Sourcewwwstardewvalleynet-Image-copyright-Eric-Barone.jpg',
     'Stardew Valley is a farming simulation game primarily inspired by the Harvest Moon video game series. At the start of the game, players create a character, who becomes the recipient of a plot of land and a small house once owned by their grandfather in a small town called Pelican Town.', 'admin', 0, 0);
+
+CREATE TABLE REPORTS (
+	reportID int NOT NULL AUTO_INCREMENT, CONSTRAINT pk_reportID PRIMARY KEY (reportID),
+    reporter_username CHAR(20) NOT NULL, CONSTRAINT reporter_fk FOREIGN KEY (reporter_username) REFERENCES USERS (username),
+    item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk2 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
+    category CHAR(25) NOT NULL, CONSTRAINT category_fk2 FOREIGN KEY (category) REFERENCES CATEGORIES (category_name),
+    title CHAR(100) NOT NULL,
+    release_date YEAR NOT NULL,
+    url TEXT NOT NULL, CONSTRAINT url CHECK (url NOT LIKE '%  %'),
+    producer CHAR(100) NOT NULL,
+    info TEXT NOT NULL,
+    members CHAR(100) NOT NULL,
+    user_comment TEXT
+);
