@@ -57,5 +57,14 @@
   </servlet-mapping>
 
 
+  <servlet>
+    <servlet-name>newReview</servlet-name>
+    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>newReview</servlet-name>
+    <url-pattern>/newReview</url-pattern>
+  </servlet-mapping>
 
 </web-app>

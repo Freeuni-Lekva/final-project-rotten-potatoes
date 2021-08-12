@@ -17,7 +17,7 @@
     <body>
 
     // სერვლეტის სახელია აქ საჭირო
-    <form name="productPage" method="post" action="">
+    <form name="productPage" method="post" action="newReview">
 
             <%String itemId = (String) request.getParameter("id");
             String itemCategory = Item.getCategoryByItemID(itemId);
