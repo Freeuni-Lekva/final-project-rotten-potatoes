@@ -17,6 +17,7 @@
         String GUEST_VISIT = "GUEST_VISIT";
 
         String VISIT = "";
+        boolean isAdministrator = false;
 
         /*  სულ მჭირდება ორი ატრიბუტი: username და guest. ოთხი ვარიანტის აღწერა:
             username not null, guest not null: ე.ი. ვიღაცა იუზერი ამჟამად დალოგინებულია და სტუმრობს
@@ -49,6 +50,9 @@
             VISIT = USER_VISIT;
         } else if(username != null && guestUsername == null){
             VISIT = PERSONAL_VISIT;
+            if(username.equals("admin")){
+                isAdministrator = true;
+            }
         } else if(username == null && guestUsername != null){
             VISIT = GUEST_VISIT;
         }
@@ -136,7 +140,7 @@
                 YOU ARE VIEWING <b><%= guest.getUsername() %></b>&#39S PROFILE.
             </h2>
         <% } else if(VISIT == PERSONAL_VISIT){
-                if(user.getUsername() != null && user.getUsername().equals("admin")){ %>
+                if(isAdministrator){ %>
                     <h2>
                         ADMINISTRATOR&#39S PAGE
                     </h2>
@@ -152,6 +156,36 @@
                         <b>DATE OF BIRTH:</b> <%= user.getDateOfBirth() %>
                     </h3>
                 <% } %>
+        <% } %>
+
+        <%-- თუ ამჟამად PERSONAL_VISIT-ის ტიპის ვიზიტია და ასევე, ის ხორციელდება ადმინისტრატორის მიერ,
+             უნდა გამოვსახოთ რეპორტების სია მისთვის. ეს ნაწილი გასატესტია (რადგან ჯერ შესაბამისი მეთოდები
+             და ცხრილები არ არსებობს). --%>
+        <% if(VISIT == PERSONAL_VISIT && isAdministrator){
+            List<Report> reports = Report.getReports(db);
+
+            if(reports.isEmpty()){ %>
+                <h2>
+                  <b>No user reports present.</b>
+                </h2>
+            <% } else { %>
+                <h2>
+                    <b>USER REPORTS:</b>
+                </h2>
+                <%
+                for(Report report : reports){
+                    int reportID = report.getReportId();
+                    String reporter = report.getReporterUsername();
+                    String itemID = report.getItemId();
+                    Item item = Item.getItemByID(db, itemID);
+                    String link = "report.jsp?report_id=" + reportID; %>
+                    <h3>
+                    <%-- REPORT #5: sjanj19 is reporting about - Dangerous, 1991. --%>
+                    REPORT #<%= reportID %>: <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
+                    <a href=<%= link %>>RESOLVE</a>
+                    </h3>
+                <% } %>
+            <% } %>
         <% } %>
 
         <%-- Follow/Unfollow ბათონი. --%>
@@ -200,6 +234,9 @@
                     <b>You haven&#39t earned any badges yet.</b>
                 </h2>
             <% } else { %>
+                <h2>
+                    <b>YOUR BADGES:</b>
+                </h2>
                 <%
                     for(Badge badge : userBadges){
                         String badgeIcon = badge.getBadgeIcon(); %>
