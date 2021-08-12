@@ -161,7 +161,7 @@ public class Item extends SQL {
     public static String getOriginalItemId(String itemId){
         String category = itemId.substring(0,3);
         String title = itemId.substring(3, itemId.length() - 5);
-        String year = itemId.substring(itemId.length() - 5);
+        String year = itemId.substring(itemId.lastIndexOf('_'));
         String titleWithSpaces = title.replaceAll("_" , " ");
         String originalId = category + titleWithSpaces + year;
         return originalId;
