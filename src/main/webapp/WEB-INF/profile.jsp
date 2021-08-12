@@ -33,7 +33,7 @@
         */
 
         String username = (String) request.getAttribute("username");
-        String guestUsername = (String) request.getParameter("guest_visitor_id");
+        String guestUsername = (String) request.getAttribute("guest_visitor_id");
 
         if(guestUsername != null && username != null){
             if(guestUsername.equals(username)){
@@ -373,7 +373,7 @@
                         <%
                             for(User follower : user.getFollowers(db)){
                                 String followerUsername = follower.getUsername();
-                                String link = "index.jsp?guest_visitor_id=" + followerUsername; %>
+                                String link = "/profile.jsp?guest_visitor_id=" + followerUsername; %>
                                 <p><a href=<%= link %>><%= followerUsername %></a></p>
                         <% } %>
                         <h2>
@@ -382,7 +382,7 @@
                         <%
                             for(User following : user.getFollowing(db)){
                                 String followingUsername = following.getUsername();
-                                String link = "index.jsp?guest_visitor_id=" + followingUsername; %>
+                                String link = "/profile.jsp?guest_visitor_id=" + followingUsername; %>
                                 <p><a href=<%= link %>><%= followingUsername %></a></p>
                         <% } %>
                     <% } %>

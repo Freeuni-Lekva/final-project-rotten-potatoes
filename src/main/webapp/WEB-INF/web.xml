@@ -71,7 +71,7 @@
 
   <servlet-mapping>
     <servlet-name>ReturnToProfileServlet</servlet-name>
-    <url-pattern>/my_profile</url-pattern>
+    <url-pattern>/profile.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet-mapping>
