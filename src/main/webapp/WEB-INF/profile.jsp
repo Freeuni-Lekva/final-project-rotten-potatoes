@@ -32,7 +32,7 @@
             არც ვდგავართ.
         */
 
-        String username = (String) application.getAttribute("username");
+        String username = (String) request.getAttribute("username");
         String guestUsername = (String) request.getParameter("guest_visitor_id");
 
         if(guestUsername != null && username != null){
