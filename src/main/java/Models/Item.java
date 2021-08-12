@@ -160,7 +160,7 @@ public class Item extends SQL {
     //itemId -ში ისეთ ნაწილებს , სადაც ცარიელი სტრინგების ნაცვლად "_" -ები ეწერა , ისევ ცარიელი სტრიგებით ჩაანაცვლებს.
     public static String getOriginalItemId(String itemId){
         String category = itemId.substring(0,3);
-        String title = itemId.substring(3, itemId.length() - 5);
+        String title = itemId.substring(3, itemId.lastIndexOf('_'));
         String year = itemId.substring(itemId.lastIndexOf('_'));
         String titleWithSpaces = title.replaceAll("_" , " ");
         String originalId = category + titleWithSpaces + year;
