@@ -11,7 +11,7 @@ public class SQL implements DB {
     private static final String HOSTNAME = "127.0.0.1";
     private static final String PORT = "3306";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "RameParoli#83";
     private static final String DATABASE = "rotten_potatoes";
 
     // Constant variable declarations for SQL queries.
@@ -110,6 +110,18 @@ public class SQL implements DB {
     @Override
     public ResultSet conditionedSelect(String TABLE_NAME, String COLUMN_NAME, String VALUE) {
         String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_NAME + EQUALS + VALUE + ";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ResultSet selectAll(String TABLE_NAME){
+        String query = SELECT_FROM + TABLE_NAME;
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();

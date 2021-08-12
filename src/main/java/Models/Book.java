@@ -43,7 +43,7 @@ public class Book {
 
     // მეთოდს გადაეცემა bookID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
     // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Book ობიექტს.
-    public Book getBookByID(DB db, String bookID) throws SQLException {
+    public static Book getBookByID(DB db, String bookID) throws SQLException {
         ResultSet singleBookRow = db.conditionedSelect(TABLE_NAME, "book_id",
                 Item.surroundWithSingleQuotes(bookID));
         while(singleBookRow.next()){
