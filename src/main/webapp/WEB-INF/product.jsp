@@ -1,6 +1,8 @@
 <%@ page import="Models.*" %>
 <%@ page import="Database.DB" %>
-<%@ page import="Servlets.ContextListener" %><%--
+<%@ page import="Servlets.ContextListener" %>
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: tsakh
   Date: 12.08.21
@@ -13,6 +15,10 @@
         <title>Title</title>
     </head>
     <body>
+
+    // სერვლეტის სახელია აქ საჭირო
+    <form name="productPage" method="post" action="">
+
             <%String itemId = (String) request.getParameter("id");
             String itemCategory = Item.getCategoryByItemID(itemId);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
@@ -92,8 +98,53 @@
                     <b>Release date: </b> <%= book.getReleaseDate() %> <br>
                     <b>Writer: </b> <%= book.getWriter() %> <br>
                     <b>Summary: </b> <%= book.getSummary() %> <br>
-                </h3>
+                </h3
             <% }%>
 
+
+
+
+            <% Item currItem= null;
+                try {
+                    currItem = Item.getItemByID(db,itemId);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                String title = currItem.getTitle(); %>
+
+
+            <label for="newReview"> Add new review:</label>
+            <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
+
+            <button type="submit" > ADD REVIEW </button>
+            <button type="reset"> CLEAR </button>  <br/>
+
+            <label > CRITIC REVIEWS FOR THE <%= title %> </label> <br/>
+
+            <% List<Review>  reviewList = Item.getReviews(db, itemId);
+                int numberToShow= reviewList.size();
+                if(reviewList.size() > Review.DEFAULT_NUM_REVIEWS){
+                    numberToShow= Review.DEFAULT_NUM_REVIEWS;
+                }
+
+                for(int i=0; i< numberToShow; i++) {
+                    Review currReview = reviewList.get(i);
+                    String reviewText= currReview.getReview();
+                    Double score=currReview.getScore();
+                    String reviewWriter= currReview.getUsername(); %>
+
+                <h3>
+                    <b> <%= reviewWriter%> : </b> <br/>
+                    <em> <%= reviewText %></em
+                    <b> score : <%= score %></b>
+
+                </h3>
+
+            <%}%>
+
+
+
+</form>
     </body>
+
 </html>
