@@ -224,5 +224,14 @@
                 <h3>Reported: <%= rMembers.toString() %></h3>
             <% }
         } %>
+
+        <form action="/report_resolved" method="post"> <%-- !!! .jsp file name might change !!! --%>
+            <select name="RESOLVED">
+                <option value="APPROVE">APPROVE OF CHANGES</option>
+                <option value="DISAPPROVE">DISAPPROVE OF CHANGES</option>
+                <input type="hidden" name="REPORT_ID" value=<%=request.getParameter("report_id")%>>
+            </select>
+            <input type="submit" value="VERIFY"/>
+        </form>
     </body>
 </html>
