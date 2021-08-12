@@ -58,10 +58,19 @@
     <servlet-class>Servlets.UnfollowServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>ReportServlet</servlet-name>
+    <servlet-class>Servlets.ReportServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>ReportResolvedServlet</servlet-name>
+    <servlet-class>Servlets.ReportResolvedServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>Guest</servlet-name>
     <url-pattern>/guest</url-pattern>
-
   </servlet-mapping>
 
   <servlet-mapping>
@@ -75,6 +84,11 @@
   </servlet-mapping>
 
   <servlet-mapping>
+    <servlet-name>ReportResolvedServlet</servlet-name>
+    <url-pattern>/report_resolved</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
     <servlet-name>FollowServlet</servlet-name>
     <url-pattern>/followed</url-pattern>
   </servlet-mapping>
@@ -82,6 +96,11 @@
   <servlet-mapping>
     <servlet-name>UnfollowServlet</servlet-name>
     <url-pattern>/unfollowed</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ReportServlet</servlet-name>
+    <url-pattern>/report.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
