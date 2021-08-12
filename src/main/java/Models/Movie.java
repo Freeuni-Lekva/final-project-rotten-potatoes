@@ -45,7 +45,7 @@ public class Movie {
 
     // მეთოდს გადაეცემა movieID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
     // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Movie ობიექტს.
-    public Movie getMovieByID(DB db, String movieID) throws SQLException {
+    public static Movie getMovieByID(DB db, String movieID) throws SQLException {
         ResultSet singleMovieRow = db.conditionedSelect(TABLE_NAME, "movie_id",
                 Item.surroundWithSingleQuotes(movieID));
 

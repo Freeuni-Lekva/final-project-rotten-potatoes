@@ -11,7 +11,7 @@ public class SQL implements DB {
     private static final String HOSTNAME = "127.0.0.1";
     private static final String PORT = "3306";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "RameParoli#83";
     private static final String DATABASE = "rotten_potatoes";
 
     // Constant variable declarations for SQL queries.

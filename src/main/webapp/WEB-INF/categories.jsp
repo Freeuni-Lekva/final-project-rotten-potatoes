@@ -44,7 +44,7 @@
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();
                 String itemId = item.getItemID();
-                String individualLink = "show-item.jsp?id=" + itemId;
+                String individualLink = "product.jsp?id=" + itemId;
                 double score = item.getScore(); %>
                 <a href= <%= individualLink %>> <b> <%= title %> <b>(<%= score %>/10)</b>
                 <img src = <%= coverURL %> width="300" height="300"> <br/>

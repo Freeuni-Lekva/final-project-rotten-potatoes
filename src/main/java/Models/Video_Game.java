@@ -43,7 +43,7 @@ public class Video_Game {
 
     // მეთოდს გადაეცემა videoGameID. მეთოდი იძახებს SQL ფუნქციას, რათა მოძებნოს ასეთი ნივთი
     // ცხრილში და წარმატების შემთხვევაში, აბრუნებს Video_Game ობიექტს.
-    public Video_Game getVideoGameByID(DB db, String videoGameID) throws SQLException {
+    public static Video_Game getVideoGameByID(DB db, String videoGameID) throws SQLException {
         ResultSet singleVideoGameRow = db.conditionedSelect(TABLE_NAME, "video_game_id",
                 Item.surroundWithSingleQuotes(videoGameID));
 
