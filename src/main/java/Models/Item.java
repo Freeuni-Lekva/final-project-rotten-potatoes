@@ -106,7 +106,7 @@ public class Item extends SQL {
         return null;
     }
 
-    //აბრუნებს კონკრეტული აითემის შესახებ დაწერილ ყველა review-ს 
+    //აბრუნებს კონკრეტული აითემის შესახებ დაწერილ ყველა review-ს
     public static List<Review> getReviews(DB db , String itemID) throws SQLException {
         List<Review> itemReviews = new ArrayList<>();
         ResultSet reviews = db.conditionedSelect(REVIEWS, "item_id",
@@ -118,6 +118,8 @@ public class Item extends SQL {
         }
         return  itemReviews;
     }
+
+
     // აბრუნებს Item-ების სიას შემდეგი მახასიათებლების მიხედვით: სიის ნივთები ერთ გადმოცემულ კატეგორიაში არიან,
     // ასევე, მათი სათაურები გადაცემულ '%searchFieldValue%'-ს ემთხვევა და ეს ნივთები დალაგებულია orderByValue-თი.
     public static List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
@@ -150,6 +152,20 @@ public class Item extends SQL {
         return items;
     }
 
+    //itemId-ში სახელის ნაწილში არსებულ სფეისებს (ცარიელ სტრინგებს) გარდაქმნის ქვედა ტირეებად: "_"
+    public static String getItemIdWithoutSpaces(String itemId){
+        return itemId.replaceAll(" ", "_");
+    }
+
+    //itemId -ში ისეთ ნაწილებს , სადაც ცარიელი სტრინგების ნაცვლად "_" -ები ეწერა , ისევ ცარიელი სტრიგებით ჩაანაცვლებს.
+    public static String getOriginalItemId(String itemId){
+        String category = itemId.substring(0,3);
+        String title = itemId.substring(3, itemId.length() - 5);
+        String year = itemId.substring(itemId.length() - 5);
+        String titleWithSpaces = title.replaceAll("_" , " ");
+        String originalId = category + titleWithSpaces + year;
+        return originalId;
+    }
     // Getter methods.
     public String getItemID(){
         return itemID;
