@@ -13,6 +13,6 @@ public class productServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/report.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/reportForm.jsp").forward(request, response);
     }
 }
