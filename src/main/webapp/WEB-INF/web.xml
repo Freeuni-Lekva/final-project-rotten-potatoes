@@ -72,6 +72,16 @@
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/profile.jsp</url-pattern>
   </servlet-mapping>
+    
+  <servlet>
+    <servlet-name>product</servlet-name>
+    <servlet-class>Servlets.productServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>product</servlet-name>
+    <url-pattern>/product.jsp</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>UnfollowServlet</servlet-name>

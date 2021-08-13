@@ -16,6 +16,8 @@ DROP TABLE IF EXISTS VIDEO_GAMES;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 DROP TABLE IF EXISTS USERS;
+DROP TABLE IF EXISTS NOTIFICATION_TYPES;
+DROP TABLE IF EXISTS NOTIFICATIONS;
 
 CREATE TABLE CATEGORIES(
    category_name CHAR(25) NOT NULL, CONSTRAINT category_name_pk PRIMARY KEY (category_name) 
@@ -33,7 +35,8 @@ CREATE TABLE USERS (
 );
 
 INSERT INTO USERS VALUES 
-   ('admin', 'Giorgi', 'Meore', '1900-03-07', 'RottenPotatoes');
+   ('admin', 'Giorgi', 'Meore', '1900-03-07', '70e55e37480aafbb55d697f1dc7dcfb6b70ca342'),
+   ('tekla', 'Tekla', 'Basilidze', '2000-02-12', 'f9853a17b3f82c79c1843e7d69ff539d154d8e50');
 
 CREATE TABLE ITEMS (
    item_id CHAR(100) NOT NULL, CONSTRAINT ck_item_id PRIMARY KEY (item_id),
@@ -209,3 +212,24 @@ CREATE TABLE REPORTS (
     members CHAR(100) NOT NULL,
     user_comment TEXT
 );
+
+INSERT INTO REPORTS VALUES 
+  (NULL, 'tekla', 'MO_Love, Rosie_2014', 'MOVIES', 'Love, Rosie', 2012, 'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg',
+  'Christian Ditter', 'Rosie and Alex have been best friends since they were 5, so they could not possibly be right for one another... or could they? When it comes to love, life and making the right choices, these two are their own worst enemies.', 
+  'Sam Claflin, Lily Collins, Christian Cooke','');
+  
+CREATE TABLE NOTIFICATION_TYPES (
+	notification_type CHAR(30) NOT NULL, CONSTRAINT notification_type_pk PRIMARY KEY (notification_type) 
+);
+
+INSERT INTO NOTIFICATION_TYPES VALUES
+   ('REVIEW'), ('REQUEST'), ('UPLOAD'), ('FOLLOW');
+   
+CREATE TABLE NOTIFICATIONS (
+	notificationID int NOT NULL AUTO_INCREMENT, CONSTRAINT pk_notificationID PRIMARY KEY (notificationID),
+    reciever_username CHAR(20) NOT NULL, CONSTRAINT reciever_username_fk FOREIGN KEY (reciever_username) REFERENCES USERS (username),
+    sender_username CHAR(20) NOT NULL, CONSTRAINT sender_username_fk FOREIGN KEY (sender_username) REFERENCES USERS (username),
+    item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk3 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
+    notification_type CHAR(30) NOT NULL, CONSTRAINT notification_type_fk FOREIGN KEY (notification_type) REFERENCES NOTIFICATION_TYPES (notification_type)
+);
+
