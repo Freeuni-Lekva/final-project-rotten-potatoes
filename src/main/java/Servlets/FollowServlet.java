@@ -26,10 +26,7 @@ public class FollowServlet extends HttpServlet {
         String userToFollow = req.getParameter("guest_visitor_id");
 
         User.follow(db, userToFollow, wannabeFollower);
-        List<String> notificationValues = Arrays.asList(null, Item.surroundWithSingleQuotes(userToFollow),
-                                                        Item.surroundWithSingleQuotes(wannabeFollower), null,
-                                                        Item.surroundWithSingleQuotes("FOLLOW"));
-        db.insert("NOTIFICATIONS", notificationValues);
+        // insert info to notifications
 
         req.setAttribute("guest_visitor_id", userToFollow);
         req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
