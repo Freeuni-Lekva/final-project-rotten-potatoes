@@ -17,9 +17,13 @@
 
 <form name="insertForm" method="post" action="">
 
+<<<<<<< Updated upstream
         <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
         <label for="title"> Title :</label>
         <input type="text" id="title" name="title"> <br/>
+=======
+<% String category=(String) request.getAttribute("NEW_ITEM_CATEGORY"); %>
+>>>>>>> Stashed changes
 
 
     <% if (category.equals(MOVIE.ATTRIBUTE)) { %>
@@ -29,6 +33,7 @@
         <label for="movieCast"> Cast: </label>
         <input type="text" id="movieCast" name="movieCast"> <br/>
 
+<<<<<<< Updated upstream
         <label for="movieSummary"> Summary: </label>
         <input type="text" id="movieSummary" name="movieSummary"> <br/>
     <% } %>
@@ -37,6 +42,28 @@
     <% if(category.equals(MUSIC.ATTRIBUTE)){  %>
         <label for="musicArtist"> Artist: </label>
         <input type="text" id="musicArtist" name="musicArtist">  <br/>
+=======
+    <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
+    <label for="title"> Title :</label>
+    <input type="text" id="title" name="title"> <br/>
+
+
+    <% if (category !=null && category.equals(Movie.ATTRIBUTE)) { %>
+    <label for="movieDirector"> Director: </label>
+    <input type="text" id="movieDirector" name="movieDirector"> <br/>
+
+    <label for="movieCast"> Cast: </label>
+    <input type="text" id="movieCast" name="movieCast"> <br/>
+
+    <label for="movieSummary"> Summary: </label>
+    <input type="text" id="movieSummary" name="movieSummary"> <br/>
+    <% } %>
+
+
+    <% if(category !=null && category.equals(Music.ATTRIBUTE)){  %>
+    <label for="musicArtist"> Artist: </label>
+    <input type="text" id="musicArtist" name="musicArtist">  <br/>
+>>>>>>> Stashed changes
 
 
         <label for="musicLabel">Label: </label>
@@ -47,7 +74,7 @@
     <%} %>
 
 
-    <% if(category.equals(TV_Show.ATTRIBUTE)){  %>
+    <% if(category !=null && category.equals(TV_Show.ATTRIBUTE)){  %>
 
         <label for="showDirector"> Director: </label>
         <input type="text" id="showDirector" name="showDirector"> <br/>
@@ -65,7 +92,11 @@
     <%} %>
 
 
+<<<<<<< Updated upstream
     <% if(category.equals(BOOK.ATTRIBUTE)){  %>
+=======
+    <% if(category !=null && category.equals(Book.ATTRIBUTE)){  %>
+>>>>>>> Stashed changes
 
         <label for="bookWriter"> Writer: </label>
         <input type="text" id="bookWriter" name="bookWriter"> <br/>
@@ -76,7 +107,7 @@
 
     <%} %>
 
-    <% if(category.equals(Video_Game.ATTRIBUTE)){  %>
+    <% if(category !=null && category.equals(Video_Game.ATTRIBUTE)){  %>
 
         <label for="gameDevelopers"> Developers: </label>
         <input type="text" id="gameDevelopers" name="gameDevelopers"> <br/>
@@ -88,8 +119,13 @@
     <%} %>
 
 
+<<<<<<< Updated upstream
     <% if(category.equals(Video_Game.ATTRIBUTE) || category.equals(MOVIE.ATTRIBUTE)||
             category.equals(MUSIC.ATTRIBUTE) || category.equals(BOOK.ATTRIBUTE)){  %>
+=======
+    <% if(category !=null && category.equals(Video_Game.ATTRIBUTE) || category.equals(Movie.ATTRIBUTE)||
+            category.equals(Music.ATTRIBUTE) || category.equals(Book.ATTRIBUTE)){  %>
+>>>>>>> Stashed changes
 
         <label for="date"> Release date:</label>
         <input type="text" id="date" name="date"> <br/>
