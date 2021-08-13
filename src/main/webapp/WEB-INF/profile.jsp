@@ -32,7 +32,7 @@
             არც ვდგავართ.
         */
 
-        String username = (String) request.getAttribute("username");
+        String username = (String) session.getAttribute("username");
         String guestUsername = (String) request.getAttribute("guest_visitor_id");
 
         if(guestUsername != null && username != null){
@@ -110,7 +110,7 @@
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
                     <div class="col">
-                        <form action="/my_profile" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                        <form action="/profile.jsp" method="post">
                             <input type="submit" value="MY PROFILE"/>
                         </form>
                     </div>
