@@ -18,7 +18,7 @@ public class addNewItem extends HttpServlet {
 
 
 
-        String category= (String) request.getAttribute("category");
+        String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getAttribute("username");
         String smallVersion=category.substring(0,2);
