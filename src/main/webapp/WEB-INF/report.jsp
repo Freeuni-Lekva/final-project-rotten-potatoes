@@ -279,6 +279,13 @@
             </div>
             <br><br><br>
             <div class="row">
+                <h2><b><center>Reporter&#39s Comment</center></b></h2>
+                <div class="col">
+                    <h3><%= reportedComment %></h3>
+                </div>
+            </div>
+            <br><br><br>
+            <div class="row">
                 <center><form action="/report_resolved" method="post"> <%-- !!! .jsp file name might change !!! --%>
                     <select name="RESOLVED">
                         <option value="APPROVE">APPROVE OF CHANGES</option>
