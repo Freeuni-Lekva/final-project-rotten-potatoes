@@ -11,17 +11,17 @@ import java.io.IOException;
 
 public class UnfollowServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
     }
 
     @Override
-    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        String wannabeUnfollower = (String) httpServletRequest.getServletContext().getAttribute("username");
-        // String userToFollow = (String) httpServletRequest.getServletContext().getAttribute("guest");
-        String userToFollow = (String) httpServletRequest.getParameter("guest_visitor_id");
-        DB db = (DB) httpServletRequest.getServletContext().getAttribute("db");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        DB db = (DB) req.getServletContext().getAttribute("db");
+        String wannabeUnfollower = (String) req.getSession().getAttribute("username");
+        String userToFollow = req.getParameter("guest_visitor_id");
         User.unfollow(db, userToFollow, wannabeUnfollower);
-        httpServletRequest.getRequestDispatcher("/WEB-INF/index.jsp").forward(httpServletRequest, httpServletResponse);
+        req.setAttribute("guest_visitor_id", userToFollow);
+        req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }
 }
