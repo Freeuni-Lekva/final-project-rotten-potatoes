@@ -7,10 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<head>
-    <title>Report page</title>
-</head>
-<body>
+    <head>
+        <title>Report page</title>
+    </head>
+    <body>
+        <form action="reportServlet" method="POST">
+            <input type="text" id="messageToAdmin" name="messageToAdmin" placeholder=  "type text here... "> <br/>
+            <button type="submit" > Send message to admin </button> <br/>
 
-</body>
+        </form>
+    </body>
 </html>
