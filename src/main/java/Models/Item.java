@@ -18,6 +18,7 @@ public class Item extends SQL {
     // Constant variable declaration.
     public static final String ATTRIBUTE = "ITEMS"; // ამ ცვლადს ძირითადად Attribute-ის სახელად გამოვიყენებთ.
     public static final String TABLE_NAME = "ITEMS"; // ამ ცვლადს ძირითადად SQL ბრძანებებს გადავცემთ პარამეტრად.
+    private static final String REVIEWS = "REVIEWS";
     public static final String EQUALITY_COLUMN = "CATEGORY";
     public static final String LIKENESS_COLUMN = "TITLE";
 
@@ -105,6 +106,20 @@ public class Item extends SQL {
         return null;
     }
 
+    //აბრუნებს კონკრეტული აითემის შესახებ დაწერილ ყველა review-ს
+    public static List<Review> getReviews(DB db , String itemID) throws SQLException {
+        List<Review> itemReviews = new ArrayList<>();
+        ResultSet reviews = db.conditionedSelect(REVIEWS, "item_id",
+                Item.surroundWithSingleQuotes(itemID));
+        while(reviews.next()){
+            Review review = new Review(reviews.getString(1) , reviews.getString(2) ,
+                    reviews.getDouble(3) , reviews.getString(4) , reviews.getString(5));
+            itemReviews.add(review);
+        }
+        return  itemReviews;
+    }
+
+
     // აბრუნებს Item-ების სიას შემდეგი მახასიათებლების მიხედვით: სიის ნივთები ერთ გადმოცემულ კატეგორიაში არიან,
     // ასევე, მათი სათაურები გადაცემულ '%searchFieldValue%'-ს ემთხვევა და ეს ნივთები დალაგებულია orderByValue-თი.
     public static List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
@@ -137,6 +152,20 @@ public class Item extends SQL {
         return items;
     }
 
+    //itemId-ში სახელის ნაწილში არსებულ სფეისებს (ცარიელ სტრინგებს) გარდაქმნის ქვედა ტირეებად: "_"
+    public static String getItemIdWithoutSpaces(String itemId){
+        return itemId.replaceAll(" ", "_");
+    }
+
+    //itemId -ში ისეთ ნაწილებს , სადაც ცარიელი სტრინგების ნაცვლად "_" -ები ეწერა , ისევ ცარიელი სტრიგებით ჩაანაცვლებს.
+    public static String getOriginalItemId(String itemId){
+        String category = itemId.substring(0,3);
+        String title = itemId.substring(3, itemId.lastIndexOf('_'));
+        String year = itemId.substring(itemId.lastIndexOf('_'));
+        String titleWithSpaces = title.replaceAll("_" , " ");
+        String originalId = category + titleWithSpaces + year;
+        return originalId;
+    }
     // Getter methods.
     public String getItemID(){
         return itemID;

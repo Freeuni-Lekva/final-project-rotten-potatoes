@@ -16,6 +16,15 @@
         <title>Categories</title>
     </head>
     <body>
+        <%if (application.getAttribute("username") == null){ %>
+            <form action="login" method="GET">
+                <button type = "submit"> Home </button>
+            </form>
+        <%} else { %>
+            <form action="/my_profile" method="POST">
+                <button name = "username" type= "submit" value = <%=application.getAttribute("username")%> > My profile </button>
+            </form>
+        <%}%>
         <form action="guest" method="POST">
             <button name = "CATEGORY" type = "submit" value = <%=Movie.ATTRIBUTE%> > MOVIES </button>
             <button name = "CATEGORY" type = "submit" value = <%=TV_Show.ATTRIBUTE%> >TV SHOWS </button>
