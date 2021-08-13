@@ -28,4 +28,16 @@
     <input type = "password" id = "password" name = "password" /><br/><br/>
     <input type = "submit" value= "Create" /><br/><br/>
   </form>
+
+  <% String info = (String)request.getSession().getAttribute("emptyFields"); %>
+  <% if (info != null && !info.isEmpty()) { %>
+  <p>Some of the fields are empty</p>
+  <p>Please, enter the information correctly</p>
+  <% } %>
+
+  <% String accountExists = (String)request.getSession().getAttribute("existingacc"); %>
+  <% if (accountExists != null && !accountExists.isEmpty()) { %>
+  <p>Provided username is either in use or does not meet standards (no spaces allowed).</p>
+  <% } %>
+
 </html>

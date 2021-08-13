@@ -15,7 +15,7 @@ import java.util.List;
 public class ReportResolvedServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }
 
     @Override
@@ -224,6 +224,6 @@ public class ReportResolvedServlet extends HttpServlet {
             db.delete("REPORTS", "reportID", reportID, "reportID", reportID);
         }
 
-        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }
 }

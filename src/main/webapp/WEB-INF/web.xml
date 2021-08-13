@@ -1,6 +1,6 @@
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          version="2.5"
@@ -22,7 +22,7 @@
     <servlet-name>addNewItem</servlet-name>
     <url-pattern>/addNewItem</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>Servlets.LoginServlet</servlet-class>
@@ -46,26 +46,6 @@
   <servlet>
     <servlet-name>Guest</servlet-name>
     <servlet-class>Servlets.GuestServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>FollowServlet</servlet-name>
-    <servlet-class>Servlets.FollowServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>UnfollowServlet</servlet-name>
-    <servlet-class>Servlets.UnfollowServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>ReportServlet</servlet-name>
-    <servlet-class>Servlets.ReportServlet</servlet-class>
-  </servlet>
-
-  <servlet>
-    <servlet-name>ReportResolvedServlet</servlet-name>
-    <servlet-class>Servlets.ReportResolvedServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -92,21 +72,11 @@
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/profile.jsp</url-pattern>
   </servlet-mapping>
-    
+
   <servlet>
     <servlet-name>product</servlet-name>
     <servlet-class>Servlets.productServlet</servlet-class>
   </servlet>
-
-  <servlet-mapping>
-    <servlet-name>ReportResolvedServlet</servlet-name>
-    <url-pattern>/report_resolved</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>FollowServlet</servlet-name>
-    <url-pattern>/followed</url-pattern>
-  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>product</servlet-name>
@@ -123,11 +93,6 @@
     <url-pattern>/unfollowed</url-pattern>
   </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>ReportServlet</servlet-name>
-    <url-pattern>/report.jsp</url-pattern>
-  </servlet-mapping>
-
   <servlet>
     <servlet-name>FollowServlet</servlet-name>
     <servlet-class>Servlets.FollowServlet</servlet-class>
@@ -136,5 +101,25 @@
   <servlet-mapping>
     <servlet-name>FollowServlet</servlet-name>
     <url-pattern>/followed</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ShowReportServlet</servlet-name>
+    <servlet-class>Servlets.ShowReportServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ShowReportServlet</servlet-name>
+    <url-pattern>/report.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReportResolvedServlet</servlet-name>
+    <servlet-class>Servlets.ReportResolvedServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReportResolvedServlet</servlet-name>
+    <url-pattern>/report_resolved</url-pattern>
   </servlet-mapping>
 </web-app>

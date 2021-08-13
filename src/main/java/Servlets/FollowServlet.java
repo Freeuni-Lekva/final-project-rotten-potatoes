@@ -1,6 +1,7 @@
 package Servlets;
 
 import Database.DB;
+import Models.Item;
 import Models.User;
 
 import javax.naming.Context;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class FollowServlet extends HttpServlet {
     @Override
@@ -21,7 +24,13 @@ public class FollowServlet extends HttpServlet {
         DB db = (DB) req.getServletContext().getAttribute("db");
         String wannabeFollower = (String) req.getSession().getAttribute("username");
         String userToFollow = req.getParameter("guest_visitor_id");
+
         User.follow(db, userToFollow, wannabeFollower);
+        List<String> notificationValues = Arrays.asList(null, Item.surroundWithSingleQuotes(userToFollow),
+                                                        Item.surroundWithSingleQuotes(wannabeFollower), null,
+                                                        Item.surroundWithSingleQuotes("FOLLOW"));
+        db.insert("NOTIFICATIONS", notificationValues);
+
         req.setAttribute("guest_visitor_id", userToFollow);
         req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }
