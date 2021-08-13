@@ -15,11 +15,17 @@
         <title>Title</title>
     </head>
     <body>
+    <% String username = (String) request.getSession().getAttribute("username");
+    if(username != null){ %>
+        <form action ="" method="GET">
+            <button type="submit" > REPORT </button>
+        </form>
+    <% }%>
 
-    // სერვლეტის სახელია აქ საჭირო
     <form name="productPage" method="post" action="newReview">
 
-            <%String itemId = (String) request.getParameter("id");
+            <%String idFromUrl = (String) request.getParameter("id");
+            String itemId = Item.getOriginalItemId(idFromUrl);
             String itemCategory = Item.getCategoryByItemID(itemId);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
