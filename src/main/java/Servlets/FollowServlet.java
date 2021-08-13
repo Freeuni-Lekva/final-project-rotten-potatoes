@@ -29,11 +29,12 @@ public class FollowServlet extends HttpServlet {
         try {
             if(!User.isFollowing(db, User.getUserByUsername(db, userToFollow), User.getUserByUsername(db, wannabeFollower))){
                 User.follow(db, userToFollow, wannabeFollower);
+				Notification.addNotification(db, userToFollow , wannabeFollower , null , "FOLLOW");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // insert info to notifications
+		
         req.setAttribute("guest_visitor_id", userToFollow);
         req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }
