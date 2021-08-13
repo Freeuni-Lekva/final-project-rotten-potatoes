@@ -9,6 +9,10 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+  <listener>
+    <listener-class>Servlets.ContextListener</listener-class>
+  </listener>
+
   <servlet>
     <servlet-name>addNewItem</servlet-name>
     <servlet-class>Servlets.addNewItem</servlet-class>
@@ -24,23 +28,19 @@
     <servlet-class>Servlets.LoginServlet</servlet-class>
   </servlet>
 
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/index.jsp</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <servlet-name>ChooseNewItemServlet</servlet-name>
     <servlet-class>Servlets.ChooseNewItemServlet</servlet-class>
   </servlet>
 
-  <servlet>
-    <servlet-name>ReturnToProfileServlet</servlet-name>
-    <servlet-class>Servlets.ReturnToProfileServlet</servlet-class>
-  </servlet>
-
-  <listener>
-    <listener-class>Servlets.ContextListener</listener-class>
-  </listener>
-
   <servlet-mapping>
-    <servlet-name>Login</servlet-name>
-    <url-pattern>/index.jsp</url-pattern>
+    <servlet-name>ChooseNewItemServlet</servlet-name>
+    <url-pattern>/addNewItem.jsp</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -73,15 +73,30 @@
     <url-pattern>/guest</url-pattern>
   </servlet-mapping>
 
-  <servlet-mapping>
-    <servlet-name>ChooseNewItemServlet</servlet-name>
-    <url-pattern>/addNewItem.jsp</url-pattern>
-  </servlet-mapping>
+  <servlet>
+    <servlet-name>NewAccount</servlet-name>
+    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
-    <servlet-name>ReturnToProfileServlet</servlet-name>
-    <url-pattern>/my_profile</url-pattern>
+    <servlet-name>NewAccount</servlet-name>
+    <url-pattern>/createNewAcc</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ProfileServlet</servlet-name>
+    <servlet-class>Servlets.ProfileServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ProfileServlet</servlet-name>
+    <url-pattern>/profile.jsp</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+    <servlet-name>product</servlet-name>
+    <servlet-class>Servlets.productServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>ReportResolvedServlet</servlet-name>
@@ -94,6 +109,16 @@
   </servlet-mapping>
 
   <servlet-mapping>
+    <servlet-name>product</servlet-name>
+    <url-pattern>/product.jsp</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UnfollowServlet</servlet-name>
+    <servlet-class>Servlets.UnfollowServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
     <servlet-name>UnfollowServlet</servlet-name>
     <url-pattern>/unfollowed</url-pattern>
   </servlet-mapping>
@@ -104,13 +129,12 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>NewAccount</servlet-name>
-    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+    <servlet-name>FollowServlet</servlet-name>
+    <servlet-class>Servlets.FollowServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>NewAccount</servlet-name>
-    <url-pattern>/createNewAcc</url-pattern>
+    <servlet-name>FollowServlet</servlet-name>
+    <url-pattern>/followed</url-pattern>
   </servlet-mapping>
-
 </web-app>

@@ -17,7 +17,6 @@ public class ContextListener implements ServletContextListener {
         DB db = new SQL();
         ServletContext context = servletContextEvent.getServletContext();
         context.setAttribute(DB_ATTRIBUTE, db);
-        context.setAttribute(USERNAME_ATTRIBUTE, "admin");
     }
 
     @Override

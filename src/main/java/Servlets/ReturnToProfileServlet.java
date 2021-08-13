@@ -11,12 +11,17 @@ import java.io.IOException;
 public class ReturnToProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-
+        String guestUsername = httpServletRequest.getParameter("guest_visitor_id");
+        httpServletRequest.setAttribute("guest_visitor_id", guestUsername);
+        httpServletRequest.getRequestDispatcher("/WEB-INF/profile.jsp").forward(httpServletRequest, httpServletResponse);
     }
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
-        // httpServletRequest.getServletContext().setAttribute("guest", null);
-        httpServletRequest.getRequestDispatcher("/WEB-INF/index.jsp").forward(httpServletRequest, httpServletResponse);
+        String username = httpServletRequest.getParameter("username");
+        String guestUsername = httpServletRequest.getParameter("guest_visitor_id");
+        httpServletRequest.setAttribute("guest_visitor_id", guestUsername);
+        httpServletRequest.setAttribute("username", username);
+        httpServletRequest.getRequestDispatcher("/WEB-INF/profile.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }
