@@ -3,17 +3,17 @@ package Models;
 public class Notification {
 
     private int notificationID;
-    private String receiver_username;
-    private String sender_username;
-    private String item_id;
-    private String notification_type;
+    private String receiverUsername;
+    private String senderUsername;
+    private String itemId;
+    private String notificationType;
 
-    public Notification(int notificationID, String receiver_username, String sender_username, String item_id, String notification_type) {
+    public Notification(int notificationID, String receiverUsername, String senderUsername, String itemId, String notificationType) {
         this.notificationID = notificationID;
-        this.receiver_username = receiver_username;
-        this.sender_username = sender_username;
-        this.item_id = item_id;
-        this.notification_type = notification_type;
+        this.receiverUsername = receiverUsername;
+        this.senderUsername = senderUsername;
+        this.itemId = itemId;
+        this.notificationType = notificationType;
     }
 
 
@@ -22,20 +22,20 @@ public class Notification {
         return notificationID;
     }
 
-    public String getReceiver_username() {
-        return receiver_username;
+    public String getReceiverUsername() {
+        return receiverUsername;
     }
 
-    public String getSender_username() {
-        return sender_username;
+    public String getSenderUsername() {
+        return senderUsername;
     }
 
-    public String getItem_id() {
-        return item_id;
+    public String getItemId() {
+        return itemId;
     }
 
-    public String getNotification_type() {
-        return notification_type;
+    public String getNotificationType() {
+        return notificationType;
     }
 
 
@@ -44,19 +44,19 @@ public class Notification {
         this.notificationID = notificationID;
     }
 
-    public void setReceiver_username(String receiver_username) {
-        this.receiver_username = receiver_username;
+    public void setReceiverUsername(String receiverUsername) {
+        this.receiverUsername = receiverUsername;
     }
 
-    public void setSender_username(String sender_username) {
-        this.sender_username = sender_username;
+    public void setSenderUsername(String senderUsername) {
+        this.senderUsername = senderUsername;
     }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public void setNotification_type(String notification_type) {
-        this.notification_type = notification_type;
+    public void setNotificationType(String notificationType) {
+        this.notificationType = notificationType;
     }
 }
