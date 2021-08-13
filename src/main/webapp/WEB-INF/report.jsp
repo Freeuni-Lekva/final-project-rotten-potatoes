@@ -17,7 +17,7 @@
         int reportID = (Integer) Integer.valueOf((String) request.getAttribute("report_id")); %>
         <title>Report #<%= reportID %></title>
     </head>
-    <body>
+    <body style="background-color:LightBlue;">
         <%
         DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
         Report report = Report.getReportById(db, reportID);
@@ -90,9 +90,9 @@
                 oTitle.append(diff.text);
                 rTitle.append(diff.text);
             } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
-                oTitle.append("<mark>" + diff.text + "</mark>");
+                oTitle.append("<mark><strong>" + diff.text + "</strong></mark>");
             } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
-                rTitle.append("<mark>" + diff.text + "</mark>");
+                rTitle.append("<mark><strong>" + diff.text + "</strong></mark>");
             }
         }
         %>
@@ -108,9 +108,9 @@
                 oReleaseDate.append(diff.text);
                 rReleaseDate.append(diff.text);
             } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
-                oReleaseDate.append("<mark>" + diff.text + "</mark>");
+                oReleaseDate.append("<mark><strong>" + diff.text + "</strong></mark>");
             } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
-                rReleaseDate.append("<mark>" + diff.text + "</mark>");
+                rReleaseDate.append("<mark><strong>" + diff.text + "</strong></mark>");
             }
         }
         %>
@@ -140,9 +140,9 @@
                 oProducer.append(diff.text);
                 rProducer.append(diff.text);
             } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
-                oProducer.append("<mark>" + diff.text + "</mark>");
+                oProducer.append("<mark><strong>" + diff.text + "</strong></mark>");
             } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
-                rProducer.append("<mark>" + diff.text + "</mark>");
+                rProducer.append("<mark><strong>" + diff.text + "</strong></mark>");
             }
         }
         %>
@@ -169,9 +169,9 @@
                 oInfo.append(diff.text);
                 rInfo.append(diff.text);
             } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
-                oInfo.append("<mark>" + diff.text + "</mark>");
+                oInfo.append("<mark><strong>" + diff.text + "</strong></mark>");
             } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
-                rInfo.append("<mark>" + diff.text + "</mark>");
+                rInfo.append("<mark><strong>" + diff.text + "</strong></mark>");
             }
         }
         %>
@@ -200,9 +200,9 @@
                         oMembers.append(diff.text);
                         rMembers.append(diff.text);
                     } else if(diff.operation.equals(DiffMatchPatch.Operation.DELETE)){
-                        oMembers.append("<mark>" + diff.text + "</mark>");
+                        oMembers.append("<mark><strong>" + diff.text + "</strong></mark>");
                     } else if(diff.operation.equals(DiffMatchPatch.Operation.INSERT)){
-                        rMembers.append("<mark>" + diff.text + "</mark>");
+                        rMembers.append("<mark><strong>" + diff.text + "</strong></mark>");
                     }
                 } %>
             <% }
@@ -220,10 +220,10 @@
             <div class="row">
                 <h2><b><center>Cover Picture</center></b></h2>
                 <div class="col">
-                    <h3><img src = <%= originalURL %> width = "100"></h3>
+                    <h3><img src = <%= originalURL %> width = "200"></h3>
                 </div>
                 <div class="col">
-                    <h3><img src = <%= reportedURL %> width = "100"></h3>
+                    <h3><img src = <%= reportedURL %> width = "200"></h3>
                 </div>
             </div>
             <br><br><br>
