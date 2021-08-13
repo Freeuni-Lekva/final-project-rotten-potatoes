@@ -27,7 +27,7 @@ INSERT INTO CATEGORIES VALUES
    ('MUSIC'), ('VIDEO_GAMES'), ('BOOKS'), ('TV_SHOWS'), ('MOVIES');
 
 CREATE TABLE USERS (
-   username CHAR(20) NOT NULL, CONSTRAINT pk_username PRIMARY KEY (username),
+   username CHAR(20) NOT NULL, CONSTRAINT pk_username PRIMARY KEY (username), CONSTRAINT username_ck CHECK (username NOT LIKE '% %'),
    first_name CHAR(20) NOT NULL,
    last_name CHAR(30) NOT NULL,
    date_of_birth DATE NOT NULL,

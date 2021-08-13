@@ -12,6 +12,8 @@ public class Review {
     public static final String ATTRIBUTE = "REVIEWS";
     public static final String TABLE_NAME = "REVIEWS";
 
+
+    public  static  final int DEFAULT_NUM_REVIEWS=  5;
     // Instance variable declarations.
     private String itemID;
     private String username;

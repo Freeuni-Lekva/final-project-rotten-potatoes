@@ -68,6 +68,17 @@
     <servlet-class>Servlets.ProfileServlet</servlet-class>
   </servlet>
 
+
+  <servlet>
+    <servlet-name>newReview</servlet-name>
+    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>newReview</servlet-name>
+    <url-pattern>/newReview</url-pattern>
+  </servlet-mapping>
+
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
     <url-pattern>/profile.jsp</url-pattern>
@@ -87,6 +98,7 @@
     <servlet-name>UnfollowServlet</servlet-name>
     <servlet-class>Servlets.UnfollowServlet</servlet-class>
   </servlet>
+
 
   <servlet-mapping>
     <servlet-name>UnfollowServlet</servlet-name>
