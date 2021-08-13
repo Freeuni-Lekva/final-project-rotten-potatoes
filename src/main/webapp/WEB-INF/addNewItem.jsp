@@ -17,7 +17,7 @@
 <%--<% String currUser= (String) request.getAttribute("currUser"); %>--%>
 
 
-<% String category=(String) request.getAttribute("NEW_ITEM_CATEGORY"); %>
+<% String category=(String) request.getSession().getAttribute("NEW_ITEM_CATEGORY"); %>
 
 
 <form name="insertForm" method="post" action="addNewItem">
