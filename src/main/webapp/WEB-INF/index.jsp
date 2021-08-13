@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="Servlets.*" %>
+<%@ page import="Models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
@@ -20,8 +21,12 @@
         <label for = "username">User name: </label>
         <input type = "text" id = "username" name = "username" /><br/><br/>
         <label for = "password">Password: </label>
-        <input type = "text" id = "password" name = "password"  />
+        <input type = "password" id = "password" name = "password"  />
         <input type = "submit" value= "Login" /><br/><br/>
+        <% String info = (String) request.getSession().getAttribute("invalidinfo"); %>
+        <% if (info != null && !info.isEmpty()) { %>
+            <p>Either your user name or password is incorrect or empty. Please try again.</p>
+        <% } %>
     </form>
 
     <form action = "guest" method = "get">
