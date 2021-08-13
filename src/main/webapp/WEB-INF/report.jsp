@@ -5,7 +5,6 @@
 <%@ page import="Models.*" %>
 <%@ page import="Servlets.*" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page import="java.util.LinkedList" %>
 <%@ page import="org.bitbucket.cowwoc.diffmatchpatch.DiffMatchPatch" %>
 
@@ -281,6 +280,9 @@
             <div class="row">
                 <h2><b><center>Reporter&#39s Comment</center></b></h2>
                 <div class="col">
+                    <% if(reportedComment != null && reportedComment.equals("")){ %>
+                        <h3>The reporter provided no additional commentary.</h3>
+                    <% } %>
                     <h3><%= reportedComment %></h3>
                 </div>
             </div>
