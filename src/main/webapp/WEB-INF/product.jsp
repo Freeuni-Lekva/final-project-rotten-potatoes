@@ -98,7 +98,7 @@
                     <b>Release date: </b> <%= book.getReleaseDate() %> <br>
                     <b>Writer: </b> <%= book.getWriter() %> <br>
                     <b>Summary: </b> <%= book.getSummary() %> <br>
-                </h3
+                </h3>
             <% }%>
 
 
