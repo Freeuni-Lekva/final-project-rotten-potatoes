@@ -16,13 +16,14 @@
         <title>Categories</title>
     </head>
     <body>
-        <%if (application.getAttribute("username") == null){ %>
-            <form action="login" method="GET">
-                <button type = "submit"> Home </button>
+        <%String username = (String) request.getSession().getAttribute("username");
+            if (username == null){ %>
+            <form action="createNewAcc" method="GET">
+                <button type = "submit"> Register </button>
             </form>
         <%} else { %>
-            <form action="/my_profile" method="POST">
-                <button name = "username" type= "submit" value = <%=application.getAttribute("username")%> > My profile </button>
+            <form action="profile.jsp" method="POST">
+                <button name = "username" type= "submit" value = <%=username%> > My profile </button>
             </form>
         <%}%>
         <form action="guest" method="POST">
@@ -53,7 +54,7 @@
                 String title = item.getTitle();
                 String coverURL = item.getCoverURL();
                 String itemId = item.getItemID();
-                String individualLink = "product.jsp?id=" + itemId;
+                String individualLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(itemId);
                 double score = item.getScore(); %>
                 <a href= <%= individualLink %>> <b> <%= title %> <b>(<%= score %>/10)</b>
                 <img src = <%= coverURL %> width="300" height="300"> <br/>
