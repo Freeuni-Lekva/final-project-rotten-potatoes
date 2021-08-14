@@ -106,11 +106,14 @@ public class Item extends SQL {
         return null;
     }
 
-    //აბრუნებს კონკრეტული აითემის შესახებ დაწერილ ყველა review-ს
-    public static List<Review> getReviews(DB db , String itemID) throws SQLException {
+    //აბრუნებს კონკრეტული აითემის შესახებ დაწერილ ყველა review-ს დალაგებულად.
+    public static List<Review> getReviewsSorted(DB db , String itemID , String orderByParameters) throws SQLException {
         List<Review> itemReviews = new ArrayList<>();
-        ResultSet reviews = db.conditionedSelect(REVIEWS, "item_id",
-                Item.surroundWithSingleQuotes(itemID));
+        String orderColumn = orderByParameters.substring(0 , orderByParameters.indexOf(" "));
+        String descOrAsc = orderByParameters.substring(orderByParameters.indexOf(" "));
+        ResultSet reviews = db.conditionedAndOrderedSelect(REVIEWS, "item_id",
+                Item.surroundWithSingleQuotes(itemID) , "item_id" ,Item.surroundWithSingleQuotes("%")
+                , orderColumn , descOrAsc);
         while(reviews.next()){
             Review review = new Review(reviews.getString(1) , reviews.getString(2) ,
                     reviews.getDouble(3) , reviews.getString(4) , reviews.getString(5));

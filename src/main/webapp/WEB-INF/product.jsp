@@ -12,14 +12,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Title</title>
+        <title>Product page</title>
     </head>
     <body>
+    <% String username = (String) request.getSession().getAttribute("username");
+    if(username != null){ %>
+        <form action ="report" method="GET">
+            <button type="submit" > REPORT </button>
+        </form>
+    <% }%>
 
-    // სერვლეტის სახელია აქ საჭირო
-    <form name="productPage" method="post" action="newReview">
-
-            <%String itemId = (String) request.getParameter("id");
+            <%String idFromUrl = (String) request.getParameter("id");
+            String itemId;
+            if(idFromUrl == null){
+                itemId = (String) request.getSession().getAttribute("id");
+            } else {
+                itemId = Item.getOriginalItemId(idFromUrl);
+            }
+            request.getSession().setAttribute("id", itemId);
             String itemCategory = Item.getCategoryByItemID(itemId);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
@@ -113,15 +123,31 @@
                 String title = currItem.getTitle(); %>
 
 
+            <form name="product" method="post" action="newReview">
             <label for="newReview"> Add new review:</label>
             <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
 
             <button type="submit" > ADD REVIEW </button>
             <button type="reset"> CLEAR </button>  <br/>
+            </form>
 
             <label > CRITIC REVIEWS FOR THE <%= title %> </label> <br/>
+            <form action="product" method="GET">
+                <select id = "REVIEW_SORTING" name= "REVIEW_SORTING">
+                    <option value = "score ASC">Score ascending</option>
+                    <option value = "score DESC">Score descending</option>
+                </select>
+                <button type= "submit">Sort reviews</button><br/>
 
-            <% List<Review>  reviewList = Item.getReviews(db, itemId);
+            </form>
+            <% String sorting = (String) request.getSession().getAttribute("REVIEW_SORTING");
+                if(sorting == null) sorting = "score ASC";
+                List<Review>  reviewList = null;
+                try {
+                    reviewList = Item.getReviewsSorted(db, itemId, sorting);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 int numberToShow= reviewList.size();
                 if(reviewList.size() > Review.DEFAULT_NUM_REVIEWS){
                     numberToShow= Review.DEFAULT_NUM_REVIEWS;
@@ -144,7 +170,7 @@
 
 
 
-</form>
+
     </body>
 
 </html>
