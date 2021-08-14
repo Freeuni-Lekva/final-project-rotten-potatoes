@@ -1,6 +1,10 @@
 package Models;
 
 public class Badge {
+
+    public  static final int AMATEUR_NUM=1;
+    public static final int EXPERIENCED_NUM=5;
+    public  static final int TOP_NUM=10;
     // Constant variable declaration.
     public static final String ATTRIBUTE = "BADGES";
     public static final String TABLE_NAME = "BADGES";
