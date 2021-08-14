@@ -17,6 +17,7 @@ public class ChooseNewItemServlet extends HttpServlet {
         // თათია, ასე ამოიღე არჩეული კატეგორია:
         String categoryName = httpServletRequest.getParameter("NEW_ITEM_CATEGORY");
 
+        httpServletRequest.getSession().setAttribute("NEW_ITEM_CATEGORY", categoryName);
         httpServletRequest.getRequestDispatcher("WEB-INF/addNewItem.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }

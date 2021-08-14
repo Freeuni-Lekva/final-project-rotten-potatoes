@@ -33,9 +33,11 @@ public class CreateAccountServlet extends HttpServlet {
         String birthdate = request.getParameter("birthdate");
         String password = request.getParameter("password");
 
+        request.getSession().setAttribute("emptyFields", "");
         if (username.isEmpty() || firstname.isEmpty() || lastname.isEmpty() ||
                 birthdate.isEmpty() || password.isEmpty()) {
-            request.getRequestDispatcher("/WEB-INF/createAccountEmptyFields.jsp").forward(request, response);
+            request.getSession().setAttribute("emptyFields", "emptyFields");
+            request.getRequestDispatcher("/WEB-INF/createNewAccount.jsp").forward(request, response);
             return;
         }
 
@@ -55,11 +57,12 @@ public class CreateAccountServlet extends HttpServlet {
         args = Arrays.asList(elems);
         int result = sql.insert("USERS", args);
         if (result == sql.SQL_SUCCESS) {
-            request.setAttribute(User.ATTRIBUTE, username);
+            request.getSession().setAttribute(User.ATTRIBUTE, username);
             request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
         } else {
-            request.setAttribute(User.ATTRIBUTE, username);
-            request.getRequestDispatcher("/WEB-INF/existingAccount.jsp").forward(request, response);
+            request.getSession().setAttribute(User.ATTRIBUTE, username);
+            request.getSession().setAttribute("existingacc", "existingacc");
+            request.getRequestDispatcher("/WEB-INF/createNewAccount.jsp").forward(request, response);
         }
     }
 }

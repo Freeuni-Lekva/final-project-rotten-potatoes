@@ -17,7 +17,7 @@
 <%--<% String currUser= (String) request.getAttribute("currUser"); %>--%>
 
 
-<% String category=(String) request.getAttribute("category"); %>
+<% String category=(String) request.getSession().getAttribute("NEW_ITEM_CATEGORY"); %>
 
 
 <form name="insertForm" method="post" action="addNewItem">
@@ -28,7 +28,7 @@
     <input type="text" id="title" name="title"> <br/>
 
 
-    <% if (category.equals(Movie.ATTRIBUTE)) { %>
+    <% if (category!=null && category.equals(Movie.ATTRIBUTE)) { %>
     <label for="movieDirector"> Director: </label>
     <input type="text" id="movieDirector" name="movieDirector"> <br/>
 
@@ -40,7 +40,7 @@
     <% } %>
 
 
-    <% if(category.equals(Music.ATTRIBUTE)){  %>
+    <% if(category!=null && category.equals(Music.ATTRIBUTE)){  %>
     <label for="musicArtist"> Artist: </label>
     <input type="text" id="musicArtist" name="musicArtist">  <br/>
 
@@ -53,7 +53,7 @@
     <%} %>
 
 
-    <% if(category.equals(TV_Show.ATTRIBUTE)){  %>
+    <% if(category!=null && category.equals(TV_Show.ATTRIBUTE)){  %>
 
     <label for="showDirector"> Director: </label>
     <input type="text" id="showDirector" name="showDirector"> <br/>
@@ -71,7 +71,7 @@
     <%} %>
 
 
-    <% if(category.equals(Book.ATTRIBUTE)){  %>
+    <% if(category!=null &&category.equals(Book.ATTRIBUTE)){  %>
 
     <label for="bookWriter"> Writer: </label>
     <input type="text" id="bookWriter" name="bookWriter"> <br/>
@@ -82,7 +82,7 @@
 
     <%} %>
 
-    <% if(category.equals(Video_Game.ATTRIBUTE)){  %>
+    <% if(category!=null &&category.equals(Video_Game.ATTRIBUTE)){  %>
 
     <label for="gameDevelopers"> Developers: </label>
     <input type="text" id="gameDevelopers" name="gameDevelopers"> <br/>
@@ -94,8 +94,8 @@
     <%} %>
 
 
-    <% if(category.equals(Video_Game.ATTRIBUTE) || category.equals(Movie.ATTRIBUTE)||
-            category.equals(Music.ATTRIBUTE) || category.equals(Book.ATTRIBUTE)){  %>
+    <% if(category!=null && (category.equals(Video_Game.ATTRIBUTE) || category.equals(Movie.ATTRIBUTE)||
+            category.equals(Music.ATTRIBUTE) || category.equals(Book.ATTRIBUTE))){  %>
 
     <label for="date"> Release date:</label>
     <input type="text" id="date" name="date"> <br/>
