@@ -3,6 +3,8 @@
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch
+DROP TABLE IF EXISTS NOTIFICATIONS;
+DROP TABLE IF EXISTS NOTIFICATION_TYPES;
 DROP TABLE IF EXISTS REPORTS;
 DROP TABLE IF EXISTS USER_BADGES;
 DROP TABLE IF EXISTS BADGES;
@@ -16,8 +18,6 @@ DROP TABLE IF EXISTS VIDEO_GAMES;
 DROP TABLE IF EXISTS ITEMS;
 DROP TABLE IF EXISTS CATEGORIES;
 DROP TABLE IF EXISTS USERS;
-DROP TABLE IF EXISTS NOTIFICATION_TYPES;
-DROP TABLE IF EXISTS NOTIFICATIONS;
 
 CREATE TABLE CATEGORIES(
    category_name CHAR(25) NOT NULL, CONSTRAINT category_name_pk PRIMARY KEY (category_name) 
@@ -227,9 +227,9 @@ INSERT INTO NOTIFICATION_TYPES VALUES
    
 CREATE TABLE NOTIFICATIONS (
 	notificationID int NOT NULL AUTO_INCREMENT, CONSTRAINT pk_notificationID PRIMARY KEY (notificationID),
-    reciever_username CHAR(20) NOT NULL, CONSTRAINT reciever_username_fk FOREIGN KEY (reciever_username) REFERENCES USERS (username),
+    receiver_username CHAR(20) NOT NULL, CONSTRAINT receiver_username_fk FOREIGN KEY (receiver_username) REFERENCES USERS (username),
     sender_username CHAR(20) NOT NULL, CONSTRAINT sender_username_fk FOREIGN KEY (sender_username) REFERENCES USERS (username),
-    item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk3 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
+    item_id CHAR(100), CONSTRAINT item_id_fk3 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
     notification_type CHAR(30) NOT NULL, CONSTRAINT notification_type_fk FOREIGN KEY (notification_type) REFERENCES NOTIFICATION_TYPES (notification_type)
 );
 
