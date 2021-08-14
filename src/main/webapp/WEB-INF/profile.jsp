@@ -119,40 +119,34 @@
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
 						<form action="/guest" method="get">
-							<input type="submit" value="HOMEPAGE"/>
+							<input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
 						</form>
 					</div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
-                    <div class="col">
+                    <div class="col" style="text-align: right;">
                         <form action="/profile.jsp" method="post">
-                            <input type="submit" value="MY PROFILE"/>
+                            <input type="submit" class="btn btn-warning" value="MY PROFILE"/>
                         </form>
                     </div>
 
                     <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG OUT</button>
+                    <div class="col-1" style="text-align: right;">
+                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
                     </div>
                 <% } else if(VISIT == PERSONAL_VISIT){ %>
                     <%-- მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
                         <form action="/guest" method="get">
-                            <input type="submit" value="HOMEPAGE"/>
+                            <input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
                         </form>
-                    </div>
-
-                    <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG OUT</button>
                     </div>
 
                     <%-- ახალი ნივთის შექმნა მხოლოდ მაშინ შეიძლება, როდესაც გვყავს რეგისტრირებული მომხმარებელი, რომელიც ამჟამად
                          საკუთარი პროფილის გვერდზე იმყოფება. --%>
                     <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
-
                     <% if(VISIT == PERSONAL_VISIT){ %>
-                        <div class="col">
+                        <div class="col" style="text-align: center;">
                             <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
                                 <select name="NEW_ITEM_CATEGORY">
                                     <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
@@ -161,21 +155,34 @@
                                     <option value= <%= Video_Game.ATTRIBUTE %> >Video Games</option>
                                     <option value= <%= Book.ATTRIBUTE %> >Books</option>
                                 </select>
-                                <input type="submit" value="Add New Item"/>
+                                <input type="submit" class="btn btn-warning" value="Add New Item"/>
                             </form>
                         </div>
                     <% } %>
+
+                    <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
+                    <div class="col" style="text-align: right;">
+                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
+                    </div>
                 <% } else if(VISIT == GUEST_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
                         <form action="/guest" method="get">
-                            <input type="submit" value="HOMEPAGE"/>
+                            <input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
                         </form>
                     </div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG IN/REGISTER</button>
+                    <div class="col" style="text-align: right;">
+                        <form action="/index.jsp" method="get">
+                            <input type="submit" class="btn btn-warning" value="LOGIN"/>
+                        </form>
+                    </div>
+
+                    <div class="col-1">
+                        <form action="/createNewAcc" method="get">
+                            <input type="submit" class="btn btn-danger" value="REGISTER"/>
+                        </form>
                     </div>
                 <% } %>
             </div>
