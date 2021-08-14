@@ -105,10 +105,9 @@
                 <% if(VISIT == USER_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
-                    <form action="/guest" method="get">
-                        <input type="submit" value="HOMEPAGE"/>
-                    </form>
-                    <%-- <button name="button" type="button">HOMEPAGE</button> --%>
+                      <form action="/guest" method="get">
+                          <input type="submit" value="HOMEPAGE"/>
+                      </form>   
                     </div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>

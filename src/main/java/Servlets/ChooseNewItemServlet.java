@@ -18,9 +18,8 @@ public class ChooseNewItemServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // თათია, ასე ამოიღე არჩეული კატეგორია:
-        String categoryName = req.getParameter("NEW_ITEM_CATEGORY");
-        HttpSession session = req.getSession();
-        session.setAttribute("NEW_ITEM_CATEGORY", categoryName);
-        req.getRequestDispatcher("WEB-INF/addNewItem.jsp").forward(req, resp);
+        String categoryName = httpServletRequest.getParameter("NEW_ITEM_CATEGORY");
+        httpServletRequest.getSession().setAttribute("NEW_ITEM_CATEGORY", categoryName);
+        httpServletRequest.getRequestDispatcher("WEB-INF/addNewItem.jsp").forward(httpServletRequest, httpServletResponse);
     }
 }
