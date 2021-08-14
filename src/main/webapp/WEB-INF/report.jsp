@@ -14,7 +14,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
         <%
-        int reportID = (Integer) Integer.valueOf((String) request.getAttribute("report_id")); %>
+        int reportID = (int) Integer.valueOf((String) session.getAttribute("report_id")); %>
         <title>Report #<%= reportID %></title>
     </head>
     <body>
@@ -292,7 +292,7 @@
                     <select name="RESOLVED">
                         <option value="APPROVE">APPROVE OF CHANGES</option>
                         <option value="DISAPPROVE">DISAPPROVE OF CHANGES</option>
-                        <input type="hidden" name="REPORT_ID" value=<%=request.getParameter("report_id")%>>
+                        <input type="hidden" name="REPORT_ID" value=<%=session.getAttribute("report_id")%>>
                     </select>
                     <input type="submit" value="VERIFY"/>
                 </form></center>
