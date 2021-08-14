@@ -386,7 +386,7 @@
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
                                         int releaseDate = item.getReleaseDate();
-                                        String individualLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
+                                        String individualLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= coverURL %> width = "100">
@@ -411,7 +411,7 @@
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
                                         int releaseDate = item.getReleaseDate();
-                                        String individualLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
+                                        String individualLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= coverURL %> width = "100">
@@ -477,7 +477,7 @@
                                     Item item = Item.getItemByID(db, itemID);
                                     String userReview = review.getReview();
                                     double userScore = review.getScore();
-                                    String itemLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
+                                    String itemLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= item.getCoverURL() %> width = "160">
@@ -506,7 +506,7 @@
                                         Item item = Item.getItemByID(db, itemID);
                                         String userReview = review.getReview();
                                         double userScore = review.getScore();
-                                        String itemLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
+                                        String itemLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                         <%-- !!! Cover images will probably need resizing !!! --%>
                                         <img src = <%= item.getCoverURL() %> width = "160">
