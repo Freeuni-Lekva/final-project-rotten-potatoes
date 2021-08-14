@@ -132,8 +132,8 @@
                     <option value = "score DESC">Score descending</option>
                 </select>
                 <button type= "submit">Sort reviews</button><br/>
-            </form>
 
+            </form>
             <% String sorting = (String) request.getSession().getAttribute("REVIEW_SORTING");
                 List<Review>  reviewList = null;
                 try {
