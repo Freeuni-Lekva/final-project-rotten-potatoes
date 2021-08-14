@@ -31,7 +31,7 @@ public class Review {
     }
 
     // ამატებს review-ს, რომელიც მომხმარებელმა გააკეთა, შესაბამის ცხრილში.
-    public int addReview(DB db, String itemID, String username, double score, String review){
+    public static int addReview(DB db, String itemID, String username, double score, String review){
         String category = Item.getCategoryByItemID(itemID);
         String columnName = Item.getColumnByCategory(category);
         List<String> values = Arrays.asList(Item.surroundWithSingleQuotes(itemID),
