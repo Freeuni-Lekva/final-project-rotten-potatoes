@@ -23,7 +23,13 @@
     <% }%>
 
             <%String idFromUrl = (String) request.getParameter("id");
-            String itemId = Item.getOriginalItemId(idFromUrl);
+            String itemId;
+            if(idFromUrl == null){
+                itemId = (String) request.getSession().getAttribute("id");
+            } else {
+                itemId = Item.getOriginalItemId(idFromUrl);
+            }
+            request.getSession().setAttribute("id", itemId);
             String itemCategory = Item.getCategoryByItemID(itemId);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
@@ -135,6 +141,7 @@
 
             </form>
             <% String sorting = (String) request.getSession().getAttribute("REVIEW_SORTING");
+                if(sorting == null) sorting = "score ASC";
                 List<Review>  reviewList = null;
                 try {
                     reviewList = Item.getReviewsSorted(db, itemId, sorting);
