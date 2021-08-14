@@ -18,11 +18,6 @@ public class addNewItem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
         String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getSession().getAttribute("username");
