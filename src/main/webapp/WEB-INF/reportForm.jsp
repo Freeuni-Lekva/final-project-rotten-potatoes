@@ -11,7 +11,7 @@
         <title>Report page</title>
     </head>
     <body>
-        <form action="reportServlet" method="POST">
+        <form action="report" method="POST">
             <input type="text" id="messageToAdmin" name="messageToAdmin" placeholder=  "type text here... "> <br/>
             <button type="submit" > Send message to admin </button> <br/>
 

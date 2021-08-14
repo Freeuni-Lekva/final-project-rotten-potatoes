@@ -17,12 +17,12 @@
     <body>
     <% String username = (String) request.getSession().getAttribute("username");
     if(username != null){ %>
-        <form action ="reportServlet" method="GET">
+        <form action ="report" method="GET">
             <button type="submit" > REPORT </button>
         </form>
     <% }%>
 
-    <form name="productPage" method="post" action="newReview">
+    <form name="product" method="post" action="newReview">
 
             <%String idFromUrl = (String) request.getParameter("id");
             String itemId = Item.getOriginalItemId(idFromUrl);
@@ -126,8 +126,15 @@
             <button type="reset"> CLEAR </button>  <br/>
 
             <label > CRITIC REVIEWS FOR THE <%= title %> </label> <br/>
-
-            <% List<Review>  reviewList = Item.getReviews(db, itemId);
+            <form action="product" method="GET">
+                <select id = "REVIEW_SORTING" name= "REVIEW_SORTING">
+                    <option value = "score ASC">Score ascending</option>
+                    <option value = "score DESC">Score descending</option>
+                </select>
+                <button type= "submit">Sort reviews</button><br/>
+            </form>
+            <% String sorting = (String) request.getSession().getAttribute("REVIEW_SORTING");
+                List<Review>  reviewList = Item.getReviewsSorted(db, itemId, sorting);
                 int numberToShow= reviewList.size();
                 if(reviewList.size() > Review.DEFAULT_NUM_REVIEWS){
                     numberToShow= Review.DEFAULT_NUM_REVIEWS;
