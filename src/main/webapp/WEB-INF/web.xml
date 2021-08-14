@@ -85,13 +85,13 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>product</servlet-name>
+    <servlet-name>productServlet</servlet-name>
     <servlet-class>Servlets.productServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>product</servlet-name>
-    <url-pattern>/product.jsp</url-pattern>
+    <servlet-name>productServlet</servlet-name>
+    <url-pattern>/product</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -133,5 +133,16 @@
   <servlet-mapping>
     <servlet-name>ReportResolvedServlet</servlet-name>
     <url-pattern>/report_resolved</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+  <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <servlet-class>Servlets.reportServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <url-pattern>/report</url-pattern>
   </servlet-mapping>
 </web-app>
