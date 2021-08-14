@@ -324,13 +324,12 @@
                                         String title = item.getTitle();
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
-                                        int releaseDate = item.getReleaseDate(); %>
+                                        int releaseDate = item.getReleaseDate();
+                                        String individualLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= coverURL %> width = "100">
-                                    <h3>
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)
-                                    </h3>
+                                    <a href= <%= individualLink %>><%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p>
                                 <% } %>
                           <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
@@ -350,13 +349,12 @@
                                         String title = item.getTitle();
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
-                                        int releaseDate = item.getReleaseDate(); %>
+                                        int releaseDate = item.getReleaseDate();
+                                        String individualLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= coverURL %> width = "100">
-                                    <h3>
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)
-                                    </h3>
+                                    <a href= <%= individualLink %>><%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p>
                                 <% } %>
                             <% } %>
                     <% } %>
@@ -417,19 +415,17 @@
                                     String itemID = review.getItemID();
                                     Item item = Item.getItemByID(db, itemID);
                                     String userReview = review.getReview();
-                                    double userScore = review.getScore(); %>
+                                    double userScore = review.getScore();
+                                    String itemLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                     <%-- !!! Cover images will probably need resizing !!! --%>
                                     <img src = <%= item.getCoverURL() %> width = "160">
-                                    <h2>
-                                        <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
-                                    </h2>
+                                    <a href= <%= itemLink %>><%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)</a></p>
                                     <h3>
                                         <%= guest.getUsername() %>&#39s personal score: <%= userScore %> <br>
                                         <%= guest.getUsername() %>&#39s review: <%= userReview %>
                                     </h3>
                             <% } %>
-
                         <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
                             List<Review> userReviews = user.getReviews(db);
@@ -448,13 +444,13 @@
                                         String itemID = review.getItemID();
                                         Item item = Item.getItemByID(db, itemID);
                                         String userReview = review.getReview();
-                                        double userScore = review.getScore(); %>
+                                        double userScore = review.getScore();
+                                        String itemLink = "product.jsp?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                         <%-- !!! Cover images will probably need resizing !!! --%>
                                         <img src = <%= item.getCoverURL() %> width = "160">
-                                        <h2>
-                                            <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
-                                        </h2>
+                                        <a href= <%= itemLink %>><%= item.getTitle() %>, <%= item.getReleaseDate() %>
+                                        (<%= item.getScore() %>/10)</a></p>
                                         <h3>
                                             Your personal score: <%= userScore %> <br>
                                             Your review: <%= userReview %>
