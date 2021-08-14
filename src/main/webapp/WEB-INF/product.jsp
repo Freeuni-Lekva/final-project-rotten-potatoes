@@ -22,8 +22,6 @@
         </form>
     <% }%>
 
-    <form name="product" method="post" action="newReview">
-
             <%String idFromUrl = (String) request.getParameter("id");
             String itemId = Item.getOriginalItemId(idFromUrl);
             String itemCategory = Item.getCategoryByItemID(itemId);
@@ -119,11 +117,13 @@
                 String title = currItem.getTitle(); %>
 
 
+            <form name="product" method="post" action="newReview">
             <label for="newReview"> Add new review:</label>
             <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
 
             <button type="submit" > ADD REVIEW </button>
             <button type="reset"> CLEAR </button>  <br/>
+            </form>
 
             <label > CRITIC REVIEWS FOR THE <%= title %> </label> <br/>
             <form action="product" method="GET">
@@ -133,8 +133,14 @@
                 </select>
                 <button type= "submit">Sort reviews</button><br/>
             </form>
+
             <% String sorting = (String) request.getSession().getAttribute("REVIEW_SORTING");
-                List<Review>  reviewList = Item.getReviewsSorted(db, itemId, sorting);
+                List<Review>  reviewList = null;
+                try {
+                    reviewList = Item.getReviewsSorted(db, itemId, sorting);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
                 int numberToShow= reviewList.size();
                 if(reviewList.size() > Review.DEFAULT_NUM_REVIEWS){
                     numberToShow= Review.DEFAULT_NUM_REVIEWS;
@@ -157,7 +163,7 @@
 
 
 
-</form>
+
     </body>
 
 </html>
