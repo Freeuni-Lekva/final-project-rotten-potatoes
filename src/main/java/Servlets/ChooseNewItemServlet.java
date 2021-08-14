@@ -16,7 +16,7 @@ public class ChooseNewItemServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         // თათია, ასე ამოიღე არჩეული კატეგორია:
         String categoryName = httpServletRequest.getParameter("NEW_ITEM_CATEGORY");
         httpServletRequest.getSession().setAttribute("NEW_ITEM_CATEGORY", categoryName);

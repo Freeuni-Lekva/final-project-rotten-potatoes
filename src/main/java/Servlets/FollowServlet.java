@@ -2,6 +2,7 @@ package Servlets;
 
 import Database.DB;
 import Models.Item;
+import Models.Notification;
 import Models.User;
 
 import javax.naming.Context;
