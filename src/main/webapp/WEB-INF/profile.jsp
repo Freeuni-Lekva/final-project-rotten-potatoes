@@ -77,6 +77,19 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <style>
+        .alert {
+          padding: 20px;
+          background-color: #eba834;
+        }
+
+        .closebtn {
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+        }
+        </style>
         <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
             <title>
                 <%-- &#39 is a single quotation mark symbol. --%>
@@ -168,6 +181,48 @@
             </div>
 
             <br><br>
+
+            <div class="row">
+                <div class="col">
+                    <%
+                    if(VISIT == PERSONAL_VISIT){
+                        List<Notification> notifications = Notification.getNotifications(db, user.getUsername());
+
+                        for(Notification notification : notifications){
+                            String notificationID = String.valueOf(notification.getNotificationID());
+                            String senderUsername = notification.getSenderUsername();
+                            String notificationType = notification.getNotificationType();
+
+                            String notificationItemID = null;
+                            Item notificationItem = null;
+
+                            if(notificationType != null && !notificationType.equals("FOLLOW")){
+                                notificationItemID = notification.getItemId();
+                                notificationItem = Item.getItemByID(db, notificationItemID);
+                            }
+                            String message = "";
+
+                            if(notificationType != null){
+                                if(notificationType.equals("REVIEW")){
+                                    message = senderUsername + " wrote a new review about " + notificationItem.getTitle()
+                                              + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("REQUEST")){
+                                    message = senderUsername + " requested you to write a review about " +
+                                              notificationItem.getTitle() + ", " +
+                                              String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("UPLOAD")){
+                                    message = senderUsername + " uploaded a new item - " + notificationItem.getTitle()
+                                              + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("FOLLOW")){
+                                    message = senderUsername + " started following you!";
+                                }
+                            } %>
+
+                            <p></p>
+                    <% }
+                    } %>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col">
