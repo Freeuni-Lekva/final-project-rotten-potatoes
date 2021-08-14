@@ -134,9 +134,8 @@
     <servlet-name>ReportResolvedServlet</servlet-name>
     <url-pattern>/report_resolved</url-pattern>
   </servlet-mapping>
-</web-app>
 
-  <servlet-mapping>
+  <servlet>
     <servlet-name>reportServlet</servlet-name>
     <servlet-class>Servlets.reportServlet</servlet-class>
   </servlet>

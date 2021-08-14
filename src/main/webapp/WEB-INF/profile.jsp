@@ -211,14 +211,21 @@
                                               notificationItem.getTitle() + ", " +
                                               String.valueOf(notificationItem.getReleaseDate()) + ".";
                                 } else if(notificationType.equals("UPLOAD")){
-                                    message = senderUsername + " uploaded a new item - " + notificationItem.getTitle()
-                                              + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                     message = senderUsername + " uploaded a new item - " + notificationItem.getTitle()
+                                               + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
                                 } else if(notificationType.equals("FOLLOW")){
                                     message = senderUsername + " started following you!";
                                 }
-                            } %>
+                            }
+                            %>
 
-                            <p></p>
+                            <form action="/profile.jsp" method="post">
+                                <div class="alert">
+                                    <strong><%= message %></strong>
+                                    <input type="submit" value="x" style="float: right;"/>
+                                    <input id="notification_id" name="notification_id" type="hidden" value=<%= "\"" + notificationID +"\"" %>>
+                                </div>
+                            </form>
                     <% }
                     } %>
                 </div>
@@ -342,7 +349,7 @@
                             <%-- REPORT #5: sjanj19 is reporting about - Dangerous, 1991. --%>
                             <mark>REPORT #<%= reportID %>:</mark> <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
                             <p></p>
-                            <form action="/report.jsp" method="post">
+                            <form action="/notification" method="post">
                                 <input type="submit" value="RESOLVE"/>
                                 <input id="report_id" name="report_id" type="hidden" value=<%= "\"" + reportID +"\"" %>>
                             </form>
