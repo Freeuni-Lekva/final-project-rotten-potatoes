@@ -12,12 +12,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Title</title>
+        <title>Product page</title>
     </head>
     <body>
     <% String username = (String) request.getSession().getAttribute("username");
     if(username != null){ %>
-        <form action ="" method="GET">
+        <form action ="reportServlet" method="GET">
             <button type="submit" > REPORT </button>
         </form>
     <% }%>
