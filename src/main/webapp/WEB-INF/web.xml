@@ -114,4 +114,14 @@
     <servlet-name>FollowServlet</servlet-name>
     <url-pattern>/followed</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>reportServlet</servlet-name>
+    <servlet-class>Servlets.reportServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>reportServlet</servlet-name>
+    <url-pattern>/report</url-pattern>
+  </servlet-mapping>
 </web-app>
