@@ -19,6 +19,38 @@ public class Badge {
         this.badgeDescription = badgeDescription;
     }
 
+   /* public static Badge getBadgeByID(String id) {
+        if (id.equals("AM_CRT"))
+            return new Badge("AM_CRT", "Amateur Critic", "Amateur_Critic.png",
+                    "Badge is given when the user has given a single review.");
+        if (id.equals("AM_FAN"))
+            return new Badge("AM_FAN", "Amateur Fan", "Amateur_Fan.png",
+                    "Badge is given when the user has uploaded a single item.");
+        if (id.equals("EX_CRT"))
+            return new Badge("EX_CRT", "Experienced Critic", "Experienced_Critic.png",
+                    "Badge is given when the user has given more than 5 reviews.");
+        if (id.equals("EX_FAN"))
+            return new Badge("EX_FAN", "Experienced Fan", "Experienced_Fan.png",
+                    "Badge is given when the user has uploaded more than 5 items.");
+        if (id.equals("TP_CRT"))
+            return new Badge("TP_CRT", "Top Critic", "Top_Critic.png",
+                    "Badge is given when the user has given more than 10 reviews.");
+        if (id.equals("TP_FAN"))
+            return new Badge("TP_FAN", "Top Fan", "Top_Fan.png",
+                    "Badge is given when the user has uploaded more than 10 items.");
+        return null;
+    } */
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Badge)) {
+            return false;
+        }
+        Badge badge = (Badge) o;
+        if (badge.getBadgeID().equals(this.getBadgeID())) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getBadgeID(){
         return badgeID;

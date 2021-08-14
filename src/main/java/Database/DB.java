@@ -14,4 +14,5 @@ public interface DB {
     public int update(String TABLE_NAME, String SET_COLUMN, String SET_VALUE, String WHERE_COLUMN, String WHERE_VALUE);
     public int delete(String TABLE_NAME , String COLUMN_1 , String VALUE_1 , String COLUMN_2 , String VALUE_2);
     public ResultSet selectAll(String TABLE_NAME);
+    public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE);
 }
