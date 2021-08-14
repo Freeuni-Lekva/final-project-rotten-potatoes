@@ -105,9 +105,9 @@
                 <% if(VISIT == USER_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
-                        <form action="/guest" method="get">
-                            <input type="submit" value="HOMEPAGE"/>
-                        </form>
+                      <form action="/guest" method="get">
+                          <input type="submit" value="HOMEPAGE"/>
+                      </form>   
                     </div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
@@ -282,12 +282,16 @@
                             int reportID = report.getReportId();
                             String reporter = report.getReporterUsername();
                             String itemID = report.getItemId();
-                            Item item = Item.getItemByID(db, itemID);
-                            String link = "report.jsp?report_id=" + reportID; %>
+                            Item item = Item.getItemByID(db, itemID); %>
                             <h3>
                             <%-- REPORT #5: sjanj19 is reporting about - Dangerous, 1991. --%>
                             <mark>REPORT #<%= reportID %>:</mark> <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
-                            <a href=<%= link %>>RESOLVE</a>
+                            <p></p>
+                            <form action="/report.jsp" method="post">
+                                <input type="submit" value="RESOLVE"/>
+                                <input id="report_id" name="report_id" type="hidden" value=<%= "\"" + reportID +"\"" %>>
+                            </form>
+                            <br>
                             </h3>
                         <% } %>
                     <% } %>
