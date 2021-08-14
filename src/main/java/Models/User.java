@@ -106,6 +106,16 @@ public class User {
         return reviews;
     }
 
+    //აბრუნებს კონკრეტული მომხმარებლის მიერ დაწერილი review-ების რაოდენობას.
+    public int writtenReviewsCount(DB db) throws SQLException {
+        return getReviews(db).size();
+    }
+
+    //აბრუნებს კონკრეტული მომხმარებლის მიერ დამატებული item-ების რაოდენობას.
+    public int uploadedItemsCount(DB db) throws SQLException {
+        return getItems(db).size();
+    }
+
     // აბრუნებს იმ User ობიექტების სიას, რომლებიც ა-follower-ებენ მოცემულ მომხმარებელს.
     public List<User> getFollowers(DB db) throws SQLException {
         List<User> followers = new ArrayList<User>();
