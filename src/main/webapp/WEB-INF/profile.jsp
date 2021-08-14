@@ -337,9 +337,9 @@
                                   <b><%= guest.getUsername() %> hasn&#39t uploaded any items yet.</b>
                               </h2>
                           <% } else { %>
-                                <h2>
-                                    <b><%= guest.getUsername() %>&#39S ITEMS:</b>
-                                </h2>
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center><%= guest.getUsername() %>&#39S ITEMS:</center></h2>
+                                </div>
 
                                 <%
                                     for(Item item : guestItems){
@@ -349,9 +349,12 @@
                                         int releaseDate = item.getReleaseDate();
                                         String individualLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
-                                    <%-- !!! Cover images will probably need resizing !!! --%>
-                                    <img src = <%= coverURL %> width = "100">
-                                    <a href= <%= individualLink %>><%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p>
+                                    <div class="figure" style="width:150px;">
+                                        <img src=<%= coverURL %> class="img-thumbnail" alt="logo" />
+                                        <div class="caption"><a href= <%= individualLink %> class="link-danger"
+                                        style="text-decoration: none;">
+                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p></div>
+                                    </div>
                                 <% } %>
                           <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
@@ -394,22 +397,19 @@
                               <b><%= guest.getUsername() %> hasn&#39t earned any badges yet.</b>
                             </h2>
                         <% } else { %>
-                            <h2>
-                                <b><%= guest.getUsername() %>&#39S BADGES:</b>
-                            </h2>
-
+                            <div class="p-2 mb-3 bg-warning text-white rounded">
+                                <h2><center><%= guest.getUsername() %>&#39S BADGES:</center></h2>
+                            </div>
                             <%
                                 for(Badge badge : guestBadges){
                                     String badgeIcon = badge.getBadgeIcon();
                                     String badgeDescription = badge.getBadgeDescription(); %>
 
-                                    <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
                                     <img src = <%= "images/" + badgeIcon %>
-                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "50">
-                            <% }
-
-                           } %>
-
+                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "100">
+                            <% } %>
+                            <br><br>
+                        <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
                          List<Badge> userBadges = user.getBadges(db);
 
@@ -426,7 +426,6 @@
                                     String badgeIcon = badge.getBadgeIcon();
                                     String badgeDescription = badge.getBadgeDescription(); %>
 
-                                    <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
                                     <img src = <%= "images/" + badgeIcon %>
                                     alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "100">
                             <% } %>
@@ -439,12 +438,12 @@
                     <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
 
                     <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
-
-                        <h2>
-                            <b><%= guest.getUsername() %>&#39S FOLLOWERS: </b><%= guest.getFollowers(db).size() %> <br>
-                            <b><%= guest.getUsername() %>&#39S FOLLOWING: </b><%= guest.getFollowing(db).size() %>
-                        </h2>
-
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center><%= guest.getUsername() %>&#39S FOLLOWERS: </b><%= guest.getFollowers(db).size() %></center>
+                        </div>
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center><%= guest.getUsername() %>&#39S FOLLOWING: </b><%= guest.getFollowing(db).size() %></center></h2>
+                        </div>
                     <% } else if(VISIT == PERSONAL_VISIT){ %>
 
                         <%-- აქ მოგვიანებით ერთი ცვლილება უნდა დაემატოს: მომხმარებელს უნდა შეეძლოს, რომ hyperlink-ით
@@ -493,9 +492,9 @@
                                 <b><%= guest.getUsername() %> hasn&#39t written any reviews yet.</b>
                             </h2>
                         <% } else { %>
-                            <h2>
-                                <b><%= guest.getUsername() %>&#39S REVIEWS:</b>
-                            </h2>
+                            <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center><%= guest.getUsername() %>&#39S REVIEWS:</center></h2>
+                            </div>
                             <%
                                 for(Review review : guestReviews){
                                     String itemID = review.getItemID();
@@ -504,13 +503,22 @@
                                     double userScore = review.getScore();
                                     String itemLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
-                                    <%-- !!! Cover images will probably need resizing !!! --%>
-                                    <img src = <%= item.getCoverURL() %> width = "160">
-                                    <a href= <%= itemLink %>><%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)</a></p>
-                                    <h3>
-                                        <%= guest.getUsername() %>&#39s personal score: <%= userScore %> <br>
-                                        <%= guest.getUsername() %>&#39s review: <%= userReview %>
-                                    </h3>
+                                    <div class="row" style="margin: 5px;">
+                                        <div class="col" style="text-align: right;">
+                                            <img src=<%= item.getCoverURL() %> width="250" class="img-thumbnail" alt="logo" />
+                                        </div>
+                                        <div class="col-8">
+                                            <a href= <%= itemLink %> class="link-danger"
+                                            style = "text-decoration: none; font-size: 40px;">
+                                            <%= item.getTitle() %>, <%= item.getReleaseDate() %>
+                                            (<%= item.getScore() %>/10)</a>
+
+                                            <h4>
+                                                <strong><%= guest.getUsername() %>&#39s personal score: </strong><%= userScore %> <br>
+                                                <strong><%= guest.getUsername() %>&#39s review: </strong><%= userReview %>
+                                            </h4>
+                                        </div>
+                                    </div>
                             <% } %>
                         <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
