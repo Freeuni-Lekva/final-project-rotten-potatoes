@@ -20,7 +20,8 @@
 <% String category=(String) request.getSession().getAttribute("NEW_ITEM_CATEGORY"); %>
 
 
-<form name="insertForm" method="post" action="addNewItem">
+<form name="insertForm" method="POST" action="addNewItem">
+
 
 
     <label >YOUR CHOSEN CATEGORY IS : <%= category %></label> <br/>
@@ -104,6 +105,11 @@
 
     <label for="cover"> Cover url:</label>
     <input type="text" id="cover" name="cover"> <br/>
+
+    <% String error = (String) request.getSession().getAttribute("hasError"); %>
+    <% if (error != null) { %>
+    <h2>YOUR ENTERED INFORMATION IS INCORRECT, PLEASE CHECK</h2>
+    <% } %>
 
     <button type="submit"> REGISTER </button>
 

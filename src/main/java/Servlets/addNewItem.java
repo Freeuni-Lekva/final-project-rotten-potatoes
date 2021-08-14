@@ -1,7 +1,8 @@
 package Servlets;
 
 import Database.DB;
-import Database.SQL;
+import  Database.SQL;
+
 import Models.*;
 
 import javax.servlet.ServletException;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,11 +18,14 @@ public class addNewItem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
         String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
-        String uploader= (String) request.getAttribute("username");
+        String uploader= (String) request.getSession().getAttribute("username");
         String smallVersion=category.substring(0,2);
         String title=request.getParameter("title");
         String cover_url=request.getParameter("cover");
@@ -30,7 +35,6 @@ public class addNewItem extends HttpServlet {
         List<String> forItem= new ArrayList<>();
         List<String> forCurrTable= new ArrayList<>();
 
-
         if(category.equals(TV_Show.ATTRIBUTE)){
             date=request.getParameter("showDate");
         } else {
@@ -38,6 +42,7 @@ public class addNewItem extends HttpServlet {
         }
 
         String item_id= smallVersion+ "_" + title+ "_" +date;
+        String item_id_without=item_id;
         item_id= Item.surroundWithSingleQuotes(item_id);
         forCurrTable.add(item_id);
 
@@ -141,21 +146,35 @@ public class addNewItem extends HttpServlet {
        DB db= (DB) getServletContext().getAttribute(ContextListener.DB_ATTRIBUTE);
 
        int insertInItems= db.insert(Item.TABLE_NAME, forItem);
-       int insertInCategory= db.insert(categoryWithoutQuotes,forCurrTable);
+       int insertInCategory=-1;
+       if(insertInItems == SQL.SQL_SUCCESS) {
+           insertInCategory = db.insert(categoryWithoutQuotes, forCurrTable);
+       }
 
+        System.out.println(forItem);
+        System.out.println(forCurrTable);
+        System.out.println(insertInCategory);
+        System.out.println(insertInItems);
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
-        if (insertInCategory == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
+        if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
+            try {
+                Item currItem= Item.getItemByID(db,item_id_without);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            request.getRequestDispatcher("/WEB-INF/product.jsp?id=" + item_id_without).forward(request,response);
 
         } else{
-
+            String hasError="YES";
+            request.getSession().setAttribute("hasError",hasError);
+            request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
         }
-
 
     }
 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        
     }
 }
