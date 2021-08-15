@@ -127,7 +127,7 @@
             <%if(username != null){%>
                 <form name="product" method="post" action="newReview">
                     <label for="newReview"> Add new review:</label>
-                    <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
+                    <input type="text" id="newReview" name="newReview" placeholder=  "type text here... " size="100"> <br/>
                     <select id="SCORE" name="SCORE">
                         <option value="0">0</option>
                         <option value="1">1</option>

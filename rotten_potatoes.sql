@@ -1,5 +1,5 @@
 -- change this line so that is uses your database
-
+CREATE DATABASE rotten_potatoes;
 USE rotten_potatoes;
 
 -- remove a table if it already exists to begin from scratch

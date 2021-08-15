@@ -132,10 +132,6 @@ public class SQL implements DB {
         return null;
     }
 
-    @Override
-    public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE) {
-        return 0;
-    }
 
     /* ფუნქციის გამოყენების სავარაუდო დროები:
      *   - როცა გვაინტერესებს, მომხმარებელმა login-ის დროს სწორი username და password მიუთითა თუ არა:
