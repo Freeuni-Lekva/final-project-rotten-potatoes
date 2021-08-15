@@ -86,7 +86,7 @@
                         <img src=<%= coverURL %> style="width: 300px; height: 400px; object-fit: fill;" class="img-thumbnail" alt="logo" />
                     <% } %>
                     <div class="caption"><a href= <%= individualLink %> class="link-primary"
-                    style="text-decoration: none; font-size: 22px;">
+                    style="text-decoration: none; font-size: 20px;">
                     <%= title %><br>
                     <strong>(<%= score %>/10)</strong></a></p></div>
                 </div>
