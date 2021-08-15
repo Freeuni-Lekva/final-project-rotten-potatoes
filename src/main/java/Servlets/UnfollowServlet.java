@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class UnfollowServlet extends HttpServlet {
     @Override
@@ -20,7 +21,13 @@ public class UnfollowServlet extends HttpServlet {
         DB db = (DB) req.getServletContext().getAttribute("db");
         String wannabeUnfollower = (String) req.getSession().getAttribute("username");
         String userToFollow = req.getParameter("guest_visitor_id");
-        User.unfollow(db, userToFollow, wannabeUnfollower);
+        try {
+            if(User.isFollowing(db, User.getUserByUsername(db, userToFollow), User.getUserByUsername(db, wannabeUnfollower))){
+                User.unfollow(db, userToFollow, wannabeUnfollower);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.setAttribute("guest_visitor_id", userToFollow);
         req.getRequestDispatcher("/WEB-INF/profile.jsp").forward(req, resp);
     }

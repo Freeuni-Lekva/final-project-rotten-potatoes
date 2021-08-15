@@ -77,6 +77,19 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <style>
+        .alert {
+          padding: 20px;
+          background-color: #abc2ff;
+        }
+
+        .closebtn {
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+        }
+        </style>
         <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
             <title>
                 <%-- &#39 is a single quotation mark symbol. --%>
@@ -89,15 +102,9 @@
         <% } %>
     </head>
 
-    <body>
+    <body style="background-color:#fffdc2;">
         <p></p>
         <p></p>
-
-        <div class="container">
-            <div class="row">
-
-            </div>
-        </div>
 
         <div class="container">
             <div class="row">
@@ -105,41 +112,35 @@
                 <% if(VISIT == USER_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
-                      <form action="/guest" method="get">
-                          <input type="submit" value="HOMEPAGE"/>
-                      </form>   
-                    </div>
+						<form action="/guest" method="get">
+							<input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
+						</form>
+					</div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს საკუთარი პროფილის გვერდზე. --%>
-                    <div class="col">
+                    <div class="col" style="text-align: right;">
                         <form action="/profile.jsp" method="post">
-                            <input type="submit" value="MY PROFILE"/>
+                            <input type="submit" class="btn btn-warning" value="MY PROFILE"/>
                         </form>
                     </div>
 
                     <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG OUT</button>
+                    <div class="col" style="text-align: right;">
+                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
                     </div>
                 <% } else if(VISIT == PERSONAL_VISIT){ %>
                     <%-- მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
                         <form action="/guest" method="get">
-                            <input type="submit" value="HOMEPAGE"/>
+                            <input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
                         </form>
-                    </div>
-
-                    <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG OUT</button>
                     </div>
 
                     <%-- ახალი ნივთის შექმნა მხოლოდ მაშინ შეიძლება, როდესაც გვყავს რეგისტრირებული მომხმარებელი, რომელიც ამჟამად
                          საკუთარი პროფილის გვერდზე იმყოფება. --%>
                     <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
-
                     <% if(VISIT == PERSONAL_VISIT){ %>
-                        <div class="col">
+                        <div class="col" style="text-align: center;">
                             <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
                                 <select name="NEW_ITEM_CATEGORY">
                                     <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
@@ -148,26 +149,88 @@
                                     <option value= <%= Video_Game.ATTRIBUTE %> >Video Games</option>
                                     <option value= <%= Book.ATTRIBUTE %> >Books</option>
                                 </select>
-                                <input type="submit" value="Add New Item"/>
+                                <input type="submit" class="btn btn-warning" value="Add New Item"/>
                             </form>
                         </div>
                     <% } %>
+
+                    <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
+                    <div class="col" style="text-align: right;">
+                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
+                    </div>
                 <% } else if(VISIT == GUEST_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
                     <div class="col">
                         <form action="/guest" method="get">
-                            <input type="submit" value="HOMEPAGE"/>
+                            <input type="submit" class="btn btn-primary" value="HOMEPAGE"/>
                         </form>
                     </div>
 
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col">
-                        <button name="button" type="button">LOG IN/REGISTER</button>
+                    <div class="col" style="text-align: right;">
+                        <form action="/index.jsp" method="get">
+                            <input type="submit" class="btn btn-warning" value="LOGIN"/>
+                        </form>
+                    </div>
+
+                    <div class="col-1">
+                        <form action="/createNewAcc" method="get">
+                            <input type="submit" class="btn btn-danger" value="REGISTER"/>
+                        </form>
                     </div>
                 <% } %>
             </div>
 
             <br><br>
+
+            <div class="row">
+                <div class="col">
+                    <%
+                    if(VISIT == PERSONAL_VISIT){
+                        List<Notification> notifications = Notification.getNotifications(db, user.getUsername());
+
+                        for(Notification notification : notifications){
+                            String notificationID = String.valueOf(notification.getNotificationID());
+                            String senderUsername = notification.getSenderUsername();
+                            String notificationType = notification.getNotificationType();
+
+                            String notificationItemID = null;
+                            Item notificationItem = null;
+
+                            if(notificationType != null && !notificationType.equals("FOLLOW")){
+                                notificationItemID = notification.getItemId();
+                                notificationItem = Item.getItemByID(db, notificationItemID);
+                            }
+                            String message = "";
+
+                            if(notificationType != null){
+                                if(notificationType.equals("REVIEW")){
+                                    message = senderUsername + " wrote a new review about " + notificationItem.getTitle()
+                                              + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("REQUEST")){
+                                    message = senderUsername + " requested you to write a review about " +
+                                              notificationItem.getTitle() + ", " +
+                                              String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("UPLOAD")){
+                                     message = senderUsername + " uploaded a new item - " + notificationItem.getTitle()
+                                               + ", " + String.valueOf(notificationItem.getReleaseDate()) + ".";
+                                } else if(notificationType.equals("FOLLOW")){
+                                    message = senderUsername + " started following you!";
+                                }
+                            }
+                            %>
+
+                            <form action="/notification" method="post">
+                                <div class="alert">
+                                    <strong><%= message %></strong>
+                                    <input type="submit" value="x" style="float: right;"/>
+                                    <input id="notification_id" name="notification_id" type="hidden" value=<%= "\"" + notificationID +"\"" %>>
+                                </div>
+                            </form>
+                    <% }
+                    } %>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col">
@@ -179,12 +242,15 @@
                         </h2>
                     <% } else if(VISIT == PERSONAL_VISIT){
                             if(isAdministrator){ %>
-                                <h2>
-                                    ADMINISTRATOR&#39S PAGE
-                                </h2>
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center> ADMINISTRATOR&#39S PAGE </center></h2>
+                                </div>
                             <% } else { %>
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center>WELCOME TO YOUR PROFILE, <b><%= user.getUsername() %></b>!</center></h2>
+                                </div>
                                 <h2>
-                                    WELCOME TO YOUR PROFILE, <b><%= user.getUsername() %></b>!
+
                                 </h2>
                                 <%-- რადგან ეს პირადი გვერდია, გამოვსახავთ დამატებით პირად ინფორმაციას. --%>
                                 <%-- Display additional information about the user. --%>
@@ -208,55 +274,6 @@
                             <form action= <%= "/followed?guest_visitor_id=" + guestUsername %> method="post">
                                 <input type="submit" value="FOLLOW"/>
                             </form>
-                        <% } %>
-                    <% } %>
-                </div>
-                <div class="col">
-                    <%-- badge-ების გამოსახვა ვიზიტების შესაბამისად. --%>
-                    <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
-                        List<Badge> guestBadges = guest.getBadges(db);
-
-                        if(guestBadges.isEmpty()){ %>
-                            <h2>
-                              <b><%= guest.getUsername() %> hasn&#39t earned any badges yet.</b>
-                            </h2>
-                        <% } else { %>
-                            <h2>
-                                <b><%= guest.getUsername() %>&#39S BADGES:</b>
-                            </h2>
-
-                            <%
-                                for(Badge badge : guestBadges){
-                                    String badgeIcon = badge.getBadgeIcon();
-                                    String badgeDescription = badge.getBadgeDescription(); %>
-
-                                    <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
-                                    <img src = <%= "images/" + badgeIcon %>
-                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "50">
-                            <% }
-
-                           } %>
-
-                    <% } else if(VISIT == PERSONAL_VISIT){
-                         List<Badge> userBadges = user.getBadges(db);
-
-                         if(userBadges.isEmpty()){ %>
-                            <h2>
-                                <b>You haven&#39t earned any badges yet.</b>
-                            </h2>
-                        <% } else { %>
-                            <h2>
-                                <b>YOUR BADGES:</b>
-                            </h2>
-                            <%
-                                for(Badge badge : userBadges){
-                                    String badgeIcon = badge.getBadgeIcon();
-                                    String badgeDescription = badge.getBadgeDescription(); %>
-
-                                    <%-- !!! Images will probably have to be resized later and image folder will have to be moved !!! --%>
-                                    <img src = <%= "images/" + badgeIcon %>
-                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "50">
-                            <% } %>
                         <% } %>
                     <% } %>
                 </div>
@@ -285,13 +302,13 @@
                             Item item = Item.getItemByID(db, itemID); %>
                             <h3>
                             <%-- REPORT #5: sjanj19 is reporting about - Dangerous, 1991. --%>
-                            <mark>REPORT #<%= reportID %>:</mark> <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
-                            <p></p>
+
+                            <div class="p-1 mb-1 bg-primary text-white rounded">
                             <form action="/report.jsp" method="post">
+                                REPORT #<%= reportID %>: <%= reporter %> is reporting about - <%= item.getTitle() %>, <%= item.getReleaseDate() %>.
                                 <input type="submit" value="RESOLVE"/>
                                 <input id="report_id" name="report_id" type="hidden" value=<%= "\"" + reportID +"\"" %>>
-                            </form>
-                            <br>
+                            </form></div>
                             </h3>
                         <% } %>
                     <% } %>
@@ -314,22 +331,24 @@
                                   <b><%= guest.getUsername() %> hasn&#39t uploaded any items yet.</b>
                               </h2>
                           <% } else { %>
-                                <h2>
-                                    <b><%= guest.getUsername() %>&#39S ITEMS:</b>
-                                </h2>
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center><%= guest.getUsername() %>&#39S ITEMS:</center></h2>
+                                </div>
 
                                 <%
                                     for(Item item : guestItems){
                                         String title = item.getTitle();
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
-                                        int releaseDate = item.getReleaseDate(); %>
+                                        int releaseDate = item.getReleaseDate();
+                                        String individualLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
-                                    <%-- !!! Cover images will probably need resizing !!! --%>
-                                    <img src = <%= coverURL %> width = "100">
-                                    <h3>
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)
-                                    </h3>
+                                    <div class="figure" style="width:150px;">
+                                        <img src=<%= coverURL %> class="img-thumbnail" alt="logo" />
+                                        <div class="caption"><a href= <%= individualLink %> class="link-danger"
+                                        style="text-decoration: none;">
+                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p></div>
+                                    </div>
                                 <% } %>
                           <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
@@ -340,63 +359,122 @@
                                   <b>You haven&#39t uploaded any items yet.</b>
                                 </h2>
                             <% } else { %>
-                                <h2>
-                                    <b>YOUR ITEMS:</b>
-                                </h2>
-
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center>YOUR ITEMS:</center></h2>
+                                </div>
                                 <%
                                     for(Item item : userItems){
                                         String title = item.getTitle();
                                         String coverURL = item.getCoverURL();
                                         double score = item.getScore();
-                                        int releaseDate = item.getReleaseDate(); %>
+                                        int releaseDate = item.getReleaseDate();
+                                        String individualLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
-                                    <%-- !!! Cover images will probably need resizing !!! --%>
-                                    <img src = <%= coverURL %> width = "100">
-                                    <h3>
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)
-                                    </h3>
+                                    <div class="figure" style="width:150px;">
+                                        <img src=<%= coverURL %> class="img-thumbnail" alt="logo" />
+                                        <div class="caption"><a href= <%= individualLink %> class="link-danger"
+                                        style="text-decoration: none;">
+                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p></div>
+                                    </div>
                                 <% } %>
                             <% } %>
                     <% } %>
                 </div>
+
                 <div class="col">
+                    <%-- badge-ების გამოსახვა ვიზიტების შესაბამისად. --%>
+                    <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){
+                        List<Badge> guestBadges = guest.getBadges(db);
+
+                        if(guestBadges.isEmpty()){ %>
+                            <h2>
+                              <b><%= guest.getUsername() %> hasn&#39t earned any badges yet.</b>
+                            </h2>
+                        <% } else { %>
+                            <div class="p-2 mb-3 bg-warning text-white rounded">
+                                <h2><center><%= guest.getUsername() %>&#39S BADGES:</center></h2>
+                            </div>
+                            <%
+                                for(Badge badge : guestBadges){
+                                    String badgeIcon = badge.getBadgeIcon();
+                                    String badgeDescription = badge.getBadgeDescription(); %>
+
+                                    <img src = <%= "images/" + badgeIcon %>
+                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "100">
+                            <% } %>
+                            <br><br>
+                        <% } %>
+                    <% } else if(VISIT == PERSONAL_VISIT){
+                         List<Badge> userBadges = user.getBadges(db);
+
+                         if(userBadges.isEmpty()){ %>
+                            <h2>
+                                <b>You haven&#39t earned any badges yet.</b>
+                            </h2>
+                        <% } else { %>
+                            <div class="p-2 mb-3 bg-warning text-white rounded">
+                                <h2><center>YOUR BADGES:</center></h2>
+                            </div>
+                            <%
+                                for(Badge badge : userBadges){
+                                    String badgeIcon = badge.getBadgeIcon();
+                                    String badgeDescription = badge.getBadgeDescription(); %>
+
+                                    <img src = <%= "images/" + badgeIcon %>
+                                    alt="alternative text" title= <%= "\"" + badgeDescription + "\"" %> width = "100">
+                            <% } %>
+                            <br><br>
+                        <% } %>
+                    <% } %>
+
                     <%-- Followers/Following-ის გამოსახვა ვიზიტის შესაბამისად. სტუმრებთან მხოლოდ followers/following-ის რაოდენობები
                     გამოჩნდება. პირად პროფილზე კონკრეტული მომხმარებლების სია გამოჩდნება. --%>
                     <%-- !!! Add read more property and a limit on the amount of things shown !!! ---%>
 
                     <% if(VISIT == USER_VISIT || VISIT == GUEST_VISIT){ %>
-
-                        <h2>
-                            <b><%= guest.getUsername() %>&#39S FOLLOWERS: </b><%= guest.getFollowers(db).size() %> <br>
-                            <b><%= guest.getUsername() %>&#39S FOLLOWING: </b><%= guest.getFollowing(db).size() %>
-                        </h2>
-
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center><%= guest.getUsername() %>&#39S FOLLOWERS: </b><%= guest.getFollowers(db).size() %></center>
+                        </div>
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center><%= guest.getUsername() %>&#39S FOLLOWING: </b><%= guest.getFollowing(db).size() %></center></h2>
+                        </div>
                     <% } else if(VISIT == PERSONAL_VISIT){ %>
 
                         <%-- აქ მოგვიანებით ერთი ცვლილება უნდა დაემატოს: მომხმარებელს უნდა შეეძლოს, რომ hyperlink-ით
                              თავისი რომელიმე follower/following მომხმარებლის პროფილის გვერდზე გადავიდეს. --%>
 
-                        <h2>
-                            YOUR FOLLOWERS (<%= user.getFollowers(db).size() %>):
-                        </h2>
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center>YOUR FOLLOWERS (<%= user.getFollowers(db).size() %>):</center></h2>
+                        </div>
                         <%
                             for(User follower : user.getFollowers(db)){
                                 String followerUsername = follower.getUsername();
                                 String link = "/profile.jsp?guest_visitor_id=" + followerUsername; %>
-                                <p><a href=<%= link %>><%= followerUsername %></a></p>
+                                <a href=<%= link %> style="font-size: 40px; text-decoration: none;">
+                                <%= followerUsername %>&nbsp;&nbsp;</a>
                         <% } %>
-                        <h2>
-                            YOUR FOLLOWING (<%= user.getFollowing(db).size() %>):
-                        </h2>
+                        <br><br>
+
+                        <div class="p-2 mb-3 bg-warning text-white rounded">
+                            <h2><center>YOUR FOLLOWING (<%= user.getFollowing(db).size() %>):</center></h2>
+                        </div>
+
                         <%
                             for(User following : user.getFollowing(db)){
                                 String followingUsername = following.getUsername();
                                 String link = "/profile.jsp?guest_visitor_id=" + followingUsername; %>
-                                <p><a href=<%= link %>><%= followingUsername %></a></p>
+                                <a href=<%= link %> style="font-size: 40px; text-decoration: none;">
+                                <%= followingUsername %>&nbsp;&nbsp;</a>
                         <% } %>
+                        <br><br>
+
                     <% } %>
-                    <%-- დაწერილი კრიტიკის ნახვა. --%>
+
+
+                </div>
+
+                <div class="row">
+                <%-- დაწერილი კრიტიკის ნახვა. --%>
                     <%-- აქაც კარგი იქნება შემდეგი დამატება: hyperlink-ები, რომლებიც მომხმარებელს იმ პროდუქტის გვერდზე გადაიყვანენ,
                          რომელზეც დაიწერა შეფასება. --%>
 
@@ -408,27 +486,34 @@
                                 <b><%= guest.getUsername() %> hasn&#39t written any reviews yet.</b>
                             </h2>
                         <% } else { %>
-                            <h2>
-                                <b><%= guest.getUsername() %>&#39S REVIEWS:</b>
-                            </h2>
+                            <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center><%= guest.getUsername() %>&#39S REVIEWS:</center></h2>
+                            </div>
                             <%
                                 for(Review review : guestReviews){
                                     String itemID = review.getItemID();
                                     Item item = Item.getItemByID(db, itemID);
                                     String userReview = review.getReview();
-                                    double userScore = review.getScore(); %>
+                                    double userScore = review.getScore();
+                                    String itemLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
-                                    <%-- !!! Cover images will probably need resizing !!! --%>
-                                    <img src = <%= item.getCoverURL() %> width = "160">
-                                    <h2>
-                                        <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
-                                    </h2>
-                                    <h3>
-                                        <%= guest.getUsername() %>&#39s personal score: <%= userScore %> <br>
-                                        <%= guest.getUsername() %>&#39s review: <%= userReview %>
-                                    </h3>
+                                    <div class="row" style="margin: 5px;">
+                                        <div class="col" style="text-align: right;">
+                                            <img src=<%= item.getCoverURL() %> width="250" class="img-thumbnail" alt="logo" />
+                                        </div>
+                                        <div class="col-8">
+                                            <a href= <%= itemLink %> class="link-danger"
+                                            style = "text-decoration: none; font-size: 40px;">
+                                            <%= item.getTitle() %>, <%= item.getReleaseDate() %>
+                                            (<%= item.getScore() %>/10)</a>
+
+                                            <h4>
+                                                <strong><%= guest.getUsername() %>&#39s personal score: </strong><%= userScore %> <br>
+                                                <strong><%= guest.getUsername() %>&#39s review: </strong><%= userReview %>
+                                            </h4>
+                                        </div>
+                                    </div>
                             <% } %>
-
                         <% } %>
                     <% } else if(VISIT == PERSONAL_VISIT){
                             List<Review> userReviews = user.getReviews(db);
@@ -438,26 +523,37 @@
                                     <b>You haven&#39t written any reviews yet.</b>
                                 </h2>
                             <% } else { %>
-                                <h2>
-                                    <b>YOUR REVIEWS:</b>
-                                </h2>
+                                <div class="p-2 mb-3 bg-danger text-white rounded">
+                                    <h2><center>YOUR REVIEWS:</center></h2>
+                                </div>
 
                                 <%
                                     for(Review review : userReviews){
                                         String itemID = review.getItemID();
                                         Item item = Item.getItemByID(db, itemID);
                                         String userReview = review.getReview();
-                                        double userScore = review.getScore(); %>
+                                        double userScore = review.getScore();
+                                        String itemLink = "product?id=" + Item.getItemIdWithoutSpaces(item.getItemID()); %>
 
                                         <%-- !!! Cover images will probably need resizing !!! --%>
-                                        <img src = <%= item.getCoverURL() %> width = "160">
-                                        <h2>
-                                            <%= item.getTitle() %>, <%= item.getReleaseDate() %> (<%= item.getScore() %>/10)
-                                        </h2>
-                                        <h3>
-                                            Your personal score: <%= userScore %> <br>
-                                            Your review: <%= userReview %>
-                                        </h3>
+
+                                        <div class="row" style="margin: 5px;">
+                                            <div class="col" style="text-align: right;">
+                                                <img src=<%= item.getCoverURL() %> width="250" class="img-thumbnail" alt="logo" />
+                                            </div>
+                                            <div class="col-8">
+                                                <a href= <%= itemLink %> class="link-danger"
+                                                style = "text-decoration: none; font-size: 40px;">
+                                                <%= item.getTitle() %>, <%= item.getReleaseDate() %>
+                                                (<%= item.getScore() %>/10)</a>
+
+                                                <h4>
+                                                    <strong>Your personal score: </strong><%= userScore %> <br>
+                                                    <strong>Your review: </strong><%= userReview %>
+                                                </h4>
+                                            </div>
+                                        </div>
+
                                 <% } %>
 
                             <% } %>
