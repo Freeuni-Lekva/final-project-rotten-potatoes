@@ -152,12 +152,8 @@ public class addNewItem extends HttpServlet {
         System.out.println(insertInItems);
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
         if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
-            try {
-                Item currItem= Item.getItemByID(db,item_id_without);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            request.getRequestDispatcher("/WEB-INF/product.jsp?id=" + item_id_without).forward(request,response);
+            request.getSession().setAttribute("id",item_id_without);
+            request.getRequestDispatcher("/WEB-INF/product.jsp").forward(request,response);
 
         } else{
             String hasError="YES";
