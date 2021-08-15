@@ -27,7 +27,7 @@
 
 
 
-<form name="reportForm" method="POST" action="">
+<form name="reportForm" method="POST" action="report">
 
 
     <p> REPORT FORM:</p>
