@@ -347,7 +347,8 @@
                                         <img src=<%= coverURL %> class="img-thumbnail" alt="logo" />
                                         <div class="caption"><a href= <%= individualLink %> class="link-danger"
                                         style="text-decoration: none;">
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p></div>
+                                        <%= title %>, <%= releaseDate %><br>
+                                        <strong>(<%= score %>/10)</strong></a></p></div>
                                     </div>
                                 <% } %>
                           <% } %>
@@ -374,7 +375,8 @@
                                         <img src=<%= coverURL %> class="img-thumbnail" alt="logo" />
                                         <div class="caption"><a href= <%= individualLink %> class="link-danger"
                                         style="text-decoration: none;">
-                                        <%= title %>, <%= releaseDate %> (<%= score %>/10)</a></p></div>
+                                        <%= title %>, <%= releaseDate %><br>
+                                        <strong>(<%= score %>/10)</strong></a></p></div>
                                     </div>
                                 <% } %>
                             <% } %>
@@ -553,7 +555,6 @@
                                                 </h4>
                                             </div>
                                         </div>
-
                                 <% } %>
 
                             <% } %>
