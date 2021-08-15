@@ -56,6 +56,22 @@ public class TV_Show {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        TV_Show t = (TV_Show) o;
+        if(t.getTVShowID().equals(this.getTVShowID())
+                && t.getTitle().equals(this.getTitle())
+                && t.getAiringYear() == this.getAiringYear()
+                && t.getDirector().equals(this.getDirector())
+                && t.getTVShowCast().equals(this.getTVShowCast())
+                && t.getCoverURL().equals(this.getCoverURL())
+                && t.getSummary().equals(this.getSummary())
+                && t.getUploader().equals(this.getUploader())
+                && t.getScore() == this.getScore()
+                && t.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getTVShowID(){
         return tvShowID;
