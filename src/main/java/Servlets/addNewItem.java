@@ -21,6 +21,7 @@ public class addNewItem extends HttpServlet {
         String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getSession().getAttribute("username");
+        String uploaderWithout=uploader;
         String smallVersion=category.substring(0,2);
         String title=request.getParameter("title");
         String cover_url=request.getParameter("cover");
@@ -153,7 +154,19 @@ public class addNewItem extends HttpServlet {
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
         if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
             request.getSession().setAttribute("id",item_id_without);
+            User currUser=null;
+            try {
+                currUser=User.getUserByUsername(db,uploaderWithout);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                currUser.updateBadges(db);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             request.getRequestDispatcher("/WEB-INF/product.jsp").forward(request,response);
+
         } else{
             hasError="YES";
             request.getSession().setAttribute("hasError",hasError);

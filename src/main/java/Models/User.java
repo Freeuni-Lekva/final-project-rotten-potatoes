@@ -160,8 +160,8 @@ public class User {
     }
 
     public void updateBadges(DB db) throws SQLException {
-        int numReviews = db.count(Review.TABLE_NAME, "username", getUsername());
-        int numUploadedItems = db.count(Item.TABLE_NAME, "uploader", getUsername());
+        int numReviews = db.count(Review.TABLE_NAME, "username", Item.surroundWithSingleQuotes(getUsername()));
+        int numUploadedItems = db.count(Item.TABLE_NAME, "uploader", Item.surroundWithSingleQuotes(getUsername()));
         List<Badge> currentBadges = getBadges(db);
         List<String> currentBadgesIDs = new ArrayList<>();
         for (int i = 0; i < currentBadges.size(); i++) {

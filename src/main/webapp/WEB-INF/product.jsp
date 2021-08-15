@@ -22,6 +22,11 @@
         </form>
     <% }%>
 
+    <form action ="/guest" method="GET">
+        <button type="submit" > HOMEPAGE </button>
+    </form>
+
+
             <%String idFromUrl = (String) request.getParameter("id");
             String itemId;
             if(idFromUrl == null){
