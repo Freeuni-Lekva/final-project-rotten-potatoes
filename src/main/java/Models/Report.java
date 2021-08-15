@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Report {
-    private static final String REPORTS = "REPORTS";
+    public static final String REPORTS = "REPORTS";
     private int reportId;
     private String reporterUsername;
     private String itemId;
