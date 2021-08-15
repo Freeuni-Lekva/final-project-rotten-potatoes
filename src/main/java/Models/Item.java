@@ -127,12 +127,9 @@ public class Item extends SQL {
     // ასევე, მათი სათაურები გადაცემულ '%searchFieldValue%'-ს ემთხვევა და ეს ნივთები დალაგებულია orderByValue-თი.
     public static List<Item> getItems(DB db, String category, String searchFieldValue, String orderByValue) throws SQLException {
         List<Item> items = new ArrayList<Item>();
-
         // Reformat parameters.
         String[] split = orderByValue.split(" ");
-
         String EQUALITY_VALUE = surroundWithSingleQuotes(category.toUpperCase()); // .toUpperCase() might be redundant
-
         StringBuilder LIKENESS_VALUE = new StringBuilder();
         LIKENESS_VALUE.append("'%");
         LIKENESS_VALUE.append(searchFieldValue);
@@ -153,6 +150,20 @@ public class Item extends SQL {
             items.add(item);
         }
         return items;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Item it = (Item) o;
+        if(it.getItemID().equals(this.getItemID())
+                && it.getTitle().equals(this.getTitle())
+                && it.getCategory().equals(this.getCategory())
+                && it.getUploader().equals(this.getUploader())
+                && it.getScore() == this.getScore()
+                && it.getCoverURL().equals(this.getCoverURL())
+                && it.getReleaseDate() == this.getReleaseDate()
+                && it.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
     }
 
     //itemId-ში სახელის ნაწილში არსებულ სფეისებს (ცარიელ სტრინგებს) გარდაქმნის ქვედა ტირეებად: "_"
