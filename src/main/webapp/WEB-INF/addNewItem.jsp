@@ -11,17 +11,26 @@
 <html>
     <head>
         <title>ADD NEW ITEM</title>
+        <% String category=(String) request.getSession().getAttribute("NEW_ITEM_CATEGORY"); %>
     </head>
-    <body>
+
+    <% if(category!=null && category.equals(Movie.ATTRIBUTE)){ %>
+        <body style="background-color:#ffcfcc;">
+    <% } else if(category!=null && category.equals(TV_Show.ATTRIBUTE)){ %>
+        <body style="background-color:#ccf1ff;">
+    <% } else if(category!=null && category.equals(Music.ATTRIBUTE)){ %>
+        <body style="background-color:#ebebeb;">
+    <% } else if(category!=null && category.equals(Video_Game.ATTRIBUTE)){ %>
+        <body style="background-color:#d9f6ff;">
+    <% } else if(category!=null && category.equals(Book.ATTRIBUTE)){ %>
+        <body style="background-color:#f2e3ce;">
+    <% } %>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
         <%--this and second line should be changed--%>
         <%--<% String category= (String) request.getAttribute("category"); %>--%>
         <%--<% String currUser= (String) request.getAttribute("currUser"); %>--%>
-
-
-        <% String category=(String) request.getSession().getAttribute("NEW_ITEM_CATEGORY"); %>
 
         <div class="has-bg-img">
             <% if(category!=null && category.equals(Movie.ATTRIBUTE)){ %>
