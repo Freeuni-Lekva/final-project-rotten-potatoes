@@ -26,12 +26,12 @@ public class TestBooks extends TestCase {
         String url = "https://images-na.ssl-images-amazon.com/images/I/31Z5UYB591L._SR600%2C315_PIWhiteStrip%2CBottomLeft%2C0%2C35_SCLZZZZZZZ_FMpng_BG255%2C255%2C255.jpg";
         DB db = new SQL();
 
-        db.insert("USERS", new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("qeto"), Item.surroundWithSingleQuotes("admin")
+        db.insert("USERS", new ArrayList<>(Arrays.asList( Item.surroundWithSingleQuotes("qeto"), Item.surroundWithSingleQuotes("admin")
                 ,Item.surroundWithSingleQuotes("admin"), Item.surroundWithSingleQuotes("2001-10-10"), Item.surroundWithSingleQuotes("admin"))));
 
         db.insert("ITEMS" , new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("BO_A Big Betray_2021")
-                ,Item.surroundWithSingleQuotes("BOOKS"),Item.surroundWithSingleQuotes("qeto"),
-                "0", Item.surroundWithSingleQuotes(url))));
+                ,Item.surroundWithSingleQuotes("A Big Betray"),Item.surroundWithSingleQuotes("BOOKS")
+                ,Item.surroundWithSingleQuotes("qeto"), "0", Item.surroundWithSingleQuotes(url), "2021", "0" )));
         db.insert("BOOKS" , new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("BO_A Big Betray_2021")
                 ,Item.surroundWithSingleQuotes("A Big Betray") , "2021"
                 ,Item.surroundWithSingleQuotes("Shawn Joly")

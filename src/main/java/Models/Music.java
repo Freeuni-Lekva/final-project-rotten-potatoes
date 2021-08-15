@@ -61,6 +61,23 @@ public class Music {
         return null;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        Music m = (Music) o;
+        if(m.getMusicID().equals(this.getMusicID())
+                && m.getArtist().equals(this.getArtist())
+                && m.getTitle().equals(this.getTitle())
+                && m.getLabel().equals(this.getLabel())
+                && m.getReleaseYear() == this.getReleaseYear()
+                && m.getGenre().equals(this.getGenre())
+                && m.getAlbumCoverURL().equals(this.getAlbumCoverURL())
+                && m.getUploader().equals(this.getUploader())
+                && m.getScore() == this.getScore()
+                && m.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getMusicID(){
         return musicID;

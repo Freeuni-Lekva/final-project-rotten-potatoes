@@ -59,6 +59,21 @@ public class Video_Game {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Video_Game v = (Video_Game) o;
+        if(v.getVideoGameID().equals(this.getVideoGameID())
+                && v.getTitle().equals(this.getTitle())
+                && v.getReleaseDate() == this.getReleaseDate()
+                && v.getDevelopers().equals(this.getDevelopers())
+                && v.getCoverURL().equals(this.getCoverURL())
+                && v.getSummary().equals(this.getSummary())
+                && v.getUploader().equals(this.getUploader())
+                && v.getScore() == this.getScore()
+                && v.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getVideoGameID(){
         return videoGameID;
