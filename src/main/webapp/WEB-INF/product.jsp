@@ -144,7 +144,9 @@
                 }
                 String title = currItem.getTitle(); %>
 
-            <%if(username != null){%>
+            <% boolean hasWrittenReview = User.hasReviewed(db, username, itemId);
+
+            if(username != null && !hasWrittenReview){%>
                 <form name="product" method="post" action="newReview">
                     <label for="newReview"> Add new review:</label>
                     <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>

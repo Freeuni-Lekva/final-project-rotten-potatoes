@@ -56,6 +56,13 @@ public class User {
         return null;
     }
 
+    public static boolean hasReviewed(DB db, String username, String itemID) throws SQLException {
+        ResultSet rowOfReviews = db.doublyConditionedSelect("REVIEWS", "username", Item.surroundWithSingleQuotes(username),
+                "item_id", Item.surroundWithSingleQuotes(itemID));
+        if(!rowOfReviews.next()) return false;
+        return true;
+    }
+
     public List<Badge> getBadges(DB db) throws SQLException {
         List<Badge> badges = new ArrayList<>();
         List<String> userBadgeIDs = new ArrayList<>();
