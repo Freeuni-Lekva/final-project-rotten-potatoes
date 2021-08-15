@@ -2,6 +2,12 @@ package Tests;
 
 import Models.Review;
 import junit.framework.TestCase;
+import Database.DB;
+import Database.SQL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestReview extends TestCase {
     private Review r ;
@@ -11,6 +17,29 @@ public class TestReview extends TestCase {
         r = new Review("BO_test_2005", "qeto", 7, "Good book", "BOOKS");
     }
 
+      public void testAddReview() throws SQLException {
+        DB db = new SQL();
+        String url = "https://i.pinimg.com/originals/e5/75/24/e575246ab2b9487c171ce93cca646f3c.jpg";
+
+        db.insert("USERS", new ArrayList<>(Arrays.asList( Item.surroundWithSingleQuotes("qeto"), Item.surroundWithSingleQuotes("admin")
+                ,Item.surroundWithSingleQuotes("admin"), Item.surroundWithSingleQuotes("2001-10-10"), Item.surroundWithSingleQuotes("admin"))));
+
+        db.insert("USERS", new ArrayList<>(Arrays.asList( Item.surroundWithSingleQuotes("qetobeto1"), Item.surroundWithSingleQuotes("admin")
+                ,Item.surroundWithSingleQuotes("admin"), Item.surroundWithSingleQuotes("2001-10-10"), Item.surroundWithSingleQuotes("admin"))));
+
+
+        db.insert("ITEMS" , new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("MO_test_1950")
+                ,Item.surroundWithSingleQuotes("test"),Item.surroundWithSingleQuotes("MOVIES")
+                ,Item.surroundWithSingleQuotes("qeto"), "5", Item.surroundWithSingleQuotes(url), "1950", "10" )));
+
+        Review.addReview(db,"MO_test_1950", "qeto",7 , "Nice movie");
+        Review.addReview(db,"MO_test_1950", "qetobeto1",3 , "Bad Movie");
+
+        List<Review> r = Item.getReviewsSorted(db , "MO_test_1950", "SCORE DESC");
+        assertEquals(r.get(0).getItemID(),r.get(1).getItemID());
+        assertTrue(r.get(0).getScore() >= r.get(1).getScore());
+    }
+    
     //Test getter methods
 
     public void testGetItemId(){
