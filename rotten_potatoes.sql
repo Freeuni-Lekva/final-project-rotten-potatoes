@@ -44,6 +44,8 @@ INSERT INTO USERS VALUES
    ('admin', 'Giorgi', 'Meore', '1900-03-07', '70e55e37480aafbb55d697f1dc7dcfb6b70ca342'),
    ('tekla', 'Tekla', 'Basilidze', '2000-02-12', 'f9853a17b3f82c79c1843e7d69ff539d154d8e50'),
    ('sjanj19', 'Shorena', 'Janjghava', '2001-05-31', '70e55e37480aafbb55d697f1dc7dcfb6b70ca342');
+   
+   
 
 CREATE TABLE ITEMS (
    item_id CHAR(100) NOT NULL, CONSTRAINT ck_item_id PRIMARY KEY (item_id),
@@ -78,8 +80,11 @@ INSERT INTO ITEMS VALUES
    ('VI_Cyberpunk 2077_2020', 'Cyberpunk 2077', 'VIDEO_GAMES', 'sjanj19', 0, 'https://images-na.ssl-images-amazon.com/images/I/91Nw-OlqDIL.jpg', 2020, 0),
    ('VI_Batman: Arkham City_2011', 'Batman: Arkham City', 'VIDEO_GAMES', 'sjanj19', 0, 'https://image.api.playstation.com/cdn/UP1018/NPUB30754_00/1tKIV7dIntxi6laeiSH9ffzTFmOHObKa.png?w=960&h=960', 2011, 0),
    ('BO_The Magic Mountain_1924', 'The Magic Mountain', 'BOOKS', 'sjanj19', 0, 'https://images-na.ssl-images-amazon.com/images/I/81hJb7YycbL.jpg', 1924, 0),
-   ('TV_Game of Thrones_2011', 'Game of Thrones', 'TV_SHOWS', 'sjanj19', 0, 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg', 2011, 0);
-
+   ('TV_Game of Thrones_2011', 'Game of Thrones', 'TV_SHOWS', 'sjanj19', 0, 'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg', 2011, 0),
+   ('BO_Cosmos_1980', 'Cosmos', 'BOOKS', 'sjanj19', 0, 'https://images-na.ssl-images-amazon.com/images/I/91w4Ci-KMqL.jpg', 1980, 0),
+   ('MO_Psycho_1960', 'Psycho', 'MOVIES', 'sjanj19', 0, 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRicca1uD1bCkKQF3FqdlhTpxRnsetHxLWfQPXU8B1Mt-uqXYHr', 1960, 0),
+   ('TV_Loki_2021', 'Loki', 'TV_SHOWS', 'sjanj19', 0, 'https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_.jpg', 2021, 0);
+   
 CREATE TABLE BADGES (
    badge_id CHAR(6) NOT NULL, CONSTRAINT pk_badge_id PRIMARY KEY (badge_id),
    badge_name CHAR(20) NOT NULL,
@@ -155,7 +160,12 @@ INSERT INTO TV_SHOWS VALUES
     ('TV_Game of Thrones_2011', 'Game of Thrones', 2011, 'Alan Taylor, Mark Mylod, Alex Graves, Jeremy Podeswa', 'Peter Dinklage, Lena Headey, Emilia Clarke, Kit Harington, Nikolaj Coster-Waldau',
      'https://m.media-amazon.com/images/M/MV5BYTRiNDQwYzAtMzVlZS00NTI5LWJjYjUtMzkwNTUzMWMxZTllXkEyXkFqcGdeQXVyNDIzMzcwNjc@._V1_.jpg', 'In the Game of Thrones, you either win or you die. Nine noble families fight for control of 
      the mythical land of Westeros. Political and sexual intrigue is pervasive. Robert Baratheon (Mark Addy), King of Westeros, asks his old friend, Lord Eddard Stark (Sean Bean), to serve as Hand of the King, or highest official.',
-     'sjanj19', 0, 0);
+     'sjanj19', 0, 0),
+     ('TV_Loki_2021', 'Loki', 2021, 'Kate Herron', 'Tom Hiddleston, Sophia Di Martino, Owen Wilson, Gugu Mbatha-Raw, Jonathan Majors', 
+      'https://m.media-amazon.com/images/M/MV5BNTkwOTE1ZDYtODQ3Yy00YTYwLTg0YWQtYmVkNmFjNGZlYmRiXkEyXkFqcGdeQXVyNTc4MjczMTM@._V1_.jpg', 
+      'Loki revolves around the mischievous villain escaping the clutches of The Avengers and getting caught by the Time Variance Authority. 
+      This sends him on a mission to catch the different antagonist who has been troubling the timelines.', 'sjanj19', 0, 0);
+
 
 CREATE TABLE REVIEWS (
    item_id CHAR(100) NOT NULL, CONSTRAINT item_id_fk FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
@@ -200,7 +210,12 @@ INSERT INTO MOVIES VALUES
     ('MO_Kill Bill: Vol. 1_2003', 'Kill Bill: Vol. 1', 2003, 'Quentin Tarantino', 'Uma Thurman, David Carradine, Daryl Hannah, Michael Madsen, Lucy Liu, Vivica A. Fox, Julie Dreyfus',
     'https://flxt.tmsimg.com/assets/p32988_p_v10_ae.jpg', 'A former assassin, known simply as The Bride (Uma Thurman), wakes from a coma four years after her jealous ex-lover Bill 
     (David Carradine) attempts to murder her on her wedding day. Fueled by an insatiable desire for revenge, she vows to get even with every person who contributed to the loss of her unborn child, 
-    her entire wedding party, and four years of her life. After devising a hit list, The Bride sets off on her quest, enduring unspeakable injury and unscrupulous enemies.', 'sjanj19', 0, 0);
+    her entire wedding party, and four years of her life. After devising a hit list, The Bride sets off on her quest, enduring unspeakable injury and unscrupulous enemies.', 'sjanj19', 0, 0),
+    ('MO_Psycho_1960', 'Psycho', 1960, 'Alfred Hitchcock', 'Anthony Perkins, Janet Leigh, Vera Miles, John Gavin', 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRicca1uD1bCkKQF3FqdlhTpxRnsetHxLWfQPXU8B1Mt-uqXYHr',
+     'Phoenix secretary Marion Crane (Janet Leigh), on the lam after stealing $40,000 from her employer in order to run away with her boyfriend, Sam Loomis (John Gavin), is overcome by exhaustion during a heavy rainstorm. 
+     Traveling on the back roads to avoid the police, she stops for the night at the ramshackle Bates Motel and meets the polite but highly strung proprietor Norman Bates (Anthony Perkins), a young man with an interest in 
+     taxidermy and a difficult relationship with his mother.', 'sjanj19', 0, 0);
+
 
 CREATE TABLE BOOKS (
    book_id CHAR(100) NOT NULL, CONSTRAINT book_id_fk FOREIGN KEY (book_id) REFERENCES ITEMS (item_id),
@@ -219,7 +234,9 @@ INSERT INTO BOOKS VALUES
     'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 
     'It is the first in the series about the Swedish boy detective.', 'admin', 0, 0),
    ('BO_The Magic Mountain_1924', 'The Magic Mountain', 1924, 'Thomas Mann', 'https://images-na.ssl-images-amazon.com/images/I/81hJb7YycbL.jpg', 'The Magic Mountain tells the story of Hans Castorp, a young German engineer, 
-    who goes to visit a cousin in a tuberculosis sanatorium in the mountains of Davos, Switz.', 'sjanj19', 0, 0);
+    who goes to visit a cousin in a tuberculosis sanatorium in the mountains of Davos, Switz.', 'sjanj19', 0, 0),
+   ('BO_Cosmos_1980', 'Cosmos', 1980, 'Carl Sagan', 'https://images-na.ssl-images-amazon.com/images/I/91w4Ci-KMqL.jpg', 'Cosmos traces the origins of knowledge and the scientific method, mixing science and philosophy, and 
+    speculates to the future of science. The book also. In the book, Sagan explores 15 billion years of cosmic evolution and the development of science and civilization.', 'sjanj19', 0, 0);
 
 CREATE TABLE VIDEO_GAMES (
    video_game_id CHAR(100) NOT NULL, CONSTRAINT video_game_id_fk FOREIGN KEY (video_game_id) REFERENCES ITEMS (item_id),
@@ -282,4 +299,3 @@ CREATE TABLE NOTIFICATIONS (
     item_id CHAR(100), CONSTRAINT item_id_fk3 FOREIGN KEY (item_id) REFERENCES ITEMS (item_id),
     notification_type CHAR(30) NOT NULL, CONSTRAINT notification_type_fk FOREIGN KEY (notification_type) REFERENCES NOTIFICATION_TYPES (notification_type)
 );
-
