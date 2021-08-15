@@ -106,7 +106,7 @@
     <label for="cover"> Cover url:</label>
     <input type="text" id="cover" name="cover"> <br/>
 
-    <% String error = (String) request.getSession().getAttribute("hasError"); %>
+    <% String error = (String) request.getAttribute("hasError"); %>
     <% if (error != null) { %>
     <h2>YOUR ENTERED INFORMATION IS INCORRECT, PLEASE CHECK</h2>
     <% } %>
