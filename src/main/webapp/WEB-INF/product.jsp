@@ -17,7 +17,7 @@
     <body>
     <% String username = (String) request.getSession().getAttribute("username");
     if(username != null){ %>
-        <form action ="report" method="GET">
+        <form action ="reportForm" method="GET">
             <button type="submit" > REPORT </button>
         </form>
     <% }%>
@@ -168,9 +168,6 @@
                 </h3>
 
             <%}%>
-
-
-
 
     </body>
 
