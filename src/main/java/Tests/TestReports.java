@@ -45,10 +45,7 @@ public class TestReports extends TestCase {
         assertEquals("MO_test_2002", reportById.getItemId());
         assertEquals("incorrect title!", reportById.getComment());
     }
-
-    public void testGetReports(){
-
-    }
+    
 
     //test getter methods
 
