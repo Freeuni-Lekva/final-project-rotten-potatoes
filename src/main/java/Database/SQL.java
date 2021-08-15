@@ -23,6 +23,7 @@ public class SQL implements DB {
     private static final String SET_CLAUSE = " set ";
     private static final String EQUALS = " = ";
     private static final String AND = " and ";
+    private static final String COUNT = "select count(*) from ";
 
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
@@ -188,5 +189,28 @@ public class SQL implements DB {
             return SQL_ERROR;
         }
         return SQL_SUCCESS;
+    }
+
+    /*
+     ითვლის row-ების რაოდენობას გადაცემული column-ის და შესაბამისი value-ს მიხედვით
+     ძირითადად საჭირო იქნება მომხმარებლის მიერ დაწერილი რივიუებისა და
+     ატვირთული ნივთების რაოდენობის დასათვლელად, რომ განვაახლოთ badges ცხრილი.
+     */
+    @Override
+    public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE) {
+        String query = COUNT + TABLE_NAME + WHERE_CLAUSE + WHERE_COLUMN + EQUALS + WHERE_VALUE;
+        int count = 0;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                count = result.getInt("count(*)");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return count;
     }
 }
