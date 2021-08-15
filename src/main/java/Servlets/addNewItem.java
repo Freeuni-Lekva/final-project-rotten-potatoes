@@ -17,7 +17,7 @@ import java.util.List;
 public class addNewItem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String hasError = null;
         String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getSession().getAttribute("username");
@@ -154,18 +154,19 @@ public class addNewItem extends HttpServlet {
         if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
             request.getSession().setAttribute("id",item_id_without);
             request.getRequestDispatcher("/WEB-INF/product.jsp").forward(request,response);
-
         } else{
-            String hasError="YES";
-            request.setAttribute("hasError",hasError);
+            hasError="YES";
+            request.getSession().setAttribute("hasError",hasError);
             request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
         }
 
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        String categoryName = request.getParameter("NEW_ITEM_CATEGORY");
+        request.getSession().setAttribute("NEW_ITEM_CATEGORY", categoryName);
+        request.getSession().setAttribute("hasError", null);
+        request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
     }
 }

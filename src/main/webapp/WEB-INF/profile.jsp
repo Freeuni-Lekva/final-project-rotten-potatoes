@@ -143,7 +143,7 @@
                     <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
                     <% if(VISIT == PERSONAL_VISIT){ %>
                         <div class="col" style="text-align: center;">
-                            <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                            <form action="addNewItem" method="get"> <%-- !!! .jsp file name might change !!! --%>
                                 <select name="NEW_ITEM_CATEGORY">
                                     <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
                                     <option value= <%= TV_Show.ATTRIBUTE %> >TV Shows</option>

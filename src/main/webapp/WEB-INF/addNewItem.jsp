@@ -160,9 +160,8 @@
                 <% if (error != null) { %>
                 <center><h2>YOUR ENTERED INFORMATION IS INCORRECT, PLEASE CHECK</h2></center>
                 <% } %>
-
-                <center><button class="btn btn-success btn-lg" type="submit"> REGISTER </button>
-                <button class="btn btn-danger btn-lg" type="reset"> RESET </button></center>
+                    <center><button class="btn btn-success btn-lg" type="submit"> REGISTER </button>
+                    <button class="btn btn-danger btn-lg" type="reset"> RESET </button></center>
             </form>
         </div>
 

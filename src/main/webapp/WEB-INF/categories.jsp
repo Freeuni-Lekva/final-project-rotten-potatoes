@@ -48,13 +48,13 @@
                     if (username == null){ %>
                     <div class="col">
                         <form action="createNewAcc" method="GET">
-                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> Register </button>
+                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> REGISTER </button>
                         </form>
                     </div>
                 <%} else { %>
                     <div class="col">
                         <form action="profile.jsp" method="POST">
-                            <button style="margin:5px;" name = "username" type= "submit" class="btn btn-primary btn-lg" value = <%=username%> > My profile </button>
+                            <button style="margin:5px;" name = "username" type= "submit" class="btn btn-primary btn-lg" value = <%=username%> > MY PROFILE </button>
                         </form>
                     </div>
                 <%}%>

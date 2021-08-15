@@ -1,5 +1,6 @@
 package Tests;
 
+import Models.Item;
 import Models.Review;
 import junit.framework.TestCase;
 import Database.DB;

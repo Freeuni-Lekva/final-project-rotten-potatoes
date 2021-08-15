@@ -17,7 +17,7 @@
     <p>Welcome</p>
     </body>
 
-    <form action = "" method = "post">
+    <form action = "index.jsp" method = "post">
         <label for = "username">User name: </label>
         <input type = "text" id = "username" name = "username" /><br/><br/>
         <label for = "password">Password: </label>
