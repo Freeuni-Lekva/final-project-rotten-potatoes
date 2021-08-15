@@ -31,6 +31,7 @@
             }
             request.getSession().setAttribute("id", itemId);
             String itemCategory = Item.getCategoryByItemID(itemId);
+            request.getSession().setAttribute("CATEGORY",itemCategory);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
                 Movie movie = Movie.getMovieByID(db, itemId);%>
