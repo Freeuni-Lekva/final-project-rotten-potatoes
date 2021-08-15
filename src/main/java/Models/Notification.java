@@ -28,8 +28,9 @@ public class Notification {
     }
 
     public static int addNotification(DB db ,String receiverUsername, String senderUsername , String itemId , String notificationType){
+        if(itemId != null) itemId = Item.surroundWithSingleQuotes(itemId);
         return db.insert(NOTIFICATIONS_TABLE , new ArrayList<>(Arrays.asList(null, Item.surroundWithSingleQuotes(receiverUsername)
-                ,Item.surroundWithSingleQuotes(senderUsername) , Item.surroundWithSingleQuotes(itemId)
+                ,Item.surroundWithSingleQuotes(senderUsername) , itemId
                 ,Item.surroundWithSingleQuotes(notificationType))));
     }
 
