@@ -57,6 +57,21 @@ public class Book {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Book b = (Book) o;
+        if(b.getBookID().equals(this.getBookID())
+                && b.getTitle().equals(this.getTitle())
+                && b.getReleaseDate() == this.getReleaseDate()
+                && b.getWriter().equals(this.getWriter())
+                && b.getCoverURL().equals(this.getCoverURL())
+                && b.getSummary().equals(this.getSummary())
+                && b.getUploader().equals(this.getUploader())
+                && b.getScore() == this.getScore()
+                && b.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getBookID(){
         return bookID;

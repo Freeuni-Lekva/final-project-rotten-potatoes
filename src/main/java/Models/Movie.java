@@ -61,6 +61,22 @@ public class Movie {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        Movie m = (Movie) o;
+        if(m.getMovieID().equals(this.getMovieID())
+           && m.getTitle().equals(this.getTitle())
+           && m.getReleaseDate() == this.getReleaseDate()
+           && m.getDirector().equals(this.getDirector())
+           && m.getMovieCast().equals(this.getMovieCast())
+           && m.getCoverURL().equals(this.getCoverURL())
+           && m.getSummary().equals(this.getSummary())
+           && m.getUploader().equals(this.getUploader())
+           && m.getScore() == this.getScore()
+           && m.getNumOfReviews() == this.getNumOfReviews()) return true;
+        return false;
+    }
+
     // Getter methods.
     public String getMovieID(){
         return movieID;
