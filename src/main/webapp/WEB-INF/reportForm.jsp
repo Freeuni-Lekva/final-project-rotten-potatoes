@@ -27,7 +27,7 @@
 
 
 
-<form name="reportForm" method="POST" action="report">
+<form name="reportForm" method="POST" action="reportForm">
 
 
     <p> REPORT FORM:</p>
@@ -118,6 +118,10 @@
 
     <label for="cover"> Cover url:</label>
     <input type="text" id="cover" name="cover" value=<%=currItem.getCoverURL()%>> <br/>
+
+
+    <label for="messageToAdmin"> MESSAGE: </label>
+    <input type="text" id="messageToAdmin" name="messageToAdmin" placeholder=  "type text here... "> <br/>
 
 
     <button type="submit"> REPORT </button>
