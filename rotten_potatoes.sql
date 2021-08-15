@@ -63,7 +63,6 @@ INSERT INTO ITEMS VALUES
    ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV_SHOWS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg', 2003, 0),
    ('TV_Friends_1994', 'Friends', 'TV_SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg', 1994, 0),
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 1946, 0),
-   ('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 'BOOKS', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg', 2013, 0),
    ('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg', 2014, 0),
    ('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg', 2014, 0),
    ('VI_Minecraft_2011', 'Minecraft', 'VIDEO_GAMES', 'admin', 0, 'https://images-na.ssl-images-amazon.com/images/I/418cEZfh8-L.jpg', 2011, 0),
@@ -181,10 +180,7 @@ CREATE TABLE BOOKS (
 INSERT INTO BOOKS VALUES
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 1946, 'Astrid Lindgren', 
     'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 
-    'It is the first in the series about the Swedish boy detective.', 'admin', 0, 0),
-   ('BO_Colorless Tsukuru Tazaki and His Years of Pilgrimage_2013', 'Colorless Tsukuru Tazaki and His Years of Pilgrimage', 2013,
-    'Haruki Murakami', 'https://images-na.ssl-images-amazon.com/images/I/41OtORHHW4L._SX323_BO1,204,203,200_.jpg',
-    'In the novel "Colorless Tsukuru Tazaki and His Years of Pilgrimage" Murakami has created a character that is trying to make order in a disorderly world. Tsukuru is a man who does not recognize his own complexity, and who finds himself adrift after an unexplained rejection by his four colorful friends.', 'admin', 0, 0);
+    'It is the first in the series about the Swedish boy detective.', 'admin', 0, 0);
 
 CREATE TABLE VIDEO_GAMES (
    video_game_id CHAR(100) NOT NULL, CONSTRAINT video_game_id_fk FOREIGN KEY (video_game_id) REFERENCES ITEMS (item_id),
