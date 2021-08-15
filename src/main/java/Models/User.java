@@ -159,6 +159,35 @@ public class User {
         return following;
     }
 
+    public void updateBadges(DB db) throws SQLException {
+        int numReviews = db.count(Review.TABLE_NAME, "username", getUsername());
+        int numUploadedItems = db.count(Item.TABLE_NAME, "uploader", getUsername());
+        List<Badge> currentBadges = getBadges(db);
+        List<String> currentBadgesIDs = new ArrayList<>();
+        for (int i = 0; i < currentBadges.size(); i++) {
+            currentBadgesIDs.add(currentBadges.get(i).getBadgeID());
+        }
+
+        ArrayList<String> newBadges = new ArrayList<>();
+        if (numReviews > 0) newBadges.add("AM_CRT");
+        if (numUploadedItems > 0) newBadges.add("AM_FAN");
+        if (numReviews > 5) newBadges.add("EX_CRT");
+        if (numUploadedItems > 5) newBadges.add("EX_FAN");
+        if (numReviews > 10) newBadges.add("TP_CRT");
+        if (numUploadedItems > 10) newBadges.add("TP_FAN");
+
+        for (int i = 0; i < newBadges.size(); i++) {
+            String badge = newBadges.get(i);
+            if (!currentBadgesIDs.contains(badge)) {
+                List<String> values = new ArrayList<>();
+                values.add(Item.surroundWithSingleQuotes(username));
+                values.add(Item.surroundWithSingleQuotes(badge));
+                db.insert("USER_BADGES", values);
+            }
+        }
+
+    }
+
     // Getter methods.
     public String getUsername(){
         return username;
