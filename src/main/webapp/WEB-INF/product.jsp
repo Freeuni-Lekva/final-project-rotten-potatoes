@@ -41,7 +41,10 @@
                 </h2>
                 <img src = <%= movie.getCoverURL() %> width="300" height="300"> <br/>
                 <h3>
-                    <b>This movie has been uploaded by: </b> <%= movie.getUploader() %> <br>
+                    <b>This movie has been uploaded by: </b>
+                    <% String movieUploader = "/profile.jsp?guest_visitor_id=" + movie.getUploader(); %>
+                    <a href=<%= movieUploader %>><%= movie.getUploader() %></a><br>
+                    <%-- <b>This movie has been uploaded by: </b> <%= movie.getUploader() %> <br> --%>
                     <b>Score: </b> <%= movie.getScore() %> <br>
                     <b>Number of reviews: </b> <%= movie.getNumOfReviews() %> <br>
                     <b>Release date: </b> <%= movie.getReleaseDate() %> <br>
@@ -57,7 +60,10 @@
                 </h2>
                 <img src = <%= music.getAlbumCoverURL() %> width="300" height="300"> <br/>
                 <h3>
-                    <b>This music has been uploaded by: </b> <%= music.getUploader() %> <br>
+                    <b>This music has been uploaded by: </b>
+                    <% String musicUploader = "/profile.jsp?guest_visitor_id=" + music.getUploader(); %>
+                    <a href=<%= musicUploader %>><%= music.getUploader() %></a><br>
+                    <%-- <b>This music has been uploaded by: </b> <%= music.getUploader() %> <br> --%>
                     <b>Score: </b> <%= music.getScore() %> <br>
                     <b>Number of reviews: </b> <%= music.getNumOfReviews() %> <br>
                     <b>Release year: </b> <%= music.getReleaseYear() %> <br>
@@ -73,7 +79,10 @@
                 </h2>
                 <img src = <%= TVShow.getCoverURL() %> width="300" height="300"> <br/>
                 <h3>
-                    <b>This Tv show has been uploaded by: </b> <%= TVShow.getUploader() %> <br>
+                    <b>This TV show has been uploaded by: </b>
+                    <% String tvShowUploader = "/profile.jsp?guest_visitor_id=" + TVShow.getUploader(); %>
+                    <a href=<%= tvShowUploader %>><%= TVShow.getUploader() %></a><br>
+                    <%-- <b>This Tv show has been uploaded by: </b> <%= TVShow.getUploader() %> <br> --%>
                     <b>Score: </b> <%= TVShow.getScore() %> <br>
                     <b>Number of reviews: </b> <%= TVShow.getNumOfReviews() %> <br>
                     <b>Airing year: </b> <%= TVShow.getAiringYear() %> <br>
@@ -89,7 +98,10 @@
                 </h2>
                 <img src = <%= videoGame.getCoverURL() %> width="300" height="300"> <br/>
                 <h3>
-                    <b>This video game has been uploaded by: </b> <%= videoGame.getUploader() %> <br>
+                    <b>This video game has been uploaded by: </b>
+                    <% String videoGameUploader = "/profile.jsp?guest_visitor_id=" + videoGame.getUploader(); %>
+                    <a href=<%= videoGameUploader %>><%= videoGame.getUploader() %></a><br>
+                    <%-- <b>This video game has been uploaded by: </b> <%= videoGame.getUploader() %> <br> --%>
                     <b>Score: </b> <%= videoGame.getScore() %> <br>
                     <b>Number of reviews: </b> <%= videoGame.getNumOfReviews() %> <br>
                     <b>Release date: </b> <%= videoGame.getReleaseDate() %> <br>
@@ -104,7 +116,10 @@
                 </h2>
                 <img src = <%= book.getCoverURL() %> width="300" height="300"> <br/>
                 <h3>
-                    <b>This book has been uploaded by: </b> <%= book.getUploader() %> <br>
+                    <b>This book has been uploaded by: </b>
+                    <% String bookUploader = "/profile.jsp?guest_visitor_id=" + book.getUploader(); %>
+                    <a href=<%= bookUploader %>><%= book.getUploader() %></a><br>
+                    <%-- <b>This book has been uploaded by: </b> <%= book.getUploader() %> <br> --%>
                     <b>Score: </b> <%= book.getScore() %> <br>
                     <b>Number of reviews: </b> <%= book.getNumOfReviews() %> <br>
                     <b>Release date: </b> <%= book.getReleaseDate() %> <br>
