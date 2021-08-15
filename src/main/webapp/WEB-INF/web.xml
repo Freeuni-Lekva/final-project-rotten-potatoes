@@ -71,7 +71,7 @@
 
   <servlet>
     <servlet-name>newReview</servlet-name>
-    <servlet-class>Servlets.CreateAccountServlet</servlet-class>
+    <servlet-class>Servlets.newReview</servlet-class>
   </servlet>
 
   <servlet-mapping>

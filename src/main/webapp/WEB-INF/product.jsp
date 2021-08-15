@@ -30,6 +30,7 @@
                 itemId = Item.getOriginalItemId(idFromUrl);
             }
             request.getSession().setAttribute("id", itemId);
+            request.getSession().setAttribute("id", itemId);
             String itemCategory = Item.getCategoryByItemID(itemId);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
@@ -122,15 +123,27 @@
                 }
                 String title = currItem.getTitle(); %>
 
-
-            <form name="product" method="post" action="newReview">
-            <label for="newReview"> Add new review:</label>
-            <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
-
-            <button type="submit" > ADD REVIEW </button>
-            <button type="reset"> CLEAR </button>  <br/>
-            </form>
-
+            <%if(username != null){%>
+                <form name="product" method="post" action="newReview">
+                    <label for="newReview"> Add new review:</label>
+                    <input type="text" id="newReview" name="newReview" placeholder=  "type text here... "> <br/>
+                    <select id="SCORE" name="SCORE">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <button type="submit" > ADD REVIEW </button>
+                    <button type="reset"> CLEAR </button>  <br/>
+                </form>
+            <%}%>
             <label > CRITIC REVIEWS FOR THE <%= title %> </label> <br/>
             <form action="product" method="GET">
                 <select id = "REVIEW_SORTING" name= "REVIEW_SORTING">
