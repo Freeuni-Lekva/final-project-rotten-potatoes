@@ -17,7 +17,7 @@
     <body>
     <% String username = (String) request.getSession().getAttribute("username");
     if(username != null){ %>
-        <form action ="report" method="GET">
+        <form action ="reportForm" method="GET">
             <button type="submit" > REPORT </button>
         </form>
     <% }%>
@@ -32,6 +32,7 @@
             request.getSession().setAttribute("id", itemId);
             request.getSession().setAttribute("id", itemId);
             String itemCategory = Item.getCategoryByItemID(itemId);
+            request.getSession().setAttribute("CATEGORY",itemCategory);
             DB db = (DB) application.getAttribute(ContextListener.DB_ATTRIBUTE);
             if(itemCategory == Movie.TABLE_NAME){
                 Movie movie = Movie.getMovieByID(db, itemId);%>
@@ -180,9 +181,6 @@
                 </h3>
 
             <%}%>
-
-
-
 
     </body>
 

@@ -157,7 +157,7 @@ public class addNewItem extends HttpServlet {
 
         } else{
             String hasError="YES";
-            request.getSession().setAttribute("hasError",hasError);
+            request.setAttribute("hasError",hasError);
             request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
         }
 

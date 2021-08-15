@@ -142,6 +142,6 @@
 
   <servlet-mapping>
     <servlet-name>reportServlet</servlet-name>
-    <url-pattern>/report</url-pattern>
+    <url-pattern>/reportForm</url-pattern>
   </servlet-mapping>
 </web-app>
