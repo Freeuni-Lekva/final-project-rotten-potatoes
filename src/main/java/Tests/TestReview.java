@@ -2,6 +2,12 @@ package Tests;
 
 import Models.Review;
 import junit.framework.TestCase;
+import Database.DB;
+import Database.SQL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestReview extends TestCase {
     private Review r ;
