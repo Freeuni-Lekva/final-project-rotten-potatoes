@@ -200,7 +200,7 @@ public class SQL implements DB {
             Statement statement = connection.createStatement();
             ResultSet result = statement.executeQuery(query);
             while (result.next()) {
-                count = result.getInt("count");
+                count = result.getInt("count(*)");
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
