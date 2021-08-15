@@ -30,8 +30,8 @@ public class TestMovies extends TestCase {
         ,Item.surroundWithSingleQuotes("admin"), Item.surroundWithSingleQuotes("2001-10-10"), Item.surroundWithSingleQuotes("admin"))));
 
         db.insert("ITEMS" , new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("MO_A Big Betray_2021")
-                ,Item.surroundWithSingleQuotes("MOVIES"),Item.surroundWithSingleQuotes("qeto"),
-                "5", Item.surroundWithSingleQuotes(url))));
+                ,Item.surroundWithSingleQuotes("A Big Betray"),Item.surroundWithSingleQuotes("MOVIES")
+                ,Item.surroundWithSingleQuotes("qeto"), "0", Item.surroundWithSingleQuotes(url), "2021", "0" )));
         db.insert("MOVIES" , new ArrayList<>(Arrays.asList(Item.surroundWithSingleQuotes("MO_A Big Betray_2021")
                 ,Item.surroundWithSingleQuotes("A Big Betray") , "2021"
                 ,Item.surroundWithSingleQuotes("Shawn Joly"),Item.surroundWithSingleQuotes("mario chimaro , rosaura")
