@@ -50,6 +50,9 @@
                         <form action="createNewAcc" method="GET">
                             <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> REGISTER </button>
                         </form>
+                        <form action="/index.jsp" method="get">
+                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> LOGIN </button>
+                        </form>
                     </div>
                 <%} else { %>
                     <div class="col">
