@@ -215,7 +215,7 @@ CREATE TABLE REPORTS (
     url TEXT NOT NULL, CONSTRAINT url CHECK (url NOT LIKE '%  %'),
     producer CHAR(100) NOT NULL,
     info TEXT NOT NULL,
-    members CHAR(100) NOT NULL,
+    members CHAR(100) ,
     user_comment TEXT
 );
 
