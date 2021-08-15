@@ -23,7 +23,7 @@ public class SQL implements DB {
     private static final String SET_CLAUSE = " set ";
     private static final String EQUALS = " = ";
     private static final String AND = " and ";
-    private static final String COUNT = "select count(*) from";
+    private static final String COUNT = "select count(*) from ";
 
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
