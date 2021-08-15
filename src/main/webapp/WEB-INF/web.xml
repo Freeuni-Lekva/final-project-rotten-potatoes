@@ -18,6 +18,11 @@
     <servlet-class>Servlets.addNewItem</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>Servlets.LogoutServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>addNewItem</servlet-name>
     <url-pattern>/addNewItem</url-pattern>
@@ -143,5 +148,10 @@
   <servlet-mapping>
     <servlet-name>reportServlet</servlet-name>
     <url-pattern>/reportForm</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
   </servlet-mapping>
 </web-app>
