@@ -1,4 +1,4 @@
-package Models;
+package Tests;
 
 import Database.DB;
 import Database.SQL;
