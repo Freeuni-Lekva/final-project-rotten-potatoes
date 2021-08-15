@@ -60,8 +60,8 @@ INSERT INTO ITEMS VALUES
    ('MU_Dangerous_1991', 'Dangerous', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg', 1991, 0),
    ('MU_Magical Mystery Tour_1967', 'Magical Mystery Tour', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg', 1967, 0),
    ('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars', 'MUSIC', 'admin', 0, 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366', 1972, 0),
-   ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV_SHOWS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg', 2003, 0),
-   ('TV_Friends_1994', 'Friends', 'TV_SHOWS', 'admin', 0, 'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg', 1994, 0),
+   ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV_SHOWS', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BN2Y0NzRjOTQtNGNmYS00NjNiLWIwY2MtZWIyZDI5ZDhhZmI1XkEyXkFqcGdeQXVyODIxOTMwMjk@._V1_.jpg', 2003, 0),
+   ('TV_Friends_1994', 'Friends', 'TV_SHOWS', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg', 1994, 0),
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 1946, 0),
    ('MO_Love, Rosie_2014', 'Love, Rosie', 'MOVIES', 'admin', 0, 'https://pbs.twimg.com/media/Cc38VzZWAAIpd08.jpg', 2014, 0),
    ('MO_The Grand Budapest Hotel_2014', 'The Grand Budapest Hotel', 'MOVIES', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg', 2014, 0),
@@ -128,11 +128,11 @@ CREATE TABLE TV_SHOWS (
 INSERT INTO TV_SHOWS VALUES
    ('TV_One Tree Hill_2003', 'One Tree Hill', 2003, 'Mark Schwahn', 
     'James Lafferty, Sophia Bush, Bethany Joy Lenz, Chad Michael Murray', 
-    'https://upload.wikimedia.org/wikipedia/en/8/8f/One_Tree_Hill_%28soundtrack_album_-_cover_art%29.jpg',
+    'https://m.media-amazon.com/images/M/MV5BN2Y0NzRjOTQtNGNmYS00NjNiLWIwY2MtZWIyZDI5ZDhhZmI1XkEyXkFqcGdeQXVyODIxOTMwMjk@._V1_.jpg',
     'Half-brothers - Lucas and Nathan Scott - trade between kinship and rivalry both on the basketball court and in the hearts of their friends in the small, but not so quiet town of Tree Hill, North Carolina.', 'admin', 0, 0),
    ('TV_Friends_1994', 'Friends', 1994, 'David Crane, Marta Kauffman',
     'Matthew Perry, Courteney Cox, Matt LeBlanc, David Schwimmer, Lisa Kudrow, Jennifer Aniston', 
-    'https://meetmeinparadise.files.wordpress.com/2012/03/mpw-26106.jpeg',
+    'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg',
     'A show about six friends in New York as they navigate their way through life and learn to grow up as they approach the third decade of their life. All, with the help from each other to get them through the obstacles that life naturally has for us.', 'admin', 0, 0);
 
 CREATE TABLE REVIEWS (
