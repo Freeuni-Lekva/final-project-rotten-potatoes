@@ -59,7 +59,6 @@ CREATE TABLE ITEMS (
 INSERT INTO ITEMS VALUES
    ('MU_Dangerous_1991', 'Dangerous', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg', 1991, 0),
    ('MU_Magical Mystery Tour_1967', 'Magical Mystery Tour', 'MUSIC', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg', 1967, 0),
-   ('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars', 'MUSIC', 'admin', 0, 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366', 1972, 0),
    ('TV_One Tree Hill_2003', 'One Tree Hill', 'TV_SHOWS', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BN2Y0NzRjOTQtNGNmYS00NjNiLWIwY2MtZWIyZDI5ZDhhZmI1XkEyXkFqcGdeQXVyODIxOTMwMjk@._V1_.jpg', 2003, 0),
    ('TV_Friends_1994', 'Friends', 'TV_SHOWS', 'admin', 0, 'https://m.media-amazon.com/images/M/MV5BNDVkYjU0MzctMWRmZi00NTkxLTgwZWEtOWVhYjZlYjllYmU4XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg', 1994, 0),
    ('BO_Bill Bergson, Master Detective_1946', 'Bill Bergson, Master Detective', 'BOOKS', 'admin', 0, 'https://upload.wikimedia.org/wikipedia/en/9/9a/M%C3%A4sterdetektivenBlomkvistLeverFarligt.jpg', 1946, 0),
@@ -109,8 +108,7 @@ CREATE TABLE MUSIC (
 
 INSERT INTO MUSIC VALUES
    ('MU_Dangerous_1991', 'Michael Jackson', 'Dangerous', 'Epic Records', 1991, 'New Jack Swing, R&B, Pop', 'https://upload.wikimedia.org/wikipedia/en/1/11/Michaeljacksondangerous.jpg', 'admin', 0, 0),
-   ('MU_Magical Mystery Tour_1967', 'The Beatles', 'Magical Mystery Tour', 'Parlophone, Capitol Records', 1967, 'Rock, Psychedelia', 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg', 'admin', 0, 0),
-   ('MU_The Rise and Fall of Ziggy Stardust and the Spiders from Mars_1972', 'David Bowie', 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars', 'RCA', 1972, 'Glam Rock, Proto-punk', 'https://i.scdn.co/image/ab67616d0000b273ce928bc5dc2ed4d8e6d82366', 'admin', 0, 0);
+   ('MU_Magical Mystery Tour_1967', 'The Beatles', 'Magical Mystery Tour', 'Parlophone, Capitol Records', 1967, 'Rock, Psychedelia', 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/MagicalMysteryTourDoubleEPcover.jpg/220px-MagicalMysteryTourDoubleEPcover.jpg', 'admin', 0, 0);
 
 CREATE TABLE TV_SHOWS (
    tv_show_id CHAR(100) NOT NULL, CONSTRAINT tv_shows_id_fk FOREIGN KEY (tv_show_id) REFERENCES ITEMS (item_id),
