@@ -108,12 +108,6 @@
 
         <div class="container">
             <div class="row">
-
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
                 <%-- ეს ბათონები სხვანაირად უნდა იყოს შექმნილი. ჯერ-ჯერობით, კომენტარად მივუწერ, მათზე დაჭერისას რაები უნდა მოხდეს. --%>
                 <% if(VISIT == USER_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
@@ -131,7 +125,7 @@
                     </div>
 
                     <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
-                    <div class="col-1" style="text-align: right;">
+                    <div class="col" style="text-align: right;">
                         <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
                     </div>
                 <% } else if(VISIT == PERSONAL_VISIT){ %>
