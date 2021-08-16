@@ -48,13 +48,16 @@
                     if (username == null){ %>
                     <div class="col">
                         <form action="createNewAcc" method="GET">
-                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> Register </button>
+                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> REGISTER </button>
+                        </form>
+                        <form action="/index.jsp" method="get">
+                            <button style="margin:5px;" type = "submit" class="btn btn-primary btn-lg"> LOGIN </button>
                         </form>
                     </div>
                 <%} else { %>
                     <div class="col">
                         <form action="profile.jsp" method="POST">
-                            <button style="margin:5px;" name = "username" type= "submit" class="btn btn-primary btn-lg" value = <%=username%> > My profile </button>
+                            <button style="margin:5px;" name = "username" type= "submit" class="btn btn-primary btn-lg" value = <%=username%> > MY PROFILE </button>
                         </form>
                     </div>
                 <%}%>
@@ -86,7 +89,7 @@
                         <img src=<%= coverURL %> style="width: 300px; height: 400px; object-fit: fill;" class="img-thumbnail" alt="logo" />
                     <% } %>
                     <div class="caption"><a href= <%= individualLink %> class="link-primary"
-                    style="text-decoration: none; font-size: 22px;">
+                    style="text-decoration: none; font-size: 20px;">
                     <%= title %><br>
                     <strong>(<%= score %>/10)</strong></a></p></div>
                 </div>

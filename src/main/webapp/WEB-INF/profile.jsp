@@ -126,7 +126,9 @@
 
                     <%-- guestUsername და username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
                     <div class="col" style="text-align: right;">
-                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
+                        <form action="/logout" method="post">
+                            <input type="submit" class="btn btn-danger" value="LOGOUT"/>
+                        </form>
                     </div>
                 <% } else if(VISIT == PERSONAL_VISIT){ %>
                     <%-- მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>
@@ -141,7 +143,7 @@
                     <%-- !!! Temporarily solution for new item creation feature (not sure if works) !!! --%>
                     <% if(VISIT == PERSONAL_VISIT){ %>
                         <div class="col" style="text-align: center;">
-                            <form action="/addNewItem.jsp" method="post"> <%-- !!! .jsp file name might change !!! --%>
+                            <form action="addNewItem" method="get"> <%-- !!! .jsp file name might change !!! --%>
                                 <select name="NEW_ITEM_CATEGORY">
                                     <option value= <%= Movie.ATTRIBUTE %> >Movies</option>
                                     <option value= <%= TV_Show.ATTRIBUTE %> >TV Shows</option>
@@ -156,7 +158,9 @@
 
                     <%-- username ატრიბუტები უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს აუთენტიფიკაციის გვერდზე. --%>
                     <div class="col" style="text-align: right;">
-                        <button name="button" class="btn btn-danger" type="button">LOGOUT</button>
+                        <form action="/logout" method="post">
+                            <input type="submit" class="btn btn-danger" value="LOGOUT"/>
+                        </form>
                     </div>
                 <% } else if(VISIT == GUEST_VISIT){ %>
                     <%-- guestUsername ატრიბუტი უნდა გახდეს null, მომხმარებელი უნდა გადავიდეს კატეგორიების გვერდზე. --%>

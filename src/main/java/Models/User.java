@@ -56,6 +56,13 @@ public class User {
         return null;
     }
 
+    public static boolean hasReviewed(DB db, String username, String itemID) throws SQLException {
+        ResultSet rowOfReviews = db.doublyConditionedSelect("REVIEWS", "username", Item.surroundWithSingleQuotes(username),
+                "item_id", Item.surroundWithSingleQuotes(itemID));
+        if(!rowOfReviews.next()) return false;
+        return true;
+    }
+
     public List<Badge> getBadges(DB db) throws SQLException {
         List<Badge> badges = new ArrayList<>();
         List<String> userBadgeIDs = new ArrayList<>();
@@ -160,8 +167,8 @@ public class User {
     }
 
     public void updateBadges(DB db) throws SQLException {
-        int numReviews = db.count(Review.TABLE_NAME, "username", getUsername());
-        int numUploadedItems = db.count(Item.TABLE_NAME, "uploader", getUsername());
+        int numReviews = db.count(Review.TABLE_NAME, "username", Item.surroundWithSingleQuotes(getUsername()));
+        int numUploadedItems = db.count(Item.TABLE_NAME, "uploader", Item.surroundWithSingleQuotes(getUsername()));
         List<Badge> currentBadges = getBadges(db);
         List<String> currentBadgesIDs = new ArrayList<>();
         for (int i = 0; i < currentBadges.size(); i++) {

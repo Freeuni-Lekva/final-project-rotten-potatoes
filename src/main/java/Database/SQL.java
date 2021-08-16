@@ -11,7 +11,7 @@ public class SQL implements DB {
     private static final String HOSTNAME = "127.0.0.1";
     private static final String PORT = "3306";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "RameParoli#83";
+    private static final String PASSWORD = "";
     private static final String DATABASE = "rotten_potatoes";
 
     // Constant variable declarations for SQL queries.
@@ -23,6 +23,7 @@ public class SQL implements DB {
     private static final String SET_CLAUSE = " set ";
     private static final String EQUALS = " = ";
     private static final String AND = " and ";
+    private static final String COUNT = "select count(*) from ";
 
     // !!!-----------------------------------------------------
     // ჯერ-ჯერობით ზუსტად არ ვიცი, ეს საჭირო იქნება თუ არა. თუ ბრძანება ვერ შესრულდა, დავაბრუნოთ
@@ -131,11 +132,6 @@ public class SQL implements DB {
         return null;
     }
 
-    @Override
-    public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE) {
-        return 0;
-    }
-
     /* ფუნქციის გამოყენების სავარაუდო დროები:
      *   - როცა გვაინტერესებს, მომხმარებელმა login-ის დროს სწორი username და password მიუთითა თუ არა:
      *      select * from users where username = 'PLACEHOLDER' and password = 'PLACEHOLDER';
@@ -188,5 +184,41 @@ public class SQL implements DB {
             return SQL_ERROR;
         }
         return SQL_SUCCESS;
+    }
+
+    /*
+     ითვლის row-ების რაოდენობას გადაცემული column-ის და შესაბამისი value-ს მიხედვით
+     ძირითადად საჭირო იქნება მომხმარებლის მიერ დაწერილი რივიუებისა და
+     ატვირთული ნივთების რაოდენობის დასათვლელად, რომ განვაახლოთ badges ცხრილი.
+     */
+    @Override
+    public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE) {
+        String query = COUNT + TABLE_NAME + WHERE_CLAUSE + WHERE_COLUMN + EQUALS + WHERE_VALUE;
+        int count = 0;
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+            while (result.next()) {
+                count = result.getInt("count(*)");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return count;
+    }
+
+    @Override
+    public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1, String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3, String COLUMN_4, String VALUE_4) {
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 + AND + COLUMN_2 + EQUALS +
+                VALUE_2 + AND + COLUMN_3 + EQUALS + VALUE_3 + AND + COLUMN_4 + EQUALS + VALUE_4 + ";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

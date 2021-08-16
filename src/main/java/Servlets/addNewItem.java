@@ -17,10 +17,11 @@ import java.util.List;
 public class addNewItem extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String hasError = null;
         String category= (String) request.getSession().getAttribute("NEW_ITEM_CATEGORY");
         String categoryWithoutQuotes=category;
         String uploader= (String) request.getSession().getAttribute("username");
+        String uploaderWithout=uploader;
         String smallVersion=category.substring(0,2);
         String title=request.getParameter("title");
         String cover_url=request.getParameter("cover");
@@ -153,19 +154,32 @@ public class addNewItem extends HttpServlet {
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
         if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
             request.getSession().setAttribute("id",item_id_without);
+            User currUser=null;
+            try {
+                currUser=User.getUserByUsername(db,uploaderWithout);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                currUser.updateBadges(db);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             request.getRequestDispatcher("/WEB-INF/product.jsp").forward(request,response);
 
         } else{
-            String hasError="YES";
+            hasError="YES";
             request.getSession().setAttribute("hasError",hasError);
             request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
         }
 
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        String categoryName = request.getParameter("NEW_ITEM_CATEGORY");
+        request.getSession().setAttribute("NEW_ITEM_CATEGORY", categoryName);
+        request.getSession().setAttribute("hasError", null);
+        request.getRequestDispatcher("/WEB-INF/addNewItem.jsp").forward(request,response);
     }
 }

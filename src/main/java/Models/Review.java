@@ -45,13 +45,13 @@ public class Review {
             db.update(category, "score", computeAverage, columnName,
                     Item.surroundWithSingleQuotes(itemID));
             // Update average score in the Items' table.
-            db.update(Item.TABLE_NAME, "score", computeAverage, columnName,
+            db.update(Item.TABLE_NAME, "score", computeAverage, "item_id",
                     Item.surroundWithSingleQuotes(itemID));
             // Increment number of reviews in the specific category.
             db.update(category, "num_of_reviews", "num_of_reviews + 1", columnName,
                     Item.surroundWithSingleQuotes(itemID));
             // Increment number of reviews in the Items' table.
-            db.update(Item.TABLE_NAME, "num_of_reviews", "num_of_reviews + 1", columnName,
+            db.update(Item.TABLE_NAME, "num_of_reviews", "num_of_reviews + 1", "item_id",
                     Item.surroundWithSingleQuotes(itemID));
         }
         return insertResult;
