@@ -22,7 +22,7 @@ public class UserNotificationServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String notificationId = request.getParameter("notificationID");
-        DB db = new SQL();
+        DB db = (DB) request.getServletContext().getAttribute("db");
         db.delete("NOTIFICATIONS", "notificationID", notificationId,"notificationID", notificationId);
         request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
     }
