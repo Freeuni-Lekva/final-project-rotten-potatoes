@@ -157,6 +157,10 @@ public class addNewItem extends HttpServlet {
             User currUser=null;
             try {
                 currUser=User.getUserByUsername(db,uploaderWithout);
+                for(User follower : currUser.getFollowers(db)){
+                    Notification.addNotification(db, follower.getUsername(), currUser.getUsername()
+                            , item_id, "UPLOAD");
+                }
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
