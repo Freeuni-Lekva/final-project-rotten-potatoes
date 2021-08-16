@@ -169,6 +169,18 @@ public class addNewItem extends HttpServlet {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
+            String sendNotification= request.getParameter("sendNotification");
+            if(sendNotification != null){
+                try {
+                    List<User> following= currUser.getFollowing(db);
+                    for(User currFollowing : following){
+                        Notification.addNotification(db, currFollowing.getUsername(),currUser.getUsername(),
+                                item_id, "REQUEST");
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            }
             request.getRequestDispatcher("/WEB-INF/product.jsp").forward(request,response);
 
         } else{
