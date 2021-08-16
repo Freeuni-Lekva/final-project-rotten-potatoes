@@ -17,5 +17,5 @@ public interface DB {
     public int count(String TABLE_NAME, String WHERE_COLUMN, String WHERE_VALUE);
     public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
                                                 String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3,
-                                                String COLUMN_4, String VALUE_4);
+                                                String COLUMN_CLAUSE);
 }

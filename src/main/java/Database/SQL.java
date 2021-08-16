@@ -210,9 +210,9 @@ public class SQL implements DB {
     }
 
     @Override
-    public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1, String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3, String COLUMN_4, String VALUE_4) {
+    public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1, String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3, String COLUMN_CLAUSE) {
         String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 + AND + COLUMN_2 + EQUALS +
-                VALUE_2 + AND + COLUMN_3 + EQUALS + VALUE_3 + AND + COLUMN_4 + EQUALS + VALUE_4 + ";";
+                VALUE_2 + AND + COLUMN_3 + EQUALS + VALUE_3 + AND + COLUMN_CLAUSE + ";";
         try {
             PreparedStatement statement = connection.prepareStatement(query);
             return statement.executeQuery();

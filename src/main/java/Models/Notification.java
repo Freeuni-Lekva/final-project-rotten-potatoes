@@ -34,17 +34,22 @@ public class Notification {
                 ,Item.surroundWithSingleQuotes(notificationType))));
     }
 
-    public static boolean notificationExists(DB db, String receiverUsername, String senderUsername, String itemID, String notificationType) throws SQLException {
-       ResultSet notifications = db.quadrupleConditionedSelect(NOTIFICATIONS_TABLE,"receiver_username", Item.surroundWithSingleQuotes(receiverUsername)
-        ,"sender_username", Item.surroundWithSingleQuotes(senderUsername), "item_id", Item.surroundWithSingleQuotes(itemID)
-        ,"notification_type", Item.surroundWithSingleQuotes(notificationType));
-       while (notifications.next()){
-           if(notifications.getString("receiver_username").equals(receiverUsername)
-           && notifications.getString("sender_username").equals(senderUsername)
-           && notifications.getString("item_id").equals(itemID)
-           && notifications.getString("notification_type").equals(notificationType)) return true;
+    public static int notificationExists(DB db, String receiverUsername, String senderUsername, String itemID, String notificationType) throws SQLException {
+        String columnClause = "";
+        if(itemID == null){
+            columnClause = " item_id is null ";
+        } else {
+            columnClause = " item_id = " + Item.surroundWithSingleQuotes(itemID);
+        }
+
+        ResultSet notifications = db.quadrupleConditionedSelect(NOTIFICATIONS_TABLE,"receiver_username", Item.surroundWithSingleQuotes(receiverUsername)
+        ,"sender_username", Item.surroundWithSingleQuotes(senderUsername),"notification_type",
+                Item.surroundWithSingleQuotes(notificationType), columnClause);
+       if(notifications.next()){
+           int notification_ID = notifications.getInt("notificationID");
+           return notification_ID;
        }
-       return false;
+       return -1;
     }
 
     public static List<Notification> getNotifications(DB db, String username) throws SQLException {
