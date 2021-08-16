@@ -65,7 +65,7 @@
 
                     <center><div class="form-group">
                         <label for="movieCast"><h3>Cast: </h3></label>
-                        <input type="text" id="movieCast" size="25" name="movieCast"> <br/>
+                        <input type="text" id="movieCast" size="70" name="movieCast"> <br/>
                     </div></center><br>
 
                     <center><div class="form-group">
@@ -83,7 +83,7 @@
 
                     <center><div class="form-group">
                         <label for="musicLabel"><h3>Label: </h3></label>
-                        <input type="text" id="musicLabel" size="25" name="musicLabel">  <br/>
+                        <input type="text" id="musicLabel" size="70" name="musicLabel">  <br/>
                     </div></center><br>
 
                     <center><div class="form-group">
@@ -102,7 +102,7 @@
 
                     <center><div class="form-group">
                         <label for="showCast"><h3>Cast: </h3></label>
-                        <input type="text" id="showCast" size="25" name="showCast"> <br/>
+                        <input type="text" id="showCast" size="70" name="showCast"> <br/>
                     </div></center><br>
 
                     <center><div class="form-group">
@@ -132,7 +132,7 @@
                 <% if(category!=null &&category.equals(Video_Game.ATTRIBUTE)){  %>
                     <center><div class="form-group">
                         <label for="gameDevelopers"><h3>Developers: </h3></label>
-                        <input type="text" id="gameDevelopers" size="25" name="gameDevelopers"> <br/>
+                        <input type="text" id="gameDevelopers" size="70" name="gameDevelopers"> <br/>
                     </div></center><br>
 
                     <center><div class="form-group">
