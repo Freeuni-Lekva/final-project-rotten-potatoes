@@ -1,6 +1,8 @@
 package Servlets;
 
 import Database.DB;
+import Models.Item;
+import Models.Notification;
 import Models.User;
 
 import javax.servlet.ServletException;
@@ -24,6 +26,12 @@ public class UnfollowServlet extends HttpServlet {
         try {
             if(User.isFollowing(db, User.getUserByUsername(db, userToFollow), User.getUserByUsername(db, wannabeUnfollower))){
                 User.unfollow(db, userToFollow, wannabeUnfollower);
+                int notificationID = Notification.notificationExists(db, userToFollow, wannabeUnfollower, null, "FOLLOW");
+                if(-1 != notificationID){
+                    String notifID = String.valueOf(notificationID);
+                    db.delete("notifications", "notificationID", Item.surroundWithSingleQuotes(notifID),
+                                            "notificationID", Item.surroundWithSingleQuotes(notifID));
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
