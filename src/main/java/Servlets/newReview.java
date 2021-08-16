@@ -1,6 +1,7 @@
 package Servlets;
 
 import Database.DB;
+import Models.Notification;
 import Models.Review;
 import Models.User;
 
@@ -33,6 +34,10 @@ public class newReview extends HttpServlet {
         User currUser=null;
         try {
            currUser= User.getUserByUsername(db,username);
+           for(User follower : currUser.getFollowers(db)){
+               Notification.addNotification(db, follower.getUsername(), currUser.getUsername()
+                       , null, "REVIEW");
+           }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
