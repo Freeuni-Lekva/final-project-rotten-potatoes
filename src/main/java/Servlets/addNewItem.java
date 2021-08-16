@@ -147,10 +147,6 @@ public class addNewItem extends HttpServlet {
            insertInCategory = db.insert(categoryWithoutQuotes, forCurrTable);
        }
 
-        System.out.println(forItem);
-        System.out.println(forCurrTable);
-        System.out.println(insertInCategory);
-        System.out.println(insertInItems);
        //აქ უნდა გაირკვეს წარმატებული პასუხის შემთხვევაში რომელ ჯსპ ფაილზე გადავა, დიდი ალბათობით გამოაჩენს ამ პროდუქტის გვერდს
         if (insertInItems == SQL.SQL_SUCCESS && insertInItems==insertInCategory){
             request.getSession().setAttribute("id",item_id_without);
