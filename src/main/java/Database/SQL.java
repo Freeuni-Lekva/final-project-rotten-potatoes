@@ -11,7 +11,7 @@ public class SQL implements DB {
     private static final String HOSTNAME = "127.0.0.1";
     private static final String PORT = "3306";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "RameParoli#83";
+    private static final String PASSWORD = "";
     private static final String DATABASE = "rotten_potatoes";
 
     // Constant variable declarations for SQL queries.
@@ -207,5 +207,18 @@ public class SQL implements DB {
         }
 
         return count;
+    }
+
+    @Override
+    public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1, String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3, String COLUMN_4, String VALUE_4) {
+        String query = SELECT_FROM + TABLE_NAME + WHERE_CLAUSE + COLUMN_1 + EQUALS + VALUE_1 + AND + COLUMN_2 + EQUALS +
+                VALUE_2 + AND + COLUMN_3 + EQUALS + VALUE_3 + AND + COLUMN_4 + EQUALS + VALUE_4 + ";";
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            return statement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
