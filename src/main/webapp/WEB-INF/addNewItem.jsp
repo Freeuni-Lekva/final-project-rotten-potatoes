@@ -156,6 +156,11 @@
                     <input type="text" id="cover" size="120" name="cover"> <br/>
                 </div></center><br>
 
+                <center><div class="form-group">
+                <input type="checkbox" id="sendNotification" name="sendNotification">
+                <label for="sendNotification">SEND NOTIFICATION TO USERS I FOLLOW</label>
+                </div></center><br>
+
                 <% String error = (String) request.getSession().getAttribute("hasError"); %>
                 <% if (error != null) { %>
                 <center><h2>YOUR ENTERED INFORMATION IS INCORRECT, PLEASE CHECK</h2></center>
