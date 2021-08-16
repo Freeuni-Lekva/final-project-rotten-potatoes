@@ -1,5 +1,6 @@
 package Database;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.List;
 
@@ -18,4 +19,5 @@ public interface DB {
     public ResultSet quadrupleConditionedSelect(String TABLE_NAME, String COLUMN_1, String VALUE_1,
                                                 String COLUMN_2, String VALUE_2, String COLUMN_3, String VALUE_3,
                                                 String COLUMN_CLAUSE);
+    Connection getConnection();
 }
